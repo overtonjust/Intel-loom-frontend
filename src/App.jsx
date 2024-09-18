@@ -7,6 +7,7 @@ import { Routes, Route } from 'react-router-dom';
 import DefaultLayout from './layouts/DefaultLayout';
 
 // Components
+import SearchBar from './layouts/components/SearchBar';
 
 // Pages
 import Conference from './pages/conference/Conference';
@@ -14,7 +15,7 @@ import Conference from './pages/conference/Conference';
 const App = () => {
   return (
     <Routes>
-      <Route path='/' element={<DefaultLayout/>}>
+      <Route path='/' element={<DefaultLayout />}>
       </Route>
     </Routes>
   );
