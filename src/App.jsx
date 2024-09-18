@@ -2,6 +2,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
+
 // Layouts
 import DefaultLayout from './layouts/DefaultLayout';
 
