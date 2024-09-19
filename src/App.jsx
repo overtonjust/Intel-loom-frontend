@@ -9,13 +9,13 @@ import DefaultLayout from './layouts/DefaultLayout';
 // Components
 
 // Pages
-import Conference from './pages/Conference';
-
+import Conference from './pages/conference/Conference';
 
 const App = () => {
   return (
-    <Routes path='/' element={<DefaultLayout/>}>
-      <Route path='/view' element={<Conference/>}></Route>
+    <Routes>
+      <Route path='/' element={<DefaultLayout/>}>
+      </Route>
     </Routes>
   );
 };

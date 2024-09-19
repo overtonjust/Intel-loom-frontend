@@ -7,9 +7,8 @@ import {
   } from '@100mslive/react-sdk';
 
 // Components
-import JoinCall from './conference/components/JoinCall';
-import ConferenceRoom from './conference/components/ConferenceRoom';
-
+import JoinCall from './components/JoinCall'
+import ConferenceRoom from './components/ConferenceRoom'
 
 const Conference = () => {
     const isConnected = useHMSStore(selectIsConnectedToRoom);
