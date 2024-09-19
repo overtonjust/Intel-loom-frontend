@@ -1,6 +1,6 @@
 // Dependencies
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 
 // Layouts
@@ -9,12 +9,14 @@ import DefaultLayout from './layouts/DefaultLayout';
 // Components
 
 // Pages
+import Conference from './pages/Conference';
+
 
 const App = () => {
   return (
-    <Route path='/' element={<DefaultLayout/>}>
-
-    </Route>
+    <Routes path='/' element={<DefaultLayout/>}>
+      <Route path='/view' element={<Conference/>}></Route>
+    </Routes>
   );
 };
 

@@ -1,13 +1,20 @@
+// Dependencies
 import React from 'react';
 import { selectPeers, useHMSStore } from '@100mslive/react-sdk';
 
+// Components
+import Webcam from './Webcam';
 
-const ConferenceRoom = () => {
+
+const ConferenceRoom = ({/** Grab room / class data */}) => {
     const peers = useHMSStore(selectPeers);
 
     return (
         <div>
-            {/* Map through list of joined callers and render a videoplayer for each */}
+            <h2>{/* class name */}</h2>
+            {peers.map((peer) => (
+                <Webcam key={peer.id} peer={peer} />
+            ))}
         </div>
     );
 };
