@@ -9,6 +9,7 @@ import {
 // Components
 import JoinCall from './components/JoinCall'
 import ConferenceRoom from './components/ConferenceRoom'
+import MenuOptions from './components/MenuOptions';
 
 const Conference = () => {
     const isConnected = useHMSStore(selectIsConnectedToRoom);
@@ -25,6 +26,7 @@ const Conference = () => {
             {isConnected ? (
                 <>
                     <ConferenceRoom/>
+                    <MenuOptions/>
                     {/* add ConferenceRoom component to hold all each videoPlayer component
                         add RoomMenu component to house all options (ie: mute, show video, chat etc) */}
                 </>
