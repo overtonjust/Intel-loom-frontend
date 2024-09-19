@@ -1,0 +1,45 @@
+@import '../../../shared.scss';
+
+.join {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80vw;
+    gap: 12px;
+    padding: 4%;
+    background-color: $blue;
+    border-radius: .6em;
+    border: 2px solid $grey;
+
+    &__title {
+        color: $white;
+    }
+
+    &__input-holder {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+        &__input {
+            max-width: 45%;
+            background-color: $white;
+            padding: 2%;
+            border-radius: .4em;
+            border: 1px solid $orange;
+        }
+
+        &__input::placeholder {
+            color: black;
+        }
+
+    &__submit {
+        padding: 1% 4%;
+        border-radius: .6em;
+        font-size: 1em;
+        outline: none;
+        cursor: pointer;
+        color: $blue;
+        background-color: $orange;
+    }
+}

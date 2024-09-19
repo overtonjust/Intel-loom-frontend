@@ -1,0 +1,24 @@
+@import '../../../shared.scss';
+
+.call-info {
+    margin-top: 50px;
+
+    &__rules {
+
+    }
+
+    &__title {
+        font-size: 1.6em;
+        margin: 5px 0;
+        color: $blue;
+    }
+
+    &__list {
+        padding: 2% 0;
+        padding-left: 8%;
+    }
+
+        &__list-item{
+            font-size: 1.2em;
+        }
+}

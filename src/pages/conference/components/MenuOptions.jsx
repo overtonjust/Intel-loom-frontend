@@ -36,78 +36,73 @@ const MenuOptions = () => {
     } = useAVToggle();
 
     return (
-        <>
-            <div className='main-control'>
-                <div onClick={toggleAudio} className='main_controls_button'>
+        <main className='menu-holder'>
+            <section className='menu-options-head'>
+                <article onClick={toggleAudio} className='menu-options-head__audio'>
                     {isLocalAudioEnabled ? (
                         <>
-                            <FontAwesomeIcon icon={faMicrophoneSlash} size="lg"/>
-                            <span className='button_name'>Mute</span>
+                            <FontAwesomeIcon className='menu-options__icon' icon={faMicrophoneSlash} size="lg"/>
+                            <span className='menu-options__label'>Mute</span>
                         </>
                     ) : (
                         <>
-                            <FontAwesomeIcon icon={faMicrophone} size="lg"/>
-                            <span className='button_name'>Unmute</span>
+                            <FontAwesomeIcon className='menu-options__icon' icon={faMicrophone} size="lg"/>
+                            <span className='menu-options__label'>Unmute</span>
                         </>
                     )}
-                </div>
-                <div onClick={toggleVideo} className='main_controls_button'>
+                </article>
+                <article onClick={toggleVideo} className='menu-options-head__video'>
                     {isLocalVideoEnabled ? (
                         <>
-                            <FontAwesomeIcon icon={faVideoSlash} size="lg"/>
-                            <span className='button_name'>Stop Video</span>
+                            <FontAwesomeIcon className='menu-options__icon' icon={faVideoSlash} size="lg"/>
+                            <span className='menu-options__label'>Stop Video</span>
                         </>
                     ) : 
                         <>
-                            <FontAwesomeIcon icon={faVideo} size="lg"/>
-                            <span className='button_name'>Start Video</span>
+                            <FontAwesomeIcon className='menu-options__icon' icon={faVideo} size="lg"/>
+                            <span className='menu-options__label'>Start Video</span>
                         </>
                     }
-                </div>
-
-            </div>
-            <div className='main_controls_section'>
-                <div className='main_controls_button'>
-                    <div>
-                        <FontAwesomeIcon icon={faUserPlus} size='lg'/><>{userCount}</>
-                    </div>
-                    <span className='button_name'>Participants</span>
-                </div>
-                <div className='main_controls_button'>
-                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} size='lg' color=""/>
-                    <span className='button_name'>Share Screen</span>
-                </div>
-                <div className='main_controls_button'>
-                    <FontAwesomeIcon icon={faMessage} size='lg'/>
-                    <span className='button_name'>Chat</span>
+                </article>
+            </section>
+            <section className='menu-options'>
+                <article className='menu-options__participants'>
+                    <span className='menu-options__count'>
+                        <FontAwesomeIcon className='menu-options__icon' icon={faUserPlus} size='lg'/><>{userCount}</>
+                    </span>
+                    <span className='menu-options__label'>Participants</span>
+                </article>
+                {/* <div className='main_controls_button'>
+                    <FontAwesomeIcon className='menu-options__icon' icon={faArrowUpRightFromSquare} size='lg' color=""/>
+                    <span className='menu-options__label'>Share Screen</span>
                 </div>
                 <div className='main_controls_button'>
-                    <FontAwesomeIcon icon={faFaceSmile} size='lg'/>
-                    <span className='button_name'>Reactions</span>
+                    <FontAwesomeIcon className='menu-options__icon' icon={faMessage} size='lg'/>
+                    <span className='menu-options__label'>Chat</span>
                 </div>
                 <div className='main_controls_button'>
-                    <FontAwesomeIcon icon={faGear} size='lg'/>
-                    <span className='button_name'>Settings</span>
+                    <FontAwesomeIcon className='menu-options__icon' icon={faFaceSmile} size='lg'/>
+                    <span className='menu-options__label'>Reactions</span>
                 </div>
                 <div className='main_controls_button'>
-                    <FontAwesomeIcon icon={faEllipsis} size='lg'/>
-                    <span className='button_name'>More</span>
+                    <FontAwesomeIcon className='menu-options__icon' icon={faGear} size='lg'/>
+                    <span className='menu-options__label'>Settings</span>
                 </div>
-            </div>
-            <div className='main_controls_section'>
                 <div className='main_controls_button'>
-                    {isConnected && (
-                        <button
-                        id='leave-btn'
-                        class='btn-danger'
-                        onClick={() => hmsActions.leave()}
-                        >
-                            Leave
-                        </button>
-                    )}
-                </div>
-            </div>
-        </>
+                    <FontAwesomeIcon className='menu-options__icon' icon={faEllipsis} size='lg'/>
+                    <span className='menu-options__label'>More</span>
+                </div> */}
+            </section>
+            {isConnected && (
+                <button
+                id='leave-btn'
+                class='menu-options__button'
+                onClick={() => hmsActions.leave()}
+                >
+                    Leave
+                </button>
+            )}
+        </main>
     );
 };
 

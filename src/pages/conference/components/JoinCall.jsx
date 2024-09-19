@@ -1,6 +1,7 @@
 // Dependencies
 import { useHMSActions } from '@100mslive/react-sdk';
 import React, { useState } from 'react';
+import './JoinCall.scss';
 
 
 const JoinCall = () => {
@@ -35,31 +36,31 @@ const JoinCall = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>Join Room</h2>
-            <div className=''>
+        <form className='join' onSubmit={handleSubmit}>
+            <h2 className='join__title'>Tell us who's joining!</h2>
+            <div className='join__input-holder'>
                 <input 
-                required
-                type="text"
-                id='name'
-                name='name'
-                value={inputValues.name}
-                onChange={handleInputChange}
-                placeholder='Your Name' 
+                    className='join__input'
+                    required
+                    type="text"
+                    id='name'
+                    name='name'
+                    value={inputValues.name}
+                    onChange={handleInputChange}
+                    placeholder='Your Name' 
+                />
+                <input 
+                    className='join__input'
+                    required
+                    type="text"
+                    id='room-code'
+                    name='roomCode'
+                    value={inputValues.roomCode}
+                    onChange={handleInputChange}
+                    placeholder='Room Code' 
                 />
             </div>
-            <div>
-                <input 
-                required
-                type="text"
-                id='room-code'
-                name='roomCode'
-                value={inputValues.roomCode}
-                onChange={handleInputChange}
-                placeholder='Room Code' 
-                />
-            </div>
-            <button>Join</button>
+            <button className='join__submit'>Join</button>
         </form>
     );
 };

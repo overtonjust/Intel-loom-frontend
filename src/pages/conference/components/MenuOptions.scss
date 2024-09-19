@@ -1,11 +1,51 @@
+@import '../../../shared.scss';
 
-
-.main-control {
+.menu-holder {
     display: flex;
-
+    overflow-x: scroll;
+    scrollbar-width: none;
+    align-items: center;
+    padding: 2%;
+    border: 2px $grey;
+    border-style: none solid solid solid ;
+    border-radius: .3em;
+    gap: 6px;
 }
 
-.main_controls_section {
+.menu-options-head {
     display: flex;
+    border-right: 2px solid $blue;
+    padding-right: 2%;
+    gap: 4px;
+
+    &__audio {
+
+    }
+
+    &__video {
+
+    }
 }
 
+.menu-options {
+    display: flex;
+    align-items: center;
+
+    &__icon {
+        color: $blue;
+        cursor: pointer;
+    }
+
+    &__label {
+        color: $blue;
+        cursor: pointer;
+    }
+
+    &__button {
+        padding: 1% 2%;
+        border-radius: 1em;
+        cursor: pointer;
+        background-color: $blue;
+        color: $white;
+    }
+}

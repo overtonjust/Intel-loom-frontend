@@ -1,6 +1,7 @@
 // Dependencies
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import './DefaultLayout.scss'
 
 // Components
 import Footer from './components/Footer';
@@ -10,8 +11,8 @@ import SearchBar from './components/SearchBar';
 
 const DefaultLayout = () => {
     return (
-        <main>
-            <SearchBar />
+        <main className='default-layout'>
+            <SearchBar />           
             <Outlet />
             <Footer />
             <MobileNav />

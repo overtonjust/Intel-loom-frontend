@@ -18,7 +18,7 @@ const SearchBar = ({ placeholder }) => {
     return (
 
         <div className='search'>
-            <button class='filterButton'>
+            <button className='filterButton'>
                 <FilterListIcon />
             </button>
             <div className='searchInputs'>

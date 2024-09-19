@@ -1,11 +1,9 @@
-@import '../../shared.scss';
+@import '../../../shared.scss';
 
 
 .mobile-nav {
-    position: fixed;
-    bottom: 0;
-    width: 100vw;
-    height: 5vh;
+    margin-top: auto;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;

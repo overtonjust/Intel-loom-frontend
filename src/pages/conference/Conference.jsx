@@ -5,13 +5,15 @@ import {
     useHMSActions,
     useHMSStore
   } from '@100mslive/react-sdk';
+import './Conference.scss';
 
 // Components
-import JoinCall from './components/JoinCall'
-import ConferenceRoom from './components/ConferenceRoom'
+import JoinCall from './components/JoinCall';
+import ConferenceRoom from './components/ConferenceRoom';
 import MenuOptions from './components/MenuOptions';
+import ConferenceInfo from './components/ConferenceInfo';
 
-const Conference = () => {
+const Conference = ({/** Grab room / class data */}) => {
     const isConnected = useHMSStore(selectIsConnectedToRoom);
     const hmsActions = useHMSActions();
 
@@ -19,21 +21,21 @@ const Conference = () => {
         if(!isConnected) {
             hmsActions.leave();
         }
-    }, [hmsActions, isConnected])
+    }, [hmsActions, isConnected]);
 
     return (
-        <div className='Conference'>
+        <section className='conference'>
+            <h2 className='conference__title'>{/* class name */}Cool Class</h2>
             {isConnected ? (
-                <>
+                <article className='conference__ video-call'>
                     <ConferenceRoom/>
                     <MenuOptions/>
-                    {/* add ConferenceRoom component to hold all each videoPlayer component
-                        add RoomMenu component to house all options (ie: mute, show video, chat etc) */}
-                </>
+                </article>
             ): (
                 <JoinCall/>
             )}
-        </div>
+            <ConferenceInfo/>
+        </section>
     );
 };
 

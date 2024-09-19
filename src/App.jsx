@@ -4,10 +4,10 @@ import { Route, Routes } from 'react-router-dom';
 import UserPage from './pages/UserPage';
 
 // Layouts
-import DefaultLayout from './layouts/DefaultLayout';
+import DefaultLayout from './layouts/DefaultLayout/DefaultLayout';
 
 // Components
-import SearchBar from './layouts/components/SearchBar';
+import SearchBar from './layouts/DefaultLayout/components/SearchBar';
 
 // Pages
 import Conference from './pages/conference/Conference';
