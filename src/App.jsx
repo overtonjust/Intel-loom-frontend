@@ -21,6 +21,7 @@ const App = () => {
         <Route path='/view' element={<Conference/>}/>
       </Route>  
     </Routes>
+
   );
 };
 
