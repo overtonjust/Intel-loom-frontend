@@ -8,7 +8,6 @@ import DefaultLayout from './layouts/DefaultLayout/DefaultLayout';
 
 // Components
 
-
 // Pages
 import Conference from './pages/conference/Conference';
 
