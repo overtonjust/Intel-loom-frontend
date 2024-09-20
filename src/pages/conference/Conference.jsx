@@ -8,16 +8,10 @@ import {
 import './Conference.scss';
 
 // Components
-<<<<<<< HEAD
 import JoinCall from './components/JoinCall';
 import ConferenceRoom from './components/ConferenceRoom';
 import MenuOptions from './components/MenuOptions';
 import ConferenceInfo from './components/ConferenceInfo';
-=======
-import JoinCall from './components/JoinCall'
-import ConferenceRoom from './components/ConferenceRoom'
-import MenuOptions from './components/MenuOptions';
->>>>>>> b2f3be6 (added MenuOptions info and package-lock to .gitign)
 
 const Conference = ({/** Grab room / class data */}) => {
     const isConnected = useHMSStore(selectIsConnectedToRoom);
@@ -36,13 +30,7 @@ const Conference = ({/** Grab room / class data */}) => {
                 <article className='conference__ video-call'>
                     <ConferenceRoom/>
                     <MenuOptions/>
-<<<<<<< HEAD
                 </article>
-=======
-                    {/* add ConferenceRoom component to hold all each videoPlayer component
-                        add RoomMenu component to house all options (ie: mute, show video, chat etc) */}
-                </>
->>>>>>> b2f3be6 (added MenuOptions info and package-lock to .gitign)
             ): (
                 <JoinCall/>
             )}
