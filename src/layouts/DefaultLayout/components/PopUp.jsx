@@ -7,7 +7,7 @@ const PopUp = ({ message, isVisible, onClose }) => {
     }
 
     const handleClose = () => {
-        const isConfirmed = window.confirm('Are you sure you want to close this popup?');
+        const isConfirmed = window.confirm("'Cool Class' has been booked!");
         if (isConfirmed) {
             onClose();
         }
