@@ -19,7 +19,7 @@ const MobileNav = () => {
             <Link className='mobile-nav__link' to={'/home'}>
                 <FontAwesomeIcon className='mobile-nav__icon' icon={faBookmark} />    
             </Link>
-            <Link className='mobile-nav__link' to={'/home'}>
+            <Link className='mobile-nav__link' to={'/users'}>
                 <FontAwesomeIcon className='mobile-nav__icon' icon={faUser} />    
             </Link>
         </section>

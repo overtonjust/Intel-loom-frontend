@@ -16,14 +16,10 @@ const App = () => {
   return (
     <Routes>
       <Route path='/' element={<DefaultLayout/>}>
-        <Route path='/users' element={<UserPage/>}></Route>
+        <Route path='/users' element={<UserPage/>}/>
         <Route path='/view' element={<Conference/>}/>
-      </Route>
-      
-
-   
+      </Route>  
     </Routes>
-
   );
 };
 
