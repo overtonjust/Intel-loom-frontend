@@ -1,23 +1,28 @@
 // Dependencies
-import React from 'react';
-import { Outlet } from 'react-router-dom';
 import './DefaultLayout.scss'
+import React from "react";
+import { Outlet, useLocation } from "react-router-dom";
 
 // Components
-import Footer from './components/Footer';
-import MobileNav from './components/MobileNav';
-import SearchBar from './components/SearchBar';
-
+import Footer from "./components/Footer";
+import MobileNav from "./components/MobileNav";
+import SearchBar from "./components/SearchBar";
 
 const DefaultLayout = () => {
-    return (
-        <main className='default-layout'>
-            <SearchBar />           
-            <Outlet />
-            <Footer />
-            <MobileNav />
-        </main>
-    );
+  const location = useLocation();
+  const hideSearchBarOn = ["users", "view"];
+  const showSearchBar = hideSearchBarOn.every(
+    (path) => !location.pathname.includes(path)
+  );
+
+  return (
+    <main>
+      {showSearchBar ? <SearchBar /> : <h1>Intel Loom Logo</h1>}
+      <Outlet />
+      <Footer />
+      <MobileNav />
+    </main>
+  );
 };
 
 export default DefaultLayout;
