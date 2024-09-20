@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import FilterListIcon from '@mui/icons-material/FilterList';
-import './SearchBar.css';
+import './SearchBar.scss';
 
 const SearchBar = ({ placeholder }) => {
     const [wordEntered, setWordEntered] = useState("");

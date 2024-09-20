@@ -1,18 +1,26 @@
-// import React from 'react';
+import React from 'react';
+import './PopUp.scss'
 
-// const PopUp = ({ message, isVisible, onClose }) => {
-//     if (!isVisible) {
-//         return null;
-//     }
+const PopUp = ({ message, isVisible, onClose }) => {
+    if (!isVisible) {
+        return null;
+    }
 
-//     return (
-//         <div className='popup-overlay'>
-//             <div className='popup-content'>
-//                 <p>{message}</p>
-//                 <button onClick={onClose}>OK</button>
-//             </div>
-//         </div>
-//     );
-// };
+    const handleClose = () => {
+        const isConfirmed = window.confirm('Are you sure you want to close this popup?');
+        if (isConfirmed) {
+            onClose();
+        }
+    };
 
-// export default PopUp
+    return (
+        <div className='popup-overlay'>
+            <div className='popup-content'>
+                <p>{message}</p>
+                <button onClick={handleClose}>OK</button>
+            </div>
+        </div>
+    );
+};
+
+export default PopUp

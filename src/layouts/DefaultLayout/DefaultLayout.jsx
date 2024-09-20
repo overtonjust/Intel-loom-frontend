@@ -7,6 +7,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Footer from "./components/Footer";
 import MobileNav from "./components/MobileNav";
 import SearchBar from "./components/SearchBar";
+import PopUp from './components/PopUp';
 
 const DefaultLayout = () => {
   const location = useLocation();
@@ -21,6 +22,7 @@ const DefaultLayout = () => {
       <Outlet />
       <Footer />
       <MobileNav />
+      <PopUp />
     </main>
   );
 };
