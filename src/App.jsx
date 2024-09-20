@@ -7,6 +7,7 @@ import UserPage from './pages/UserPage';
 import DefaultLayout from './layouts/DefaultLayout/DefaultLayout';
 
 // Components
+import SearchBar from './layouts/components/SearchBar';
 
 // Pages
 import Conference from './pages/conference/Conference';
