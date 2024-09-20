@@ -8,10 +8,16 @@ import {
 import './Conference.scss';
 
 // Components
+<<<<<<< HEAD
 import JoinCall from './components/JoinCall';
 import ConferenceRoom from './components/ConferenceRoom';
 import MenuOptions from './components/MenuOptions';
 import ConferenceInfo from './components/ConferenceInfo';
+=======
+import JoinCall from './components/JoinCall'
+import ConferenceRoom from './components/ConferenceRoom'
+import MenuOptions from './components/MenuOptions';
+>>>>>>> b2f3be6 (added MenuOptions info and package-lock to .gitign)
 
 const Conference = ({/** Grab room / class data */}) => {
     const isConnected = useHMSStore(selectIsConnectedToRoom);
