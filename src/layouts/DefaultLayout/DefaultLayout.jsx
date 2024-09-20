@@ -7,7 +7,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Footer from "./components/Footer";
 import MobileNav from "./components/MobileNav";
 import SearchBar from "./components/SearchBar";
-import PopUp from './components/PopUp';
+import PopUp from '../../shared components/PopUp';
 
 const DefaultLayout = () => {
   const location = useLocation();
