@@ -5,7 +5,7 @@
     width: 100vw;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    background-color: $white;
+    background-color: #fff;
     &__header, &__footer{
       padding: 1.5rem;
     }  

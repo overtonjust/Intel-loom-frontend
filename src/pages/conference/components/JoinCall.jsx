@@ -21,12 +21,16 @@ const JoinCall = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        
         const {
             name, 
             roomCode, 
         } = inputValues
         const authToken = await hmsActions.getAuthTokenByRoomCode({ roomCode });
-
+        
+        https://api.100ms.live/v2/room-codes/room/66ec21c6424864bd2e71c9b1?role=guest
+        {/** Call to backend for room code key based on if user is host or guest */}
+        
         try {
             await hmsActions.join({userName: name, authToken})
         } catch (error) {

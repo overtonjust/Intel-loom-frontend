@@ -10,6 +10,15 @@
     border-style: solid solid solid solid ;
     border-radius: .3em;
     gap: 6px;
+
+    &__fullscreen {
+        height: 8vh;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+    }
 }
 
 .menu-options-head {
@@ -59,4 +68,6 @@
         background-color: $blue;
         color: $white;
     }
+
+    
 }

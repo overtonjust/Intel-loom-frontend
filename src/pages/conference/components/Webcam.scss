@@ -14,21 +14,35 @@
     &__host {
         max-height: 80vh;
     }
-
    
     &__video {
-        height: 220px;
+        width: 100%;
+        object-fit: fill;
         border-radius: .8em;
     }
 
     &__name {
         font-size: 1.2em;
     }
+
+    &__fullscreen {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 92vh;
+        border-radius: 0;
+        aspect-ratio: 16 /9;
+    }
+
+    &__mini {
+        position: absolute;
+        height: 20vh;
+        width: 20vh;
+        bottom: 0;
+        right: 0;
+        border: 2px solid $blue;
+        margin-bottom: 10vh;
+        margin-right: 2vh;
+    }
 }
 
-.fullscreen {
-    height: 100vh;
-    width: 100vw;
-    z-index: 2;
-    border: 2px solid red;
-}

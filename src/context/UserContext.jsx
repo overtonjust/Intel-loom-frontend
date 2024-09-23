@@ -1,2 +1,5 @@
 import { createContext } from "react";
-export const UserContext = createContext();
+const WebcamContext = createContext();
+const UserContext = createContext();
+
+export { WebcamContext, UserContext }

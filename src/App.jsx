@@ -7,6 +7,7 @@ import DefaultLayout from './layouts/DefaultLayout/DefaultLayout';
 
 // Components
 
+
 // Pages
 import Home from './pages/home/Home';
 import UserPage from './pages/UserPage/UserPage';

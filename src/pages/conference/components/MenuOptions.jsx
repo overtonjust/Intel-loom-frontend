@@ -1,5 +1,5 @@
 // Dependencies
-import React from 'react';
+import React, { useContext } from 'react';
 import { useAVToggle } from '@100mslive/react-sdk';
 import {
     selectIsConnectedToRoom,
@@ -22,11 +22,13 @@ import {
     faEllipsis
 } from '@fortawesome/free-solid-svg-icons'
 import './MenuOptions.scss'
+import { WebcamContext } from '../../../context/UserContext';
 
 // Components
 
 
-const MenuOptions = ({ showParticipants, setShowParticipants, fullscreen, setFullscreen }) => {
+const MenuOptions = () => {
+    const { fullscreen, setFullscreen, showParticipants, setShowParticipants } = useContext(WebcamContext);
     const peers = useHMSStore(selectPeers);
     
     const userCount = peers.length;
@@ -42,7 +44,7 @@ const MenuOptions = ({ showParticipants, setShowParticipants, fullscreen, setFul
     } = useAVToggle();
 
     return (
-        <main className='menu-holder'>
+        <main className={`menu-holder ${fullscreen ? 'menu-holder__fullscreen' : ''}`} >
             <section className='menu-options-head'>
                 <article onClick={toggleAudio} className='menu-options-head__audio'>
                     {isLocalAudioEnabled ? (

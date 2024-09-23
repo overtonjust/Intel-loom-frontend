@@ -6,7 +6,7 @@
     border: 2px solid $grey;
     max-height: 100px;
     width: 50%;
-    background-color: $blue;
+    background-color: $white;
     display: flex;
     flex-wrap: wrap;
     overflow-y: scroll;
@@ -15,7 +15,7 @@
     gap: 12px;
 
     &__title{
-        color: $white;
+        color: $blue;
         text-align: center;
         width: 100%;
         border-bottom: 2px solid $grey;

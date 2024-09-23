@@ -7,9 +7,9 @@
     width: 80vw;
     gap: 12px;
     padding: 4%;
-    background-color: $blue;
+    background-color: $card;
     border-radius: .6em;
-    border: 2px solid $grey;
+    border: 2px solid $blue;
 
     &__title {
         color: $white;
@@ -23,14 +23,14 @@
 
         &__input {
             max-width: 45%;
-            background-color: $white;
+            background-color: white;
             padding: 2%;
             border-radius: .4em;
-            border: 1px solid $orange;
+            border: 1px solid $blue;
         }
 
         &__input::placeholder {
-            color: black;
+            color: $blue;
         }
 
     &__submit {
@@ -39,7 +39,7 @@
         font-size: 1em;
         outline: none;
         cursor: pointer;
-        color: $blue;
+        color: #fff;
         background-color: $orange;
     }
 }

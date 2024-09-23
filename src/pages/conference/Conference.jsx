@@ -1,11 +1,12 @@
 // Dependencies
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import {
     selectIsConnectedToRoom,
     useHMSActions,
     useHMSStore
   } from '@100mslive/react-sdk';
 import './Conference.scss';
+import { WebcamContext } from '../../context/UserContext';
 
 // Components
 import JoinCall from './components/JoinCall';
@@ -27,19 +28,21 @@ const Conference = ({/** Grab room / class data */}) => {
     }, [hmsActions, isConnected]);
 
     return (
-        <section className='conference'>
-            <h2 className='conference__title'>{/* class name */}Cool Class</h2>
-            {isConnected ? (
-                <article className='conference__ video-call'>
-                    <ConferenceRoom fullscreen={fullscreen}/>
-                    <MenuOptions showParticipants={showParticipants} setShowParticipants={setShowParticipants} setFullscreen={setFullscreen} fullscreen={fullscreen} />
-                    {showParticipants && <Participants/>}
-                </article>
-            ): (
-                <JoinCall/>
-            )}
-            <ConferenceInfo/>
-        </section>
+        <WebcamContext.Provider value={{ fullscreen, setFullscreen, showParticipants, setShowParticipants }}>
+            <section className='conference'>
+                <h2 className='conference__title'>{/* class name */}Cool Class</h2>
+                {isConnected ? (
+                    <article className={`conference__video-call ${fullscreen ? 'fullscreen' : ''}`}>
+                        <ConferenceRoom />
+                        <MenuOptions />
+                        {showParticipants && <Participants/>}
+                    </article>
+                ): (
+                    <JoinCall/>
+                )}
+                <ConferenceInfo/>
+            </section>
+        </WebcamContext.Provider>
     );
 };
 
