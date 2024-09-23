@@ -1,0 +1,46 @@
+@import '../shared.scss';
+
+.search {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 2%;
+  place-items: center;
+  margin: 0 2%;
+  background: $blue;
+  padding: .5rem 1rem;
+  border-radius: 50px;
+  &__select{
+    display: flex;
+    width: 100%;
+    background-color: #f7f7f7;
+    padding: 10px;
+    border-radius: 50px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    select {
+      border: none;
+      outline: none;
+      background: transparent;
+      padding: 0 5px;
+    }
+  }
+  &__input {
+    display: flex;
+    width: 100%;
+    background-color: #f7f7f7;
+    padding: 10px 20px;
+    border-radius: 50px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    input {
+      border: none;
+      outline: none;
+      background-color: transparent;
+      width: 100%;
+      font-size: 16px;
+      &::placeholder {
+        color: #aaa;
+      }
+    }
+  }
+}
