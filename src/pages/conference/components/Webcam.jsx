@@ -13,8 +13,8 @@ const Webcam = ({ peer }) => {
             <video
             ref={videoRef}
             autoPlay={true}
-            className='webcam__video'
             muted
+            className='webcam__video'
             playsInline 
             />
             <article className='webcam__name'>
