@@ -1,7 +1,6 @@
 // Dependencies
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import UserPage from './pages/UserPage/UserPage';
 
 // Layouts
 import DefaultLayout from './layouts/DefaultLayout/DefaultLayout';
@@ -10,7 +9,7 @@ import DefaultLayout from './layouts/DefaultLayout/DefaultLayout';
 
 // Pages
 import Home from './pages/home/Home';
-import UserPage from './pages/UserPage';
+import UserPage from './pages/UserPage/UserPage';
 import Login from './pages/login/Login';
 import Conference from './pages/conference/Conference';
 
