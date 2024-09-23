@@ -2,12 +2,13 @@
 
 
 .mobile-nav {
-    margin-top: auto;
+    margin-top: 10px;
+    height: 40px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 4px 4%;
+    padding:  2% 4% 4%;
 
     &__link {
         text-decoration: none;

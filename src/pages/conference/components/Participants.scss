@@ -1,0 +1,32 @@
+@import '../../../shared.scss';
+
+.participants {
+    margin: 10px 20px 0;
+    border-radius: .4em;
+    border: 2px solid $grey;
+    max-height: 100px;
+    width: 50%;
+    background-color: $blue;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    padding: 2%;
+    gap: 12px;
+
+    &__title{
+        color: $white;
+        text-align: center;
+        width: 100%;
+        border-bottom: 2px solid $grey;
+    }
+
+    &__name{
+        color: $white;
+        cursor: pointer;
+    }
+}
+
+.orange {
+    color: $orange;
+}

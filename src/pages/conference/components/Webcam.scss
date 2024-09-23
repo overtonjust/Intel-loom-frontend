@@ -25,3 +25,10 @@
         font-size: 1.2em;
     }
 }
+
+.fullscreen {
+    height: 100vh;
+    width: 100vw;
+    z-index: 2;
+    border: 2px solid red;
+}

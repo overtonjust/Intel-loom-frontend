@@ -1,17 +1,19 @@
 @import '../../../shared.scss';
 
 .conference-room {
+    width: 95vw;
     padding: 2%;
     background-color: $white;
-    // border: 2px $grey;
-    // border-style: solid solid none solid;
+    max-height: 400px;
+    overflow-y: scroll;
     border-radius: 1em;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 4%;
 
     &__host {
         width: 100%;
+        margin: 10px 0;
     }
 
     &__guest{
@@ -19,4 +21,7 @@
         grid-template-columns: repeat(auto-fill, minmax(30vw, 1fr));
         gap: 20px;
     }
+
+   
 }
+

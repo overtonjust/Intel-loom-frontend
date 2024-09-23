@@ -1,5 +1,5 @@
 // Dependencies
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     selectIsConnectedToRoom,
     useHMSActions,
@@ -12,11 +12,14 @@ import JoinCall from './components/JoinCall';
 import ConferenceRoom from './components/ConferenceRoom';
 import MenuOptions from './components/MenuOptions';
 import ConferenceInfo from './components/ConferenceInfo';
+import Participants from './components/Participants';
 
 const Conference = ({/** Grab room / class data */}) => {
     const isConnected = useHMSStore(selectIsConnectedToRoom);
     const hmsActions = useHMSActions();
-
+    const [showParticipants, setShowParticipants] = useState(false);
+    const [fullscreen, setFullscreen] = useState(false);
+    
     useEffect(() => {
         if(!isConnected) {
             hmsActions.leave();
@@ -28,8 +31,9 @@ const Conference = ({/** Grab room / class data */}) => {
             <h2 className='conference__title'>{/* class name */}Cool Class</h2>
             {isConnected ? (
                 <article className='conference__ video-call'>
-                    <ConferenceRoom/>
-                    <MenuOptions/>
+                    <ConferenceRoom fullscreen={fullscreen}/>
+                    <MenuOptions showParticipants={showParticipants} setShowParticipants={setShowParticipants} setFullscreen={setFullscreen} fullscreen={fullscreen} />
+                    {showParticipants && <Participants/>}
                 </article>
             ): (
                 <JoinCall/>

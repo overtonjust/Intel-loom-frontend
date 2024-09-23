@@ -22,14 +22,13 @@ const JoinCall = () => {
         e.preventDefault();
 
         const {
-            userName = '',
-            roomCode = '',
+            name, 
+            roomCode, 
         } = inputValues
-
         const authToken = await hmsActions.getAuthTokenByRoomCode({ roomCode });
 
         try {
-            await hmsActions.join({userName, authToken})
+            await hmsActions.join({userName: name, authToken})
         } catch (error) {
             console.error(error)
         }

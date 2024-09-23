@@ -1,3 +1,4 @@
+// Dependencies
 import React from 'react';
 import { useAVToggle } from '@100mslive/react-sdk';
 import {
@@ -13,6 +14,7 @@ import {
     faVideo,
     faVideoSlash,
     faUserPlus,
+    faUpRightAndDownLeftFromCenter,
     faArrowUpRightFromSquare,
     faMessage,
     faFaceSmile,
@@ -21,8 +23,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import './MenuOptions.scss'
 
-const MenuOptions = () => {
+// Components
+
+
+const MenuOptions = ({ showParticipants, setShowParticipants, fullscreen, setFullscreen }) => {
     const peers = useHMSStore(selectPeers);
+    
     const userCount = peers.length;
 
     const isConnected = useHMSStore(selectIsConnectedToRoom);
@@ -41,12 +47,12 @@ const MenuOptions = () => {
                 <article onClick={toggleAudio} className='menu-options-head__audio'>
                     {isLocalAudioEnabled ? (
                         <>
-                            <FontAwesomeIcon className='menu-options__icon' icon={faMicrophoneSlash} size="lg"/>
+                            <FontAwesomeIcon className='menu-options__icon' icon={faMicrophoneSlash} />
                             <span className='menu-options__label'>Mute</span>
                         </>
                     ) : (
                         <>
-                            <FontAwesomeIcon className='menu-options__icon' icon={faMicrophone} size="lg"/>
+                            <FontAwesomeIcon className='menu-options__icon' icon={faMicrophone}/>
                             <span className='menu-options__label'>Unmute</span>
                         </>
                     )}
@@ -54,23 +60,27 @@ const MenuOptions = () => {
                 <article onClick={toggleVideo} className='menu-options-head__video'>
                     {isLocalVideoEnabled ? (
                         <>
-                            <FontAwesomeIcon className='menu-options__icon' icon={faVideoSlash} size="lg"/>
+                            <FontAwesomeIcon className='menu-options__icon' icon={faVideoSlash} />
                             <span className='menu-options__label'>Stop Video</span>
                         </>
                     ) : 
                         <>
-                            <FontAwesomeIcon className='menu-options__icon' icon={faVideo} size="lg"/>
+                            <FontAwesomeIcon className='menu-options__icon' icon={faVideo} />
                             <span className='menu-options__label'>Start Video</span>
                         </>
                     }
                 </article>
             </section>
             <section className='menu-options'>
-                <article className='menu-options__participants'>
+                <article className='menu-options__container' onClick={() => setShowParticipants(!showParticipants)}>
                     <span className='menu-options__count'>
-                        <FontAwesomeIcon className='menu-options__icon' icon={faUserPlus} size='lg'/><>{userCount}</>
+                        <FontAwesomeIcon className='menu-options__icon' icon={faUserPlus} /><>{userCount}</>
                     </span>
-                    <span className='menu-options__label'>Participants</span>
+                    <span className='menu-options__label'>{showParticipants ? 'Close' : 'Participants'}</span>
+                </article>
+                <article className='menu-options__container' onClick={() => setFullscreen(!fullscreen)}>
+                    <FontAwesomeIcon className='menu-options__icon' icon={faUpRightAndDownLeftFromCenter}/>
+                    <span className='menu-options__label'>{fullscreen ? 'Close' : 'Fullscreen'}</span>
                 </article>
                 {/* <div className='main_controls_button'>
                     <FontAwesomeIcon className='menu-options__icon' icon={faArrowUpRightFromSquare} size='lg' color=""/>
@@ -96,7 +106,7 @@ const MenuOptions = () => {
             {isConnected && (
                 <button
                 id='leave-btn'
-                class='menu-options__button'
+                className='menu-options__button'
                 onClick={() => hmsActions.leave()}
                 >
                     Leave
