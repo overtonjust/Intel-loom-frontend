@@ -1,6 +1,10 @@
 // Dependencies
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+<<<<<<< HEAD
+=======
+import UserPage from './pages/UserPage';
+>>>>>>> ae3e56f (rebase changes)
 
 // Layouts
 import DefaultLayout from './layouts/DefaultLayout/DefaultLayout';
