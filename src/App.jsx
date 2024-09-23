@@ -1,6 +1,7 @@
 // Dependencies
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import UserPage from './pages/UserPage/UserPage';
 
 // Layouts
 import DefaultLayout from './layouts/DefaultLayout/DefaultLayout';
