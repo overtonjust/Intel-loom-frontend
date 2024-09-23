@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom';
 import DefaultLayout from './layouts/DefaultLayout/DefaultLayout';
 
 // Components
+import SearchBar from './layouts/components/SearchBar';
 
 
 // Pages
