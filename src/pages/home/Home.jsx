@@ -23,7 +23,7 @@ const Home = () => {
   return (
     <main className='home-container'>
       <SearchBar classes={allClasses} setDisplay={setClassesDisplay}/>
-      <div className='home-container__classes'>
+      <div className='classes'>
         {allClasses.map((classInfo) => (
           <ClassCard key={classInfo.classId} classInfo={classInfo}/>
         ))}
