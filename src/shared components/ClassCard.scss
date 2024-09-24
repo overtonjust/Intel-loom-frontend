@@ -1,0 +1,53 @@
+@import '../shared.scss';
+
+
+.class {
+    display: flex;
+    flex-direction: column;
+    background-color: $card;
+    padding: 4%;
+    border-radius: .4em;
+    height: 400px;
+    width: 85vw;
+    cursor: pointer;
+
+    &__image{
+        width: 100%;
+        height: 100%;
+        border-radius: .2em;
+    }
+
+    &__title {
+        width: 200px;       
+    }
+
+    &__info-box {
+        padding: 2%;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        border-radius: .1em;
+    }
+
+    &__row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__text {
+        color: $white;
+        font-size: 1.2em;
+    }
+
+    &__button {
+        border: none;
+        outline: none;
+        cursor: pointer;
+        font-size: 1.2em;
+        padding: 1% 4%;
+        border-radius: .6em;
+        background-color: $orange;
+        color: $white;
+    }
+}

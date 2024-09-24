@@ -14,6 +14,8 @@ import UserPage from './pages/UserPage/UserPage';
 import Login from './pages/login/Login';
 import Conference from './pages/conference/Conference';
 
+// login password Pursuit@2024 
+
 const App = () => {
   return (
     <Routes>

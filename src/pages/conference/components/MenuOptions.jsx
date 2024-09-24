@@ -84,26 +84,6 @@ const MenuOptions = () => {
                     <FontAwesomeIcon className='menu-options__icon' icon={faUpRightAndDownLeftFromCenter}/>
                     <span className='menu-options__label'>{fullscreen ? 'Close' : 'Fullscreen'}</span>
                 </article>
-                {/* <div className='main_controls_button'>
-                    <FontAwesomeIcon className='menu-options__icon' icon={faArrowUpRightFromSquare} size='lg' color=""/>
-                    <span className='menu-options__label'>Share Screen</span>
-                </div>
-                <div className='main_controls_button'>
-                    <FontAwesomeIcon className='menu-options__icon' icon={faMessage} size='lg'/>
-                    <span className='menu-options__label'>Chat</span>
-                </div>
-                <div className='main_controls_button'>
-                    <FontAwesomeIcon className='menu-options__icon' icon={faFaceSmile} size='lg'/>
-                    <span className='menu-options__label'>Reactions</span>
-                </div>
-                <div className='main_controls_button'>
-                    <FontAwesomeIcon className='menu-options__icon' icon={faGear} size='lg'/>
-                    <span className='menu-options__label'>Settings</span>
-                </div>
-                <div className='main_controls_button'>
-                    <FontAwesomeIcon className='menu-options__icon' icon={faEllipsis} size='lg'/>
-                    <span className='menu-options__label'>More</span>
-                </div> */}
             </section>
             {isConnected && (
                 <button
