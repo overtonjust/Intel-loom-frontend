@@ -4,6 +4,8 @@ import axios from 'axios';
 import { UserContext } from '../../context/UserContext';
 import { FaLinkedin, FaYoutube } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
+import './UserPage.scss'
+import CarouselRatio from './Carousel';
 
 const UserPage = () => {
   const { API } = useContext(UserContext);
@@ -18,23 +20,28 @@ const UserPage = () => {
 
   return (
     
-    <div className='user_container'>UserPage
-    
+    <div className='user_container'>
+      
+      <div className='user_bio-container'>
         <div className='user_profile-img' alt='profile-img'>
-            <img src="https://placehold.co/200x280" alt="profile image" />
+            <img src="https://placehold.co/144x200" alt="profile image" />
         </div>
-        <div className='user_name'>First Last</div>
-        <div className='user_bio'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non scelerisque nunc. Integer tristique pretium porta.</div>
-        <div className='user_socials'>
-            <button><FaLinkedin /></button> 
-            <button><MdOutlineEmail /></button> 
-            <button><FaYoutube /></button>
+      
+        <div className='user_description'>
+          <h1><b>First Last</b></h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non scelerisque nunc. Integer tristique pretium porta.</p>
+          <div className='user_socials'>
+            <FaLinkedin size={25} />
+            <MdOutlineEmail size={31}/> 
+            <FaYoutube size={31}/>
         </div>
-
-        <div className='user_videos'>Videos:
-            <img className='user_video1' src="https://placehold.co/300x200" alt="video1" />
-            <img className='user_video2' src="https://placehold.co/300x200" alt="video2" />
-            <img className='user_video3' src="https://placehold.co/300x200" alt="video3" />
+          
+          </div>
+       
+      </div>
+        <div className='user_videos'>
+          <h2>Videos:</h2>
+          <div className='Carousel'><CarouselRatio/></div>
 
         </div>
     </div>
