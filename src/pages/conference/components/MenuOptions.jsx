@@ -25,7 +25,7 @@ import './MenuOptions.scss'
 import { WebcamContext } from '../../../context/UserContext';
 
 // Components
-
+import Participants from './Participants';
 
 const MenuOptions = () => {
     const { fullscreen, setFullscreen, showParticipants, setShowParticipants } = useContext(WebcamContext);

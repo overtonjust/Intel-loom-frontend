@@ -35,7 +35,7 @@ const Conference = ({/** Grab room / class data */}) => {
                     <article className={`conference__video-call ${fullscreen ? 'fullscreen' : ''}`}>
                         <ConferenceRoom />
                         <MenuOptions />
-                        {showParticipants && <Participants/>}
+                        {showParticipants && !fullscreen && <Participants/>}
                     </article>
                 ): (
                     <JoinCall/>

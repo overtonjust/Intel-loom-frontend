@@ -24,14 +24,16 @@
     &__name {
         font-size: 1.2em;
     }
-
+    
     &__fullscreen {
         position: absolute;
         top: 0;
         left: 0;
         height: 92vh;
+        width: 100vw;
         border-radius: 0;
-        aspect-ratio: 16 /9;
+        object-fit: cover;
+        object-position: center;
     }
 
     &__mini {

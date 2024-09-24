@@ -16,7 +16,6 @@ const UserPage = () => {
       .catch(err => console.log(err));
   }, []);
 
-
   return (
     
     <div className='user_container'>UserPage

@@ -6,10 +6,11 @@
     scrollbar-width: none;
     align-items: center;
     padding: 2%;
-    border: 2px $grey;
+    background-color: $card;
+    border: 2px $blue;
     border-style: solid solid solid solid ;
     border-radius: .3em;
-    gap: 6px;
+    gap: 10px;
 
     &__fullscreen {
         height: 8vh;
@@ -17,15 +18,16 @@
         bottom: 0;
         left: 0;
         width: 100%;
-        background-color: #fff;
+        border-radius: 0;
+        background-color: $blue;
     }
 }
 
 .menu-options-head {
     display: flex;
-    border-right: 2px solid $blue;
+    border-right: 2px solid $white;
     padding-right: 2%;
-    gap: 4px;
+    gap: 8px;
 
     &__audio {
 
@@ -53,21 +55,25 @@
     }
 
     &__icon {
-        color: $blue;
+        color: #fff;
+        margin: 0 2px;
     }
 
     &__label {
         align-self: flex-start;
-        color: $blue;
+        color: $white;
     }
 
     &__button {
         padding: 1% 2%;
         border-radius: 1em;
         cursor: pointer;
-        background-color: $blue;
+        background-color: $orange;
         color: $white;
     }
 
+    &__count {
+        color: $white;
+    }
     
 }
