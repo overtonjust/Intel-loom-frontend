@@ -1,8 +1,22 @@
-import React from 'react'
+import {useState, useEffect, useContext} from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { UserContext } from '../../context/UserContext';
 import { FaLinkedin, FaYoutube } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 
 const UserPage = () => {
+  const { API } = useContext(UserContext);
+  const { id } = useParams();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    axios.get(`${API}/users/${id}`)
+      .then(res => setUser(res.data))
+      .catch(err => console.log(err));
+  }, []);
+
+
   return (
     
     <div className='user_container'>UserPage

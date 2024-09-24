@@ -56,7 +56,7 @@ const SearchBar = ({ classes, setDisplay }) => {
           value={wordEntered}
           onChange={(e) => setWordEntered(e.target.value)}
         />
-        {wordEntered.length > 0 && (<CiTrash onClick={() => setWordEntered('')}/>)}
+        {wordEntered.length > 0 && (<CiTrash className="trash-icon" onClick={() => setWordEntered('')}/>)}
       </div>
     </section>
   );

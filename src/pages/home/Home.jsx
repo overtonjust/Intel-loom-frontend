@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
 import axios from 'axios'
 import SearchBar from '../../shared components/SearchBar'
+import './Home.scss'
 
 const Home = () => {
   const { API  } = useContext(UserContext)

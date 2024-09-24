@@ -6,10 +6,8 @@
     display: grid;
     grid-template-rows: auto 1fr auto;
     background-color: #fff;
-    &__header, &__footer{
-      padding: 1.5rem;
-    }  
     &__header, &__footer {
+      padding: .75rem;
       display: grid;
       place-items: center;
     }
