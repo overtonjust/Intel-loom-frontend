@@ -1,0 +1,44 @@
+@import '../shared.scss';
+
+
+.card {
+    border: 2px solid black;
+}
+
+// .card {
+//   width: 300px;
+//   border: 1px solid $grey;
+//   border-radius: 8px;
+//   background-color: $white;
+//   overflow: hidden;
+//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+//   transition: transform 0.2s ease;
+//   cursor: pointer;
+
+//   &:hover {
+//     transform: translateY(-5px);
+//     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+//   }
+
+//   .card-image {
+//     width: 100%;
+//     height: 200px;
+//     object-fit: cover;
+//   }
+
+//   .card-content {
+//     padding: 16px;
+//     background-color: $orange; 
+
+//     .card-title {
+//       font-size: 1.5rem;
+//       margin: 0 0 8px;
+//       color: $white; 
+//     }
+
+//     .card-description {
+//       font-size: 1rem;
+//       color: $grey; 
+//     }
+//   }
+// }
