@@ -20,15 +20,13 @@ const SearchBar = ({ classes, setDisplay }) => {
     const filteredClasses = classes.filter((classObj) => {
       const {
         title,
-        description,
-        instructor: { firstName, middleName, lastName },
+        instructor,
       } = classObj;
-      const fullName = !middleName
-        ? `${firstName} ${lastName}`
-        : `${firstName} ${middleName} ${lastName}`;
+      const fullName = !instructor?.middleName
+        ? `${instructor?.firstName} ${instructor?.lastName}`
+        : `${instructor?.firstName} ${instructor?.middleName} ${instructor?.lastName}`;
       return (
         title.toLowerCase().includes(wordEntered.toLowerCase()) ||
-        description.toLowerCase().includes(wordEntered.toLowerCase()) ||
         fullName.toLowerCase().includes(wordEntered.toLowerCase())
       );
     });
