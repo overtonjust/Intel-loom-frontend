@@ -23,14 +23,14 @@ const Home = () => {
         setMoreClasses(res.data.moreClasses)
       })
       .catch(err => console.log(err))
-  }, [page, moreClasses])
+  }, [page])
 
   return (
     <main className='home-container'>
       <SearchBar classes={allClasses} setDisplay={setClassesDisplay}/>
       <div className='classes'>
         {classesDisplay.map((classInfo) => (
-          <ClassCard key={classInfo.classId} classInfo={classInfo}/>
+          <ClassCard key={classInfo?.classId} classInfo={classInfo}/>
         ))}
       </div>
       {moreClasses && 

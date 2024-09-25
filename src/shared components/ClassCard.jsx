@@ -1,11 +1,14 @@
-// Dependencies
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { formatDate, formatTime } from '../../utils';
+import { formatDate, formatTime, checkTime } from '../../utils';
 import './ClassCard.scss';
 
 const ClassCard = ({ classInfo }) => {
-    const enrolled = true;
+  const classIsToday = formatDate(new Date()) === formatDate(classInfo.classDate);
+  const currentTime = new Date().getHours() + ':' + new Date().getMinutes();
+  const checkedTime = checkTime(currentTime, classInfo.classTimeStart);
+  const withInTime =  checkedTime.hours <= 1 && checkedTime.minutes === 0;
 
     return (
         <section className='class'>
@@ -19,7 +22,7 @@ const ClassCard = ({ classInfo }) => {
                 </div>
                 <div className='class__row'>
                     <p className='class__text'>${Number(classInfo.price).toFixed(0)}</p>
-                    {enrolled ? 
+                    {true ? 
                             <Link className='class__link' to={'/view'}>
                                 Join Class
                             </Link>
