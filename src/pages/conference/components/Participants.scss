@@ -3,10 +3,10 @@
 .participants {
     margin: 10px 20px 0;
     border-radius: .4em;
-    border: 2px solid $grey;
+    border: 2px solid $blue;
     max-height: 100px;
     width: 50%;
-    background-color: $white;
+    background-color: $card;
     display: flex;
     flex-wrap: wrap;
     overflow-y: scroll;
@@ -15,7 +15,7 @@
     gap: 12px;
 
     &__title{
-        color: $blue;
+        color: $white;
         text-align: center;
         width: 100%;
         border-bottom: 2px solid $grey;

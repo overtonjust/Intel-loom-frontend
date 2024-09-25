@@ -13,7 +13,7 @@ const Webcam = ({ peer }) => {
     return (
         <section className={`webcam ${peer.roleName === 'guest' ? 'webcam__guest' : 'webcam__host'} `}>
             {!isLocalVideoEnabled && peer.isLocal ? 
-                <img className={`webcam__video ${fullscreen && peer.roleName === 'guest' ? 'webcam__mini' : fullscreen && peer.roleName === 'host' ? 'webcam__fullscreen' : ''} `} src="https://placehold.co/180x100" alt="" /> 
+                <img className={`webcam__video webcam__image ${fullscreen && peer.roleName === 'guest' ? 'webcam__mini' : fullscreen && peer.roleName === 'host' ? 'webcam__fullscreen' : ''} `} src="https://placehold.co/180x100" alt="" /> 
                 :
                 <video
                 ref={videoRef}
