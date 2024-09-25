@@ -22,12 +22,6 @@ const Conference = ({/** Grab room / class data */}) => {
     const [fullscreen, setFullscreen] = useState(false);
     window.addEventListener('beforeunload', () => hmsActions.leave());
     window.addEventListener('onunload', () => hmsActions.leave());
-    
-    // useEffect(() => {
-    //     if(!isConnected) {
-    //         hmsActions.leave();
-    //     }
-    // }, [hmsActions, isConnected]);
 
     return (
         <WebcamContext.Provider value={{ fullscreen, setFullscreen, showParticipants, setShowParticipants }}>
