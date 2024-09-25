@@ -10,7 +10,6 @@ const Webcam = ({ peer }) => {
         trackId: peer.videoTrack
     });
 
-    console.log(fullscreen)
     return (
         <section className={`webcam ${peer.roleName === 'guest' ? 'webcam__guest' : 'webcam__host'} `}>
             <video

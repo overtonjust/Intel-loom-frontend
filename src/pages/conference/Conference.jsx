@@ -3,7 +3,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import {
     selectIsConnectedToRoom,
     useHMSActions,
-    useHMSStore
+    useHMSStore,
   } from '@100mslive/react-sdk';
 import './Conference.scss';
 import { WebcamContext } from '../../context/UserContext';
@@ -20,12 +20,14 @@ const Conference = ({/** Grab room / class data */}) => {
     const hmsActions = useHMSActions();
     const [showParticipants, setShowParticipants] = useState(false);
     const [fullscreen, setFullscreen] = useState(false);
+    window.addEventListener('beforeunload', () => hmsActions.leave());
+    window.addEventListener('onunload', () => hmsActions.leave());
     
-    useEffect(() => {
-        if(!isConnected) {
-            hmsActions.leave();
-        }
-    }, [hmsActions, isConnected]);
+    // useEffect(() => {
+    //     if(!isConnected) {
+    //         hmsActions.leave();
+    //     }
+    // }, [hmsActions, isConnected]);
 
     return (
         <WebcamContext.Provider value={{ fullscreen, setFullscreen, showParticipants, setShowParticipants }}>
