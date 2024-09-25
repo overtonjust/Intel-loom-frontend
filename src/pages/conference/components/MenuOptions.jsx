@@ -28,20 +28,13 @@ import { WebcamContext } from '../../../context/UserContext';
 import Participants from './Participants';
 
 const MenuOptions = () => {
-    const { fullscreen, setFullscreen, showParticipants, setShowParticipants } = useContext(WebcamContext);
+    const { fullscreen, setFullscreen, showParticipants, setShowParticipants, isLocalAudioEnabled, isLocalVideoEnabled, toggleAudio, toggleVideo } = useContext(WebcamContext);
     const peers = useHMSStore(selectPeers);
     
     const userCount = peers.length;
 
     const isConnected = useHMSStore(selectIsConnectedToRoom);
     const hmsActions = useHMSActions();
-
-    const {
-        isLocalAudioEnabled,
-        isLocalVideoEnabled,
-        toggleAudio,
-        toggleVideo
-    } = useAVToggle();
 
     return (
         <main className={`menu-holder ${fullscreen ? 'menu-holder__fullscreen' : ''}`} >

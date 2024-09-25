@@ -4,7 +4,8 @@ import {
     selectIsConnectedToRoom,
     useHMSActions,
     useHMSStore,
-  } from '@100mslive/react-sdk';
+} from '@100mslive/react-sdk';
+import { useAVToggle } from '@100mslive/react-sdk';
 import './Conference.scss';
 import { WebcamContext } from '../../context/UserContext';
 
@@ -20,11 +21,17 @@ const Conference = ({/** Grab room / class data */}) => {
     const hmsActions = useHMSActions();
     const [showParticipants, setShowParticipants] = useState(false);
     const [fullscreen, setFullscreen] = useState(false);
+    const {
+        isLocalAudioEnabled,
+        isLocalVideoEnabled,
+        toggleAudio,
+        toggleVideo
+    } = useAVToggle();
     window.addEventListener('beforeunload', () => hmsActions.leave());
     window.addEventListener('onunload', () => hmsActions.leave());
 
     return (
-        <WebcamContext.Provider value={{ fullscreen, setFullscreen, showParticipants, setShowParticipants }}>
+        <WebcamContext.Provider value={{ fullscreen, setFullscreen, showParticipants, setShowParticipants, isLocalAudioEnabled, isLocalVideoEnabled, toggleAudio, toggleVideo }}>
             <section className='conference'>
                 <h2 className='conference__title'>{/* class name */}Cool Class</h2>
                 {isConnected ? (
