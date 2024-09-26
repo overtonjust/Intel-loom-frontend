@@ -1,11 +1,11 @@
 
 $orange: #FE5A1D;
-$orange-hover: #fb7f52;
+$orange-faded: #fb7f52;
 $white: #EFEFEF;
 $footer: #cacaca;
 $grey: #b6b6b6;
 $blue: #002366;
-$blue-hover: #1e4182e6;
+$blue-faded: #1e4182e6;
 $card: rgba(0, 35, 102,.89);
 
 .button-orange {
@@ -19,11 +19,11 @@ $card: rgba(0, 35, 102,.89);
     text-decoration: none;
     &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 0 .6rem .2rem $blue-hover;
+        box-shadow: 0 0 .6rem .2rem $white;
     }
     &:active {
         transform: translateY(2px);
-        background-color: $orange-hover;
+        background-color: $orange-faded;
         box-shadow: none;
     }
 }
@@ -39,11 +39,11 @@ $card: rgba(0, 35, 102,.89);
     text-decoration: none;
     &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 0 .6rem .2rem $orange-hover;
+        box-shadow: 0 0 .6rem .2rem $orange-faded;
     }
     &:active {
         transform: translateY(2px);
-        background-color: $blue-hover;
+        background-color: $blue-faded;
         box-shadow: none;
     }
 }
@@ -59,11 +59,11 @@ $card: rgba(0, 35, 102,.89);
     text-decoration: none;
     &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 0 .6rem .2rem $blue-hover;
+        box-shadow: 0 0 .6rem .2rem $white;
     }
     &:active {
         transform: translateY(2px);
-        background-color: $orange-hover;
+        background-color: $orange-faded;
         box-shadow: none;
     }
 }
@@ -79,11 +79,11 @@ $card: rgba(0, 35, 102,.89);
     text-decoration: none;
     &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 0 .6rem .2rem $orange-hover;
+        box-shadow: 0 0 .6rem .2rem $orange-faded;
     }
     &:active {
         transform: translateY(2px);
-        background-color: $blue-hover;
+        background-color: $blue-faded;
         box-shadow: none;
     }
 }

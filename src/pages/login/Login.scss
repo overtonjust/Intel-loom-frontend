@@ -7,6 +7,9 @@
 
 .login-form{
   padding: 2rem;
+  background-color: $card;
+  border-radius: .4em;
+  margin: 0 auto;
   display: grid;
   grid-template-rows: repeat(6, auto);
   place-items: center;
