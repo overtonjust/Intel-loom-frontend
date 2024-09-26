@@ -32,14 +32,4 @@
         &__input::placeholder {
             color: $blue;
         }
-
-    &__submit {
-        padding: 1% 4%;
-        border-radius: .6em;
-        font-size: 1em;
-        outline: none;
-        cursor: pointer;
-        color: #fff;
-        background-color: $orange;
-    }
 }

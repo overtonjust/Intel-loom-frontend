@@ -23,7 +23,7 @@ const ClassCard = ({ classInfo }) => {
                 <div className='class__row'>
                     <p className='class__text'>${Number(classInfo.price).toFixed(0)}</p>
                     {true && 
-                            <Link className='class__link' to={'/view'}>
+                            <Link className='button-orange' to={'/view'}>
                                 Join Class
                             </Link>
                     }

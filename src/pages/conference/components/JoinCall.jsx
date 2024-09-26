@@ -63,7 +63,7 @@ const JoinCall = () => {
                     placeholder='Room Code' 
                 />
             </div>
-            <button className='join__submit'>Join</button>
+            <button className='button-orange'>Join</button>
         </form>
     );
 };

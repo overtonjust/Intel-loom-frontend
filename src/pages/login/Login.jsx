@@ -87,14 +87,14 @@ const Login = () => {
           </div>
         </section>
         <section className="login-form__group main-btns">
-          <button type='button' onClick={() => navigate(-1)}>Cancel</button>
-          <button type="submit">Log In</button>
+          <button className="button-orange" type='button' onClick={() => navigate(-1)}>Cancel</button>
+          <button className="button-orange" type="submit">Log In</button>
         </section>
         <section className="login-form__group">
           <p className="forgot-password">Forgot Password?</p>
         </section>
-        <section className="login-form__group switch-btn">
-          <p className="register">Register</p>
+        <section className="login-form__group ">
+          <p className="button-large-blue">Register</p>
         </section>
       </form>
     </main>
