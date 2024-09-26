@@ -15,6 +15,7 @@ const ClassPage = () => {
       .then(res => setClassData(res.data))
       .catch(err => console.log(err));
   }, [API, id]);
+  console.log(classData)
 
   if (!classData) {
     return <div>Loading...</div>;
