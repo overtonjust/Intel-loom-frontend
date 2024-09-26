@@ -47,7 +47,7 @@ const Login = () => {
     <main className="form-container">
       <form className="login-form" onSubmit={handleSubmit}>
         <section className="login-form__title">
-          <h2>Log In</h2>
+          <h2 className="login-form__text">Log In</h2>
         </section>
         <section className="login-form__group">
           <div className="form-input">
@@ -91,7 +91,7 @@ const Login = () => {
           <button className="button-orange" type="submit">Log In</button>
         </section>
         <section className="login-form__group">
-          <p className="forgot-password">Forgot Password?</p>
+          <p className="forgot-password login-form__text">Forgot Password?</p>
         </section>
         <section className="login-form__group ">
           <p className="button-large-blue">Register</p>

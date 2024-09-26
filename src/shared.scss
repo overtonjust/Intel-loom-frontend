@@ -19,7 +19,7 @@ $card: rgba(0, 35, 102,.89);
     text-decoration: none;
     &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 0 .6rem .2rem $white;
+        box-shadow: 0 0 .6rem .2rem $grey;
     }
     &:active {
         transform: translateY(2px);
@@ -59,7 +59,7 @@ $card: rgba(0, 35, 102,.89);
     text-decoration: none;
     &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 0 .6rem .2rem $white;
+        box-shadow: 0 0 .6rem .2rem $grey;
     }
     &:active {
         transform: translateY(2px);

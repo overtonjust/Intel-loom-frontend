@@ -20,6 +20,9 @@
     place-items: center;
     padding: 0 1rem;
   }
+  &__text{
+    color: $white;
+  }
 }
 
 .form-input {
