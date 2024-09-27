@@ -8,13 +8,13 @@ import './UserPage.scss'
 import CarouselRatio from './Carousel';
 
 const UserPage = () => {
-  const { API } = useContext(UserContext);
+  const { API, user } = useContext(UserContext);
   const { id } = useParams();
-  const [user, setUser] = useState(null);
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    axios.get(`${API}/users/${id}`)
-      .then(res => setUser(res.data))
+    axios.get(`${API}/users/${id}`, {headers: {Authorization: user.token}})
+      .then(res => setUserData(res.data))
       .catch(err => console.log(err));
   }, []);
 
