@@ -7,6 +7,9 @@
 
 .login-form{
   padding: 2rem;
+  background-color: $card;
+  border-radius: .4em;
+  margin: 0 auto;
   display: grid;
   grid-template-rows: repeat(6, auto);
   place-items: center;
@@ -16,6 +19,9 @@
     display: grid;
     place-items: center;
     padding: 0 1rem;
+  }
+  &__text{
+    color: $white;
   }
 }
 
@@ -40,51 +46,6 @@
 .main-btns {
   display: flex;
   justify-content: space-evenly;
-  button {
-    cursor: pointer;
-    background: rgb(163, 167, 169);
-    border: none;
-    border-radius: 1.2rem;
-    color: white;
-    padding: 1rem 3rem;
-    &:hover {
-      background: rgb(163, 167, 169, 0.5);
-      box-shadow: 0 0 1rem 0.2rem rgb(163, 167, 169);
-    }
-    &:active {
-      background: rgb(163, 167, 169, 0.8);
-      box-shadow: none;
-    }
-    &:nth-child(2) {
-      background: $blue;
-      &:hover {
-        background: $orange;
-        box-shadow: 0 0 1rem 0.2rem rgb(163, 167, 169, 0.5);
-      }
-      &:active {
-        box-shadow: 0 0 1rem 0.2rem rgb(163, 167, 169, 0.8);
-      }
-    }
-  }
-}
-
-.switch-btn {
-  p {
-    cursor: pointer;
-    background: rgb(163, 167, 169, 0.5);
-    border: none;
-    border-radius: 1.2rem;
-    color: white;
-    padding: 1rem 5rem;
-    &:hover {
-      background: rgb(163, 167, 169);
-      box-shadow: 0 0 1rem 0.2rem rgb(163, 167, 169, 0.5);
-    }
-    &:active {
-      background: rgb(163, 167, 169, 0.8);
-      box-shadow: none;
-    }
-  }
 }
 
 
