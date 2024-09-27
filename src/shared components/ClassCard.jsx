@@ -17,7 +17,6 @@ const ClassCard = ({ classInfo }) => {
             <img className='class__image' src={classInfo.highlightPicture} alt={classInfo.title} />
             <article className='class__info-box'>
                 <div className='class__row'>
-                    <p className='class__text'>{formatDate(classInfo.classDate)}</p>
                     <p className='class__text'>{formatTime(classInfo.classTimeStart, classInfo.classTimeEnd)}</p>
                 </div>
                 <div className='class__row'>
