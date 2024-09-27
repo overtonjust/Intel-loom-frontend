@@ -42,8 +42,13 @@ const UserPage = () => {
         <div className='user_videos'>
           <h2>Videos:</h2>
           <div className='Carousel'><CarouselRatio/></div>
-
         </div>
+
+      <div className='buttons'>
+        <button>Edit</button>
+        <button>Sign Out</button>
+      </div>
+        
     </div>
   )
 }
