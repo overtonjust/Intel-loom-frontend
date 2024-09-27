@@ -1,6 +1,7 @@
 @import '../../../shared.scss';
 
 .webcam {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,18 +13,23 @@
     }
 
     &__host {
-        max-height: 80vh;
+        height: 80vh;
+        max-height: 200px;
     }
    
     &__video {
+        height: 100%;
         width: 100%;
         object-fit: fill;
         border-radius: .8em;
     }
 
     &__name {
+        position: absolute;
+        left: 4%;
+        bottom: 2%;
         font-size: 1.2em;
-        color: $blue;
+        color: $white;
     }
     
     &__fullscreen {

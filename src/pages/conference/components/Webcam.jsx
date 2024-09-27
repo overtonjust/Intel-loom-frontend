@@ -7,7 +7,7 @@ import { WebcamContext } from '../../../context/UserContext';
 const Webcam = ({ peer }) => {
     const { fullscreen, isLocalVideoEnabled } = useContext(WebcamContext);
     const { videoRef } = useVideo({
-        trackId: peer.videoTrack
+        trackId: peer.auxiliaryTracks[0] || peer.videoTrack
     });
 
     return (
