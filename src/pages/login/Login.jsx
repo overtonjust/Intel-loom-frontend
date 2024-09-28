@@ -35,7 +35,7 @@ const Login = () => {
         navigate("/");
       })
       .catch((err) => {
-        if(err.response.data.error) {
+        if (err.response.data.error) {
           setMessage(err.response.data.error);
           return;
         }
@@ -94,7 +94,7 @@ const Login = () => {
           <p className="forgot-password login-form__text">Forgot Password?</p>
         </section>
         <section className="login-form__group ">
-          <p className="button-large-blue">Register</p>
+          <button className="button-large-blue" type="button" onClick={() => navigate('/register')}>Register</button>
         </section>
       </form>
     </main>
