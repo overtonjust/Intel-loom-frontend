@@ -1,0 +1,78 @@
+@import '../../shared.scss';
+
+.social-container {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 2rem;
+}
+
+.social-form {
+  background-color: $card;
+  padding: 2rem;
+  border-radius: 1rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: repeat(6, auto);
+  place-items: center;
+  row-gap: 1.5rem;
+  max-width: 400px;
+  width: 100%;
+
+  h2 {
+    font-size: 2rem;
+    color: $white;
+    margin-bottom: 1.5rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .form-input {
+      display: flex;
+      justify-content: center;
+      border: 0.1rem solid $white;
+      border-radius: 1.5rem;
+      padding: 0.3rem 0.75rem;
+      background: white;
+      width: 80%;
+      align-items: center;
+      margin: 0 auto;
+      margin-top: 1rem;
+
+      input {
+        text-align: center;
+        border: none;
+        background: transparent;
+        width: 90%;
+        &:focus {
+          outline: none;
+        }
+      }
+
+.social-icon {
+    font-size: 1.5rem;
+    color: $blue;
+    margin-right: 0.5rem;
+    }
+}
+
+    .main-btns {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+      margin-bottom: 0.4rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .social-form {
+    padding: 1rem;
+    max-width: 100%; 
+  }
+}

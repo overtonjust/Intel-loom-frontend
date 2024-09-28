@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Credentials from './Credentials';
-// import Personal from './Personal';
-// import SocialLinks from './SocialLinks';
+import Personal from './Personal';
+import SocialLinks from './SocialLinks';
 // import InstructorPrompt from './InstructorPrompt';
 // import Security from './Security';
 
