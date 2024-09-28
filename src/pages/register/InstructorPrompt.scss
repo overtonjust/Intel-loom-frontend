@@ -1,6 +1,6 @@
 @import '../../shared.scss';
 
-.social-container {
+.instructor-container {
   display: grid;
   align-items: center;
   justify-content: center;
@@ -8,7 +8,7 @@
   padding: 2rem;
 }
 
-.social-form {
+.instructor-form {
   background-color: $card;
   padding: 2rem;
   border-radius: 1rem;
@@ -33,7 +33,7 @@
 
     .form-input {
       display: flex;
-      justify-content: flex-start;
+      flex-direction: column;
       align-items: center;
       border: 0.1rem solid $white;
       border-radius: 1.5rem;
@@ -43,25 +43,50 @@
       margin: 0 auto;
       margin-top: 1rem;
 
-      input {
+      input,
+      textarea {
+        width: 100%;
         border: none;
         background: transparent;
-        margin-left: 0.5rem; 
-        width: 100%; 
-        text-align: left; 
-        
+        margin-top: 0.5rem;
+
         &:focus {
           outline: none;
         }
       }
 
-      .social-icon {
-        font-size: 1.5rem;
-        color: $blue;
-        margin-right: 0.5rem; 
+      textarea {
+        resize: none;
+        height: 80px;
+      }
+
+      label {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        text-align: left;
+        width: 100%;
+      }
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 80%;
+      margin: 0 auto;
+      padding: 0.5rem 0.75rem;
+      background: white;
+      border: 0.1rem solid $white;
+      border-radius: 1.5rem;
+
+      input[type="checkbox"] {
+        margin-right: 0.5rem;
+      }
+
+      label {
+        font-weight: bold;
         display: flex;
-        align-items: center; 
-        justify-content: center; 
+        align-items: center;
       }
     }
 
@@ -76,7 +101,7 @@
 }
 
 @media (max-width: 768px) {
-  .social-form {
+  .instructor-form {
     padding: 1rem;
     max-width: 100%; 
   }

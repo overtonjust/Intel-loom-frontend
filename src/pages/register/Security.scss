@@ -1,6 +1,6 @@
 @import '../../shared.scss';
 
-.social-container {
+.security-container {
   display: grid;
   align-items: center;
   justify-content: center;
@@ -8,7 +8,7 @@
   padding: 2rem;
 }
 
-.social-form {
+.security-form {
   background-color: $card;
   padding: 2rem;
   border-radius: 1rem;
@@ -33,36 +33,35 @@
 
     .form-input {
       display: flex;
-      justify-content: flex-start;
-      align-items: center;
+      justify-content: center;
       border: 0.1rem solid $white;
       border-radius: 1.5rem;
-      padding: 0.5rem;
+      padding: 0.3rem 0.75rem;
       background: white;
       width: 80%;
+      align-items: center;
       margin: 0 auto;
       margin-top: 1rem;
 
       input {
         border: none;
         background: transparent;
-        margin-left: 0.5rem; 
-        width: 100%; 
-        text-align: left; 
-        
+        margin-left: 0.5rem;
+        width: 100%;
+        text-align: center;
+
         &:focus {
           outline: none;
         }
       }
+    }
 
-      .social-icon {
-        font-size: 1.5rem;
-        color: $blue;
-        margin-right: 0.5rem; 
-        display: flex;
-        align-items: center; 
-        justify-content: center; 
-      }
+    .error-message {
+      color: red;
+      font-size: 0.875rem;
+      margin-top: -0.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
     }
 
     .main-btns {
@@ -76,7 +75,7 @@
 }
 
 @media (max-width: 768px) {
-  .social-form {
+  .security-form {
     padding: 1rem;
     max-width: 100%; 
   }

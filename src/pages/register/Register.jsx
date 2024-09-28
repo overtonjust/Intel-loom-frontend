@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Credentials from './Credentials';
 import Personal from './Personal';
 import SocialLinks from './SocialLinks';
-// import InstructorPrompt from './InstructorPrompt';
-// import Security from './Security';
+import InstructorPrompt from './InstructorPrompt';
+import Security from './Security';
 
 const Register = () => {
     // current state in the registration process
