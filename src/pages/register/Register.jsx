@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import Credentials from './Credentials';
-import Personal from './Personal';
-import SocialLinks from './SocialLinks';
-import InstructorPrompt from './InstructorPrompt';
-import Security from './Security';
+import Instructor from './Components/Instructor';
+import Credentials from './Components/Credentials';
+import './Register.scss'
 
 const Register = () => {
     // current state in the registration process
-    const [step, setStep] = useState(1);
+    const [formSection, setFormSection] = useState('instructor');
 
     // Global form state
     const [formData, setFormData] = useState({
@@ -24,44 +22,73 @@ const Register = () => {
         gitlab: '',
         linkedin: '',
         youtube: '',
-        instructor: false,
-        instructorProfilePicture: '',
+        isInstructor: false,
         instructorBio: '',
+        instructorMedia: [],
+        instructorLinks: [],
         securityQuestion: '',
-        securityAnswer: '',
-        videos: ''
+        securityAnswer: ''
     });
 
     // Update form state
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const key = String(e.target.name);
+        if (key === 'isInstructor') {
+            const bool = e.target.value === 'true';
+            setFormData({ ...formData, [key]: bool });
+        } else {
+            setFormData({ ...formData, [key]: e.target.value });
+        }
     };
 
-    // Move to the NEXT step
-    const nextStep = () => {
-        setStep(step + 1);
-    };
+    // console.log(formData)
 
-    // Move to the PREVIOUS step
-    const prevStep = () => {
-        setStep(step - 1);
-    };
+    return (
+        <main className='form-container'>
+            <form className='sign-up-form'>
+                <section className='sign-up-form__group text'>
+                    <h2>Sign Up</h2>
+                </section>
+                {formSection === 'instructor' && (
+                    <Instructor
+                        setFormData={setFormData}
+                        formData={formData}
+                        handleChange={handleChange}
+                        setFormSection={setFormSection}
+                    />
+                )
+                }
 
-    // Render the current step based on the valie of the 'step'
-    switch (step) {
-        case 1:
-            return <Credentials formData={formData} handleChange={handleChange} nextStep={nextStep} />;
-        case 2:
-            return <Personal formData={formData} handleChange={handleChange} nextStep={nextStep} prevStep={prevStep} />;
-        case 3:
-            return <SocialLinks formData={formData} handleChange={handleChange} nextStep={nextStep} prevStep={prevStep} />;
-        case 4:
-            return <InstructorPrompt formData={formData} handleChange={handleChange} nextStep={nextStep} prevStep={prevStep} />;
-        case 5:
-            return <Security formData={formData} handleChange={handleChange} prevStep={prevStep} />;
-        default:
-            return null;
-    }
+                {formSection === 'credentials' && (
+                    <Credentials
+                        setFormData={setFormData}
+                        formData={formData}
+                        handleChange={handleChange}
+                        setFormSection={setFormSection} />
+                )
+                }
+
+                {/* {formSection === 'personal' && (
+                    <Personal />
+                )
+                }
+
+                {formSection === 'uploads' && (
+                    <Uploads />
+                )
+                }
+
+                {formSection === 'submission' && (
+                    <Submission />
+                )
+                } */}
+
+                <section className='sign-up-form__group'>
+                    <button>Cancel</button>
+                </section>
+            </form>
+        </main>
+    )
 };
 
 export default Register;

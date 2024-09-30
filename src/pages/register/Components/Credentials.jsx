@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './Credentials.scss'
 
 const Credentials = ({ formData, handleChange, nextStep }) => {
     const [errors, setErrors] = useState({});
