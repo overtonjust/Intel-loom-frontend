@@ -12,21 +12,21 @@ const Webcam = ({ peer }) => {
     
     const isPeerAudioEnabled = useHMSStore(selectIsPeerAudioEnabled(peer.id));
     const isPeerVideoEnabled = useHMSStore(selectIsPeerVideoEnabled(peer.id));
-
-    // console.log(peer)
     
     return (
         <section className={`webcam ${peer.roleName === 'guest' ? 'webcam__guest' : 'webcam__host'} `}>
-            <video
-            ref={videoRef}
-            autoPlay={true}
-            muted
-            className={`webcam__video ${fullscreen && peer.roleName === 'guest' ? 'webcam__mini' : fullscreen && peer.roleName === 'host' ? 'webcam__fullscreen' : ''} `}
-            playsInline 
-            />
-            {/* {!isPeerVideoEnabled ? (
-                <img className={`webcam__video webcam__image ${fullscreen && peer.roleName === 'guest' ? 'webcam__mini' : fullscreen && peer.roleName === 'host' ? 'webcam__fullscreen' : ''} `} src="https://placehold.co/180x100" alt="" /> 
-            ) : null} */}
+            <article className={`${fullscreen && peer.roleName === 'guest' ? 'webcam__mini' : fullscreen && peer.roleName === 'host' ? 'webcam__fullscreen' : 'webcam__video'}`}>
+                <video
+                ref={videoRef}
+                autoPlay={true}
+                muted
+                className={`webcam__video `}
+                playsInline 
+                />
+                {!isPeerVideoEnabled ? (
+                    <img className={`webcam__video webcam__image ${fullscreen && peer.roleName === 'guest' ? 'webcam__mini' : fullscreen && peer.roleName === 'host' ? 'webcam__fullscreen' : ''} `} src="https://placehold.co/180x100" alt="" /> 
+                ) : null}
+            </article>
             {!fullscreen && 
                 <article className='webcam__name'>
                     {peer.name} {peer.isLocal ? "(You)": ""}
