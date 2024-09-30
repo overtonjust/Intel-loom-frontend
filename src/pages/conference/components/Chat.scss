@@ -1,0 +1,9 @@
+@import '../../../shared.scss';
+
+.chat {
+    height: 200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

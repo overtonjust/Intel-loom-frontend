@@ -15,16 +15,18 @@ import {
     faVideoSlash,
     faUserPlus,
     faUpRightAndDownLeftFromCenter,
+    faMessage,
     faArrowUpFromBracket
 } from '@fortawesome/free-solid-svg-icons'
 import './MenuOptions.scss'
 import { WebcamContext } from '../../../context/UserContext';
 
 // Components
-import Participants from './Participants';
 
 const MenuOptions = () => {
-    const { fullscreen, setFullscreen, showParticipants, setShowParticipants, isLocalAudioEnabled, isLocalVideoEnabled, toggleAudio, toggleVideo } = useContext(WebcamContext);
+    const { fullscreen, setFullscreen, showParticipants, setShowParticipants, 
+        isLocalAudioEnabled, isLocalVideoEnabled, toggleAudio, toggleVideo,
+        chatOpen, setChatOpen} = useContext(WebcamContext);
     const peers = useHMSStore(selectPeers);
     
     const userCount = peers.length;
@@ -39,7 +41,7 @@ const MenuOptions = () => {
         } catch (error) {
             console.error(error)
         }
-    }
+    };
 
     return (
         <main className={`menu-holder ${fullscreen ? 'menu-holder__fullscreen' : ''}`} >
@@ -77,6 +79,10 @@ const MenuOptions = () => {
                         <FontAwesomeIcon className='menu-options__icon' icon={faUserPlus} /><>{userCount}</>
                     </span>
                     <span className='menu-options__label'>{showParticipants ? 'Close' : 'Participants'}</span>
+                </article>
+                <article className='menu-options__container' onClick={() => setChatOpen(!chatOpen)} >
+                    <FontAwesomeIcon className='menu-options__icon' icon={faMessage}/>
+                    <span className='menu-options__label'>{chatOpen ? 'close chat' : 'Chat'}</span>
                 </article>
                 <article className='menu-options__container' onClick={toggleScreenShare} >
                     <FontAwesomeIcon className='menu-options__icon' icon={faArrowUpFromBracket}/>
