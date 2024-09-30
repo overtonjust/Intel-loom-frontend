@@ -7,6 +7,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import './UserPage.scss'
 import CarouselRatio from './Carousel';
 
+
 const UserPage = () => {
   const { API, user } = useContext(UserContext);
   const { id } = useParams();
@@ -17,6 +18,7 @@ const UserPage = () => {
       .then(res => setUserData(res.data))
       .catch(err => console.log(err));
   }, []);
+console.log(userData)
 
   return (
     
@@ -24,17 +26,18 @@ const UserPage = () => {
       
       <div className='user_bio-container'>
         <div className='user_profile-img' alt='profile-img'>
-            <img src="https://placehold.co/144x200" alt="profile image" />
+            <img src="https://unsplash.com/photos/woman-in-black-tank-top-and-blue-denim-jeans-standing-on-white-floor-tiles-jI6Je9fYRo0" alt="profile image" />
+
+            <div className='user_socials'>
+            <FaLinkedin size={25} />
+            <MdOutlineEmail {...userData?.info?.email} size={31}/> 
+            <FaYoutube size={31}/>
+            </div>
         </div>
       
         <div className='user_description'>
-          <h1><b>First Last</b></h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non scelerisque nunc. Integer tristique pretium porta.</p>
-          <div className='user_socials'>
-            <FaLinkedin size={25} />
-            <MdOutlineEmail size={31}/> 
-            <FaYoutube size={31}/>
-        </div>
+          <h1><b>{userData?.info?.firstName}</b></h1>
+          <p>{userData?.info?.bio} Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
           
           </div>
        
@@ -45,8 +48,8 @@ const UserPage = () => {
         </div>
 
       <div className='buttons'>
-        <button>Edit</button>
-        <button>Sign Out</button>
+        <button className='edit_button'>Edit</button>
+        <button className='signout_button'>Sign Out</button>
       </div>
         
     </div>
