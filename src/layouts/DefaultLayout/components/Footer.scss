@@ -1,0 +1,29 @@
+@import '../../../shared.scss';
+
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 2% 4%;
+    margin-top: auto;
+    background-color: $blue;
+
+    &__row {
+        display: flex;
+        gap: 20px;
+    }
+
+    &__text {
+        color: $white;
+    }
+
+    &__link {
+        text-decoration: none;
+    }
+
+    &__icon {
+        color: $white;
+        cursor: pointer;
+    }
+}

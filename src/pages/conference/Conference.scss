@@ -1,0 +1,24 @@
+@import '../../shared.scss';
+
+
+.conference {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 4%;
+
+    &__title {
+        margin: 2% 0;
+        align-self: flex-start;
+        color: $blue;
+    }
+
+}
+
+.fullscreen {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+}

@@ -1,0 +1,79 @@
+@import '../../../shared.scss';
+
+.menu-holder {
+    display: flex;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    align-items: center;
+    padding: 2%;
+    background-color: $card;
+    border: 2px $blue;
+    border-style: solid solid solid solid ;
+    border-radius: .3em;
+    gap: 10px;
+
+    &__fullscreen {
+        height: 8vh;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        border-radius: 0;
+        background-color: $blue;
+    }
+}
+
+.menu-options-head {
+    display: flex;
+    border-right: 2px solid $white;
+    padding-right: 2%;
+    gap: 8px;
+
+    &__audio {
+
+    }
+
+    &__video {
+
+    }
+}
+
+.menu-options {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        cursor: pointer;
+    }
+
+    &__icon {
+        color: #fff;
+        margin: 0 2px;
+    }
+
+    &__label {
+        align-self: flex-start;
+        color: $white;
+    }
+
+    &__button {
+        padding: 1% 2%;
+        border-radius: 1em;
+        cursor: pointer;
+        background-color: $orange;
+        color: $white;
+    }
+
+    &__count {
+        color: $white;
+    }
+    
+}

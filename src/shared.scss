@@ -1,0 +1,89 @@
+
+$orange: #FE5A1D;
+$orange-faded: #fb7f52;
+$white: #EFEFEF;
+$footer: #cacaca;
+$grey: #b6b6b6;
+$blue: #002366;
+$blue-faded: #1e4182e6;
+$card: rgba(0, 35, 102,.89);
+
+.button-orange {
+    border: 2px solid $blue;
+    outline: none;
+    cursor: pointer;
+    padding: 2% 4%;
+    border-radius: .6em;
+    background-color: $orange;
+    color: $white;
+    text-decoration: none;
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 .6rem .2rem $grey;
+    }
+    &:active {
+        transform: translateY(2px);
+        background-color: $orange-faded;
+        box-shadow: none;
+    }
+}
+
+.button-blue {
+    border: 2px solid $blue;
+    outline: none;
+    cursor: pointer;
+    padding: 2% 4%;
+    border-radius: .6em;
+    background-color: $blue;
+    color: $white;
+    text-decoration: none;
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 .6rem .2rem $orange-faded;
+    }
+    &:active {
+        transform: translateY(2px);
+        background-color: $blue-faded;
+        box-shadow: none;
+    }
+}
+
+.button-large-orange {
+    border: 2px solid $blue;
+    outline: none;
+    cursor: pointer;
+    padding: 3% 12%;
+    border-radius: .6em;
+    background-color: $orange;
+    color: $white;
+    text-decoration: none;
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 .6rem .2rem $grey;
+    }
+    &:active {
+        transform: translateY(2px);
+        background-color: $orange-faded;
+        box-shadow: none;
+    }
+}
+
+.button-large-blue {
+    border: 2px solid $blue;
+    outline: none;
+    cursor: pointer;
+    padding: 3% 12%;
+    border-radius: .6em;
+    background-color: $blue;
+    color: $white;
+    text-decoration: none;
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 .6rem .2rem $orange-faded;
+    }
+    &:active {
+        transform: translateY(2px);
+        background-color: $blue-faded;
+        box-shadow: none;
+    }
+}

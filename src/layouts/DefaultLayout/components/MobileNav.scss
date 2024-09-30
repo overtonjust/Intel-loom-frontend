@@ -1,0 +1,21 @@
+@import '../../../shared.scss';
+
+
+.mobile-nav {
+    margin-top: 10px;
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding:  2% 4% 4%;
+
+    &__link {
+        text-decoration: none;
+    }
+
+        &__icon {
+            cursor: pointer;
+            color: $blue;
+            font-size: 1.6em;
+        }
+}

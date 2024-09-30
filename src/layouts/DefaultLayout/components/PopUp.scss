@@ -1,0 +1,38 @@
+@import '../../../shared.scss';
+
+.popup-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  width: 370px;
+  height: 170px;
+  background: white;
+  border-radius: 1.2rem;
+  box-shadow: 0 0 1rem 0.2rem rgb(163, 167, 169);
+  display: grid;
+  grid-template-rows: auto auto;
+  place-items: center;
+  padding: 1rem 0;
+  p {
+    font-size: 1.3rem;;
+    text-align: center;
+    padding: 1rem;
+  }
+  button {
+    cursor: pointer;
+    background: $blue;
+    border: none;
+    border-radius: 1.2rem;
+    color: white;
+    padding: 0.5rem 2rem;
+    &:hover {
+      background: $orange;
+      box-shadow: 0 0 1rem 0.2rem rgb(163, 167, 169, 0.5);
+    }
+    &:active {
+      box-shadow: 0 0 1rem 0.2rem rgb(163, 167, 169, 0.8);
+    }
+  }
+}

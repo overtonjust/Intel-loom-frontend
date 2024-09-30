@@ -1,0 +1,39 @@
+@import '../../../shared.scss';
+
+.participants {
+    margin: 10px 20px 0;
+    border-radius: .4em;
+    border: 2px solid $blue;
+    max-height: 100px;
+    width: 50%;
+    background-color: $card;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    padding: 2%;
+    gap: 12px;
+
+    &__title{
+        color: $white;
+        text-align: center;
+        width: 100%;
+        border-bottom: 2px solid $grey;
+    }
+
+    &__name{
+        color: $white;
+        cursor: pointer;
+    }
+}
+
+.orange {
+    color: $orange;
+}
+
+.participants-fullscreen {
+    position: absolute;
+    margin: 0;
+    bottom: 95px;
+    left: 0;
+}

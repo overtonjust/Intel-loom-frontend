@@ -1,0 +1,127 @@
+@import '../../shared.scss';
+
+.user_container {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden; 
+    overflow-y: auto;     
+    min-width: 100vw;
+
+}
+
+
+.user_bio-container {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 0px;
+    display: flex;
+    gap: 16px;    
+    // padding-left : 8px;
+    // padding-right : 12px;
+}
+
+.user_profile-img {
+    height: 100px;
+    width: 410px;
+}
+
+h1 {
+    font-size: 38px;
+}
+
+p {
+    font-size: 20px;
+    padding-top: 10px;
+
+}
+
+.user_socials {
+    display: flex;
+    gap: 6px;
+    cursor: pointer;
+    padding : 10px;
+    padding-top: 0px;
+    align-items: center;
+}
+
+.user_videos {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+h2 {
+    padding: 8px;
+}
+
+.Carousel {
+    padding-left: 10px;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 6px;
+}
+
+ .edit_button {
+    border: 2px solid $blue;
+    outline: none;
+    cursor: pointer;
+    padding: 2% 4%;
+    border-radius: .6em;
+    background-color: $blue;
+    color: $white;
+    text-decoration: none;
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 .6rem .2rem $orange-faded;
+    }
+    &:active {
+        transform: translateY(2px);
+        background-color: $blue-faded;
+        box-shadow: none;
+    }
+}
+//     border: 2px solid $blue;
+//     outline: none;
+//     cursor: pointer;
+//     padding: 3% 12%;
+//     border-radius: .6em;
+//     background-color: $blue;
+//     color: $white;
+//     text-decoration: none;
+//     &:hover {
+//         transform: translateY(-2px);
+//         box-shadow: 0 0 .6rem .2rem $orange-faded;
+//     }
+//     &:active {
+//         transform: translateY(2px);
+//         background-color: $blue-faded;
+//         box-shadow: none;
+//     }
+// }
+
+.signout_button {
+    border: 2px solid $blue;
+    outline: none;
+    cursor: pointer;
+    padding: 2% 4%;
+    border-radius: .6em;
+    background-color: $orange;
+    color: $white;
+    text-decoration: none;
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 .6rem .2rem $grey;
+    }
+    &:active {
+        transform: translateY(2px);
+        background-color: $orange-faded;
+        box-shadow: none;
+    }
+}
+
