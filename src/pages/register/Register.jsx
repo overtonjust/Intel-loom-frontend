@@ -51,7 +51,6 @@ const Register = () => {
                 </section>
                 {formSection === 'instructor' && (
                     <Instructor
-                        setFormData={setFormData}
                         formData={formData}
                         handleChange={handleChange}
                         setFormSection={setFormSection}
@@ -61,10 +60,10 @@ const Register = () => {
 
                 {formSection === 'credentials' && (
                     <Credentials
-                        setFormData={setFormData}
                         formData={formData}
                         handleChange={handleChange}
-                        setFormSection={setFormSection} />
+                        setFormSection={setFormSection}
+                    />
                 )
                 }
 
