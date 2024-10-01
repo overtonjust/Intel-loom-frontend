@@ -9,7 +9,7 @@ import Webcam from './Webcam';
 
 
 const ConferenceRoom = () => {
-    const { fullscreen, isLocalVideoEnabled } = useContext(WebcamContext);
+    const { fullscreen } = useContext(WebcamContext);
     const peers = useHMSStore(selectPeers);
     
     const host = peers.find(peer => peer.roleName === 'host');

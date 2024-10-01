@@ -1,6 +1,6 @@
 // Dependencies
 import React, { useContext } from 'react';
-import { useAVToggle } from '@100mslive/react-sdk';
+import { selectIsLocalScreenShared, useAVToggle } from '@100mslive/react-sdk';
 import {
     selectIsConnectedToRoom,
     useHMSActions,
@@ -15,11 +15,7 @@ import {
     faVideoSlash,
     faUserPlus,
     faUpRightAndDownLeftFromCenter,
-    faArrowUpRightFromSquare,
-    faMessage,
-    faFaceSmile,
-    faGear,
-    faEllipsis
+    faArrowUpFromBracket
 } from '@fortawesome/free-solid-svg-icons'
 import './MenuOptions.scss'
 import { WebcamContext } from '../../../context/UserContext';
@@ -34,7 +30,16 @@ const MenuOptions = () => {
     const userCount = peers.length;
 
     const isConnected = useHMSStore(selectIsConnectedToRoom);
+    const isLocalScreenShared = useHMSStore(selectIsLocalScreenShared)
     const hmsActions = useHMSActions();
+
+    const toggleScreenShare = async () => {
+        try {
+            await hmsActions.setScreenShareEnabled(!isLocalScreenShared)
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     return (
         <main className={`menu-holder ${fullscreen ? 'menu-holder__fullscreen' : ''}`} >
@@ -72,6 +77,10 @@ const MenuOptions = () => {
                         <FontAwesomeIcon className='menu-options__icon' icon={faUserPlus} /><>{userCount}</>
                     </span>
                     <span className='menu-options__label'>{showParticipants ? 'Close' : 'Participants'}</span>
+                </article>
+                <article className='menu-options__container' onClick={toggleScreenShare} >
+                    <FontAwesomeIcon className='menu-options__icon' icon={faArrowUpFromBracket}/>
+                    <span className='menu-options__label'>{isLocalScreenShared ? 'stop sharing' : 'Share'}</span>
                 </article>
                 <article className='menu-options__container' onClick={() => setFullscreen(!fullscreen)}>
                     <FontAwesomeIcon className='menu-options__icon' icon={faUpRightAndDownLeftFromCenter}/>

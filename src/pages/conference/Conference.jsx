@@ -31,7 +31,7 @@ const Conference = ({/** Grab room / class data */}) => {
     window.addEventListener('onunload', () => hmsActions.leave());
 
     return (
-        <WebcamContext.Provider value={{ fullscreen, setFullscreen, showParticipants, setShowParticipants, isLocalAudioEnabled, isLocalVideoEnabled, toggleAudio, toggleVideo }}>
+        <WebcamContext.Provider value={{ fullscreen, setFullscreen, showParticipants, setShowParticipants, isLocalAudioEnabled, isLocalVideoEnabled, toggleAudio, toggleVideo}}>
             <section className='conference'>
                 <h2 className='conference__title'>{/* class name */}Cool Class</h2>
                 {isConnected ? (
