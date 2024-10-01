@@ -1,5 +1,5 @@
 // Dependencies
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {
     selectHMSMessages,
     selectBroadcastMessages,
@@ -17,7 +17,10 @@ const Chat = () => {
     const allMessages = useHMSStore(selectHMSMessages);
     const [chatMessage, setChatMessage] = useState('');
     const hmsActions = useHMSActions();
+    const messageRef = useRef(null);
     
+    console.log(messageRef)
+
     const handleChatInput = (e) => {
         setChatMessage(e.target.value)
     };
@@ -26,24 +29,31 @@ const Chat = () => {
         hmsActions.sendGroupMessage(chatMessage, ['guest', 'host'])
         setChatMessage('')
     };
+
+    useEffect(() => {
+        if(messageRef.current) {
+            messageRef.current.scrollTop = messageRef.current.scrollHeight;
+        }
+    }, [allMessages])
     
     
     return (
         <section className='chat'>
-            <article className='chat__view'>
+            <article className='chat__view' ref={messageRef}>
                 {allMessages.map((msg) => (
                     <Message key={msg.id} msg={msg}/>
                 ))}
             </article>
-            <article className='chat__input'>
+            <article className='chat__box'>
                 <input 
                 type="text" 
                 name='message'
-                placeholder='Write chat here'
+                placeholder='Type a message ...'
+                className='chat__input'
                 value={chatMessage}
                 onChange={handleChatInput}
                 />
-                <button type='submit' onClick={handleChatSubmit}>send</button>
+                <button className='chat__submit button-blue' type='submit' onClick={handleChatSubmit}>send</button>
             </article>
         </section>
     );

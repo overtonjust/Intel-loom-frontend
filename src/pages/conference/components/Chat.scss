@@ -1,9 +1,81 @@
 @import '../../../shared.scss';
 
 .chat {
+    margin: 15px auto;
     height: 200px;
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    border: 2px solid $blue;
+    border-radius: .8em;
+    background-color: $white;
     gap: 20px;
+    
+    &__view {
+        padding: 2%;
+        overflow: scroll;
+        display: flex;
+        flex-direction: column;
+        gap: 4%;
+        text-align: center;
+    }
+
+    &__message {
+        margin: 4px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        font-size: 1.1em;
+    }
+    
+    &__bubble {
+        background-color: $card;
+        padding: 2% 4%;
+        border-radius: .4em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: $white;
+        
+    }
+
+    &__text {
+        padding: 0;
+        font-size: .9em;
+        text-align: center;
+    }
+
+    &__box {
+        align-self: flex-end;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 1%;
+        border-top: 2px solid $blue;
+    }
+
+    &__input {
+        width: 100%;
+        outline: none;
+        border: none;
+        background-color: $white;
+        color: $blue;
+        &::placeholder {
+            color: $blue;
+        }
+    }
+
+    &__sender {
+        font-size: .7em;
+    }
+
+    &__user{
+        background-color: $blue-faded;
+    }
+ 
+
 }
+

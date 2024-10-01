@@ -96,7 +96,7 @@ const MenuOptions = () => {
             {isConnected && (
                 <button
                 id='leave-btn'
-                className='menu-options__button'
+                className='button-orange'
                 onClick={() => hmsActions.leave()}
                 >
                     Leave

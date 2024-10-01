@@ -37,7 +37,7 @@ const Conference = ({/** Grab room / class data */}) => {
             <section className='conference'>
                 <h2 className='conference__title'>{/* class name */}Cool Class</h2>
                 {isConnected ? (
-                    <article className={`conference__video-call ${fullscreen ? 'fullscreen' : ''}`}>
+                    <article className={`conference__video-call ${fullscreen ? 'conference__fullscreen' : ''}`}>
                         <ConferenceRoom />
                         <MenuOptions />
                         {showParticipants && !fullscreen && <Participants/>}

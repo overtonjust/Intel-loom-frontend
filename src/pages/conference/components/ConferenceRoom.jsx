@@ -16,7 +16,7 @@ const ConferenceRoom = () => {
     const guests = peers.filter(peer => peer.roleName === 'guest');
     const userCam = peers.find(peer => peer.isLocal);
 
-
+    
     return (
         <div className={`conference-room`}>
             <div className={`conference-room__host `}>
