@@ -1,97 +1,118 @@
 import React, { useState } from 'react';
-import './Personal.scss';
+import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
+import { BsCalendar2Date } from "react-icons/bs";
 
-const Personal = ({ formData, handleChange, nextStep, prevStep }) => {
-    const [errors, setErrors] = useState({});
+const Personal = ({ formData, handleChange, setFormSection, setError }) => {
+    const [birthDateValid, setBirthDateValid] = useState(true);
 
-    // Validation function for first name and last name
-    const validate = () => {
-        let formErrors = {};
+    // Function to validate age 18+
+    const validateBirthDate = () => {
+        const today = new Date();
+        const birthDate = new Date(formData.birthDate);
+        const age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
 
-        if (!formData.firstName) formErrors.firstName = 'First name is required';
-        if (!formData.lastName) formErrors.lastName = 'Last name is required';
-
-        setErrors(formErrors);
-        return Object.keys(formErrors).length === 0;
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+            return age - 1;
+        }
+        return age;
     };
 
-    const handleNext = (e) => {
-        e.preventDefault();
-        if (validate()) {
-            nextStep(); // Move to the next step if validation passes
+    const handleNext = () => {
+        const requiredFields = ['firstName', 'lastName', 'birthDate'];
+
+        if (requiredFields.every((field) => formData[field])) {
+            const age = validateBirthDate();
+            if (age >= 18) {
+                setBirthDateValid(true);
+                setFormSection('uploads'); // Proceed to the next section (uploads)
+            } else {
+                setBirthDateValid(false);
+                setError("You must be at least 18 years old to create an account.");
+                setTimeout(() => setError(""), 3000);
+            }
+        } else {
+            const missingFields = requiredFields.filter((field) => !formData[field])
+                .map((field) => field === 'firstName' ? 'First Name' : field === 'lastName' ? 'Last Name' : 'Birth Date');
+            setError(`Please fill in: ${missingFields.join(', ')}`);
+            setTimeout(() => setError(""), 3000);
         }
     };
 
     return (
-        <div className='personal-container'>
-            <div className='personal-form'>
-                <h2>Personal Information</h2>
-                <form>
-                    {/* // First Name (required) */}
-
-                    <div className="form-input">
-                        <input
-                            type="text"
-                            name="firstName"
-                            placeholder="First Name (required)"
-                            value={formData.firstName}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    {errors.firstName && <p className="error-message">{errors.firstName}</p>}
-
-                    {/* // Optional Middle Name */}
-
-                    <div className="form-input">
-                        <input
-                            type="text"
-                            name="middleName"
-                            placeholder="Middle Name (optional)"
-                            value={formData.middleName}
-                            onChange={handleChange}
-                        />
-                    </div>
-
-                    {/* // Last Name (required) */}
-
-                    <div className="form-input">
-                        <input
-                            type="text"
-                            name="lastName"
-                            placeholder="Last Name (required)"
-                            value={formData.lastName}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    {errors.lastName && <p className="error-message">{errors.lastName}</p>}
-
-                    {/* // Optional User Bio */}
-                    <div className="form-input">
-                        <textarea
-                            name="bio"
-                            placeholder="Bio (optional)"
-                            value={formData.bio}
-                            onChange={handleChange}
-                        />
-                    </div>
-
-                    {/* Profile Picture Upload */}
-                    <div className="form-input">
-                        <input
-                            type="file"
-                            name="profilePicture"
-                            onChange={handleChange}
-                        />
-                    </div>
-
-
-                    <div className="main-btns">
-                        <button className="button-orange" onClick={prevStep}>Back</button>
-                        <button className="button-orange" onClick={handleNext}>Next</button>
-                    </div>
-                </form>
+        <>
+            <div className="signup-form__group">
+                <div className="form-input">
+                    <MdOutlineDriveFileRenameOutline />
+                    <input
+                        type="text"
+                        name="firstName"
+                        id="firstName"
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        required
+                        autoComplete="off"
+                        placeholder="First Name"
+                    />
+                </div>
             </div>
-        </div>
+            <div className="signup-form__group">
+                <div className="form-input">
+                    <MdOutlineDriveFileRenameOutline />
+                    <input
+                        type="text"
+                        name="middleName"
+                        id="middleName"
+                        value={formData.middleName}
+                        onChange={handleChange}
+                        autoComplete="off"
+                        placeholder="Middle Name (optional)"
+                    />
+                </div>
+            </div>
+            <div className="signup-form__group">
+                <div className="form-input">
+                    <MdOutlineDriveFileRenameOutline />
+                    <input
+                        type="text"
+                        name="lastName"
+                        id="lastName"
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        required
+                        autoComplete="off"
+                        placeholder="Last Name"
+                    />
+                </div>
+            </div>
+            <div className="signup-form__group">
+                <div className="form-input">
+                    <BsCalendar2Date />
+                    <input
+                        type="date"
+                        name="birthDate"
+                        id="birthDate"
+                        value={formData.birthDate}
+                        onChange={handleChange}
+                        required
+                        autoComplete="off"
+                        placeholder="Birth Date"
+                    />
+                </div>
+                <div className='error-container'>
+                    {!birthDateValid && <p className="error">You must be at least 18 years old to create an account.</p>}
+                </div>
+            </div>
+
+            <div className="signup-form__group main-btns">
+                <button type="button" onClick={() => setFormSection('credentials')}>
+                    Previous
+                </button>
+                <button type="button" onClick={handleNext}>
+                    Next
+                </button>
+            </div>
+        </>
     );
 };
 

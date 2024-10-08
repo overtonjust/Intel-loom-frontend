@@ -8,7 +8,7 @@ import { LuEye, LuEyeOff } from "react-icons/lu";
 import { BsInfoCircle } from "react-icons/bs";
 import { FaRegQuestionCircle } from "react-icons/fa";
 
-const Credentials = ({ formData, handleChange }) => {
+const Credentials = ({ formData, handleChange, setFormSection }) => {
     const { API } = useContext(UserContext)
     const [validatedPassword, setValidatedPassword] = useState({
         length: false,
@@ -25,18 +25,25 @@ const Credentials = ({ formData, handleChange }) => {
     // Validation function for username, email, passsword & confirmation password
 
     const validate = () => {
-        let formErrors = {};
+        let formErrors = [];
 
-        if (!formData.username) formErrors.username = 'Username is required';
-        if (!formData.email) formErrors.email = 'Email is required';
-        if (!formData.password) formErrors.password = 'Password is required';
+        if (!formData.username) formErrors.push('Username is required');
+        if (!formData.email) formErrors.push('Email is required');
+        if (!formData.password) formErrors.push('Password is required');
         if (formData.password !== formData.confirmPassword) {
-            formErrors.confirmPassword = 'Passwords do not match';
+            formErrors.push('Passwords do not match');
         }
 
         setErrors(formErrors);
-        return Object.keys(formErrors).length === 0;
+        return formErrors.length === 0;
     };
+
+    const handleNext = () => {
+        if (validate() && passwordPassed) {
+            setFormSection('personal');
+        }
+    };
+
 
     useEffect(() => {
         axios.post(`${API}/users/validate-password`, { password: formData.password })
@@ -207,6 +214,13 @@ const Credentials = ({ formData, handleChange }) => {
                         placeholder="Security Answer"
                     />
                 </div>
+            </div>
+            <div className="sign-up-form__group">
+                <button
+                    type="button"
+                    onClick={handleNext}
+                    disabled={Object.keys(errors).length > 0}
+                >Next</button>
             </div>
         </>
     );

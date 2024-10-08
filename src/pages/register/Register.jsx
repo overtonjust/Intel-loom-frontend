@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Instructor from './Components/Instructor';
 import Credentials from './Components/Credentials';
+import Personal from './Components/Personal';
 import './Register.scss'
 
 const Register = () => {
@@ -67,12 +68,16 @@ const Register = () => {
                 )
                 }
 
-                {/* {formSection === 'personal' && (
-                    <Personal />
+                {formSection === 'personal' && (
+                    <Personal
+                        formData={formData}
+                        handleChange={handleChange}
+                        setFormSection={setFormSection}
+                    />
                 )
                 }
 
-                {formSection === 'uploads' && (
+                {/* {formSection === 'uploads' && (
                     <Uploads />
                 )
                 }
