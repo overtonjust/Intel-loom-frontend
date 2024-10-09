@@ -34,12 +34,12 @@ return (
 
     <div className='userPage-info-container'>
       <div className='profile-picture-container'>
-    <img className='profile-picture' src="https://placehold.co/120x120" alt="profile picture" />
+    <img className='profile-picture' src={userData?.profilePicture} alt="profile picture" />
     </div>
-      <h2 className='userPage-name'>Nicole Marin</h2>
+      <h2 className='userPage-name'>{userData?.firstName + userData?.lastName}</h2>
       <p>Rating: 4.8</p>
       <div className='userPage-bio'>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>{userData?.bio}</p>
 
         <div className='userPage-socials'>
         <FaLinkedin size={25} />
