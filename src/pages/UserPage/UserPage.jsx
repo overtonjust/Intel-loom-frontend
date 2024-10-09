@@ -5,6 +5,8 @@ import { UserContext } from '../../context/UserContext';
 import { FaLinkedin, FaYoutube } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 import './userPageMobile.scss'
+import MobileCarousel from './MobileCarousel';
+import bannerImage from '../../assets/banner-img.png'
 // import './UserPage.scss'
 // import CarouselRatio from './Carousel';
 
@@ -13,6 +15,7 @@ const UserPage = () => {
   const { API, user } = useContext(UserContext);
   const { id } = useParams();
   const [userData, setUserData] = useState(null);
+  const [settingsMenu, setSettingsMenu] = useState(false)
 
   useEffect(() => {
     axios.get(`${API}/users/${id}`, {headers: {Authorization: user.token}})
@@ -24,14 +27,14 @@ console.log(userData)
 return (
   <div className='userPage-container'>
     <div className='banner-container'>
-      <img className='banner' src="https://placehold.co/430x230" alt="" />
+      <img className='banner' src={bannerImage} alt="" />
 
         </div>
 
 
     <div className='userPage-info-container'>
       <div className='profile-picture-container'>
-    <img className='profile-picture' src="https://placehold.co/160x160" alt="profile picture" />
+    <img className='profile-picture' src="https://placehold.co/120x120" alt="profile picture" />
     </div>
       <h2 className='userPage-name'>Nicole Marin</h2>
       <p>Rating: 4.8</p>
@@ -47,22 +50,51 @@ return (
       </div>
 
       <div className='userPage-videos'>
-        <h3>Videos:</h3>
-        <button className='upload_button'>Upload +</button>
-        <div className="video"></div>
+        <div className='video-header'>
+        <h3>Videos</h3>
+        <div className="videos_buttons">
+        <button className='videos-upload_button'>Upload +</button>
+        <button className='videos-edit_button'>Manage</button>
+        </div>
+        </div>
+        <MobileCarousel />
+        <div className="videos"></div>
       </div>
 
       <div className="reviews-container">
-        <div className="review1"></div>
-        <div className="review2"></div>
-        <div className="review3"></div>
-        <div className="review4"></div>
+        <h3 className='Reviews-header'>Reviews</h3>
+        <div className='reviews-all'>
+        <div className="review1">
+          <h4 className='review1_name'>Andy</h4>
+          <p className='review1__review'>"Nicole's Intro to Javascript class was lots of fun! I truly learned a lot!"</p>
+        </div>
+        <div className="review2">
+          <h4 className='review2_name'>Jacky</h4>
+          <p className='review2-review'>"Would highly recommend any class taught by Nicole!"</p>
+        </div>
+        <div className="review3">
+          <h4 className='review3_name'>Susanna</h4>
+          <p className='review3-review'>"I would give 10 stars if I could!"</p>
+        </div>
+        <div className="review4">
+          <h4 className='review4_name'>Michelle</h4>
+          <p className='review4-review'>"Great class!"</p>
+        </div>
+        </div>
       </div>
 
       <div className='buttons'>
-      <button className='edit_button'>Edit</button>
+      <button className='button-blue' onClick={() => setSettingsMenu(true)}>Settings</button>
       <button className='signout_button'>Sign Out</button>
     </div>
+
+{settingsMenu && 
+<div className='settings'>
+  <div className='settings__card'>
+  <div className='settings__text1'>hello</div>
+  <button className='button-orange' onClick={() => setSettingsMenu(false)}>Cancel</button>
+  </div>
+</div> }
 
   </div>
 )

@@ -24,6 +24,7 @@ console.log(userData)
   return (
     <div className='userPage-container'>
       <div className='banner'>
+        <img src="" alt="" />
         <div className='profile-picture'></div>
       </div>
         <h2 className='userPage-name'>Nicole Marin</h2>
@@ -36,7 +37,7 @@ console.log(userData)
           <MdOutlineEmail {...userData?.info?.email} size={31}/> 
           <FaYoutube size={31}/>
           </div>
-          
+
         </div>
 
         <div className='userPage-videos'>

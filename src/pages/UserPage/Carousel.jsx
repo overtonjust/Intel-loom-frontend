@@ -21,6 +21,7 @@ const data = [
   },
   {
     src: 'https://images.unsplash.com/photo-1532614338840-ab30cf10ed36',
+    youtubeUrl: 'https://www.youtube.com/embed/kqtD5dpn9C8',
     key: 3,
     // title: 'Mountain view',
     // description: '3.98M views',
