@@ -29,7 +29,7 @@ const Login = () => {
       return;
     }
     axios
-      .post(`${API}/users/login`, credentials)
+      .post(`${API}/users/login`, credentials, { withCredentials: true })
       .then((res) => {
         setUser(res.data);
         navigate("/");

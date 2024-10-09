@@ -13,7 +13,8 @@ import Home from './pages/home/Home';
 import UserPage from './pages/UserPage/UserPage';
 import Login from './pages/login/Login';
 import Conference from './pages/conference/Conference';
-import ClassPage from './pages/classpage/ClassPage'
+import ClassPage from './pages/classpage/ClassPage';
+import MyClasses from './pages/myclasses/MyClasses';
 
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
         <Route path='/login' element={<Login/>}/>
         <Route path='/classInfo/:id' element={<ClassPage />} />
         <Route path='/view' element={<Conference/>}/>
+        <Route path='/myclasses' element={<MyClasses/>}/>
       </Route>  
     </Routes>
 

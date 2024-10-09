@@ -46,5 +46,11 @@ const checkTime = (timeStart, timeEnd) => {
     return { hours, minutes };
 }
 
+const formatDateKey = dateStr => {
+  if(dateStr === 'today') return 'Today';
+  const dateParts = dateStr.split(',');
+  const day = dateParts[0][0].toUpperCase() + dateParts[0].slice(1);
+  return `${day} ${dateParts[1]} ${dateParts[2]}, ${dateParts[3]}`;
+}
 
-export { formatDate, formatTime, checkTime };
+export { formatDate, formatTime, checkTime, formatDateKey };
