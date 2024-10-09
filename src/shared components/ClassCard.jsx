@@ -19,7 +19,7 @@ const ClassCard = ({ classInfo }) => {
                 <img className='class__image' src={classInfo.highlightPicture} alt={classInfo.title} />
                 <article className='class__info-box'>
                     <div className='class__row'>
-                        <p className='class__text'>{formatTime(classInfo.classTimeStart, classInfo.classTimeEnd)}</p>
+                        <p className='class__text'>2 hr</p>
                     </div>
                     <div className='class__row'>
                         <p className='class__text'>${Number(classInfo.price).toFixed(0)}</p>

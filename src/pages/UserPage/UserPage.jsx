@@ -18,7 +18,7 @@ const UserPage = () => {
   const [settingsMenu, setSettingsMenu] = useState(false)
 
   useEffect(() => {
-    axios.get(`${API}/users/${id}`, {headers: {Authorization: user.token}})
+    axios.get(`${API}/users/profile/${id}`, {withCredentials: true})
       .then(res => setUserData(res.data))
       .catch(err => console.log(err));
   }, []);
