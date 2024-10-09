@@ -1,0 +1,39 @@
+@import '../../shared.scss';
+
+.sign-up-form {
+    padding: 1rem 0;
+  background-color: $card;
+  border-radius: .4rem;
+  margin: 0 auto;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+  &__group {
+    width: 100%;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+  }
+}
+
+.instructor-answers{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 1rem;
+    &__opt{
+        input {
+            margin-right: .5rem;
+        }
+    }
+}
+
+.disclaimer{
+    font-size: 13px;
+    text-align: center;
+}
+
+.text{
+  color: $white;
+}
