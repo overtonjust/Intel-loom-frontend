@@ -24,6 +24,7 @@ const Webcam = ({ peer }) => {
                 muted
                 className={ fullscreen && peer.roleName === 'host' ? isLandscape ? 'webcam__fullscreen-landscape' : 'webcam__fullscreen-portrait' : `webcam__video`}
                 playsInline 
+                data-testid={peer.auxiliaryTracks[0] ? `screen-${peer.id}` : `video-${peer.id}`}
                 />
                 {!isPeerVideoEnabled ? (
                     <img className={`webcam__video webcam__image ${fullscreen && peer.roleName === 'guest' ? 'webcam__mini' : fullscreen && peer.roleName === 'host' ? isLandscape ? 'webcam__image-landscape' : 'webcam__image-portrait' : ''} ${!isLandscape && fullscreen && peer.roleName === 'guest' && 'mini-portrait'} `} src={peer.metadata} alt="" /> 

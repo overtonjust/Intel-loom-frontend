@@ -9,27 +9,26 @@ import {
     useHMSActions,
     useHMSStore,
     selectPeers,
+    selectLocalPeerID,
+    selectScreenShareByPeerID
 } from '@100mslive/react-sdk'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faMicrophoneSlash,
     faMicrophone,
     faVideo,
+    faCircle,
     faVideoSlash,
     faUserPlus,
     faUpRightAndDownLeftFromCenter,
     faMessage,
-    faArrowUpFromBracket,
-    faCircle,
-    faDownload
+    faArrowUpFromBracket
 } from '@fortawesome/free-solid-svg-icons'
 import './MenuOptions.scss'
-import { useReactMediaRecorder } from 'react-media-recorder';
 import axios from 'axios';
 
-// Components
-
 const MenuOptions = () => {
+    // React dependencies
     const { fullscreen, setFullscreen, showParticipants, setShowParticipants, 
         isLocalAudioEnabled, isLocalVideoEnabled, handleAudioChange, toggleVideo,
         chatOpen, setChatOpen, isLandscape, isDesktop, isMobile, setPrompt, instructorId, instructorName, title, id} = useContext(WebcamContext);
@@ -43,53 +42,55 @@ const MenuOptions = () => {
     const userCam = peers.find(peer => peer.isLocal);    
     const userCount = peers.length;
 
-    // 100ms dependencies
-<<<<<<< HEAD
-=======
-    const peers = useHMSStore(selectPeers);
-    const isHost = peers.find(peer => peer.isLocal)?.roleName === 'host'
-    const userCount = peers.length;
-    const hmsActions = useHMSActions();
->>>>>>> 163a2b7 (testing updates)
-    const isConnected = useHMSStore(selectIsConnectedToRoom);
-    const isLocalScreenShared = useHMSStore(selectIsLocalScreenShared)
-
-    // React dependencies for recording
     const [isRecording, setIsRecording] = useState(false);
     const [videoSrc, setVideoSrc] = useState('');
- 
-
-
-    const { status, startRecording, stopRecording, mediaBlobUrl, } = useReactMediaRecorder({ 
-        screen: isLocalScreenShared, 
-        audio: {noiseSuppression: true, echoCancellation: true}, 
-        video: !isLocalScreenShared 
-    });
-
-    useEffect(() => {
-        setIsRecording(status === "recording");
-    }, [status]);
-
-    useEffect(() => {
-        if (mediaBlobUrl) {
-            setVideoSrc(mediaBlobUrl);
+    const mediaRecorderRef = useRef(null);
+    const chunksRef = useRef([]);
+        
+    // 100ms dependencies
+    const isConnected = useHMSStore(selectIsConnectedToRoom);
+    const isLocalScreenShared = useHMSStore(selectIsLocalScreenShared);
+    
+    const getMediaStream = useCallback(async () => {
+        if (!hostPeer) {
+            console.error('Host peer not found');
+            return null;
         }
-    }, [mediaBlobUrl]);
 
-    const toggleScreenShare = async () => {
+        let videoElement;
+        if (isLocalScreenShared) {
+            videoElement = document.querySelector(`video[data-testid="screen-${hostPeer.id}"]`);
+        } else {
+            videoElement = document.querySelector(`video[data-testid="video-${hostPeer.id}"]`);
+        }
+
+        const stream = new MediaStream();
+
+        if (videoElement) {
+            const videoStream = videoElement.captureStream();
+            const videoTrack = videoStream.getVideoTracks()[0];
+            if (videoTrack) {
+                stream.addTrack(videoTrack);
+            } else {
+                console.log('No video track found in video element');
+            }
+        } else {
+            console.error('Video element not found');
+        }
+    
         try {
-            await hmsActions.setScreenShareEnabled(!isLocalScreenShared);
-            // Stop current recording and start a new one with updated settings
-            if (isRecording) {
-                stopRecording();
-                startRecording();
+            const audioStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+            const audioTrack = audioStream.getAudioTracks()[0];
+            if (audioTrack) {
+                stream.addTrack(audioTrack);
+            } else {
+                console.log('No audio track obtained from getUserMedia');
             }
         } catch (error) {
-            console.error(error);
+            console.error('Error getting audio with getUserMedia:', error);
         }
     };
 
-<<<<<<< HEAD
     const handleLeave = async () => {
         await hmsActions.leave();
         if(instructorId === userId) {
@@ -103,47 +104,78 @@ const MenuOptions = () => {
             })
         }
     };
-
-    const handleRecordingToggle = async () => {
+    
+    const startRecording = useCallback(async () => {
         if (!isHost) {
 
             console.error('Only the host can start recording');
             return;
         }
-
-        if (isRecording) {
-            stopRecording();
-            try {
-                const response = await fetch(mediaBlobUrl);
-                const blob = await response.blob();
-                console.log(response, blob)
-                const formData = new FormData();
-                formData.append('recording', blob, 'conference-recording.webm');
-
-                await axios.post(`${API}/classes/class-recording`, formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                    },
-                });
-            } catch (error) {
-                console.error('Error uploading to backend:', error);
+    
+        try {
+            const mediaStream = await getMediaStream();
+            if (!mediaStream) {
+                throw new Error('Failed to get media stream');
             }
-        } else {
-            startRecording();
+    
+            mediaRecorderRef.current = new MediaRecorder(mediaStream, { mimeType: 'video/webm' });
+    
+            mediaRecorderRef.current.ondataavailable = (event) => {
+                if (event.data.size > 0) {
+                    chunksRef.current.push(event.data);
+                }
+            };
+    
+            mediaRecorderRef.current.onstop = async () => {
+                const blob = new Blob(chunksRef.current, { type: 'video/webm' });
+    
+                await uploadToServer(blob);
+    
+                chunksRef.current = [];
+            };
+    
+            mediaRecorderRef.current.start(1000); 
+            setIsRecording(true);
+    
+        } catch (error) {
+            console.error('Error starting recording:', error);
+        }
+    }, [isHost, getMediaStream]);
+
+    const stopRecording = useCallback(() => {
+        if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
+            mediaRecorderRef.current.stop();
+            setIsRecording(false);
+        }
+    }, []);
+
+    const uploadToServer = async (blob) => {
+        try {
+            const formData = new FormData();
+            formData.append('recording', blob, 'recording.webm');
+    
+            const response = await axios.post(`${API}/classes/class-recording`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            setVideoSrc(response.data)
+            console.log('Upload response:', response);
+        } catch (error) {
+            console.error('Error uploading recording:', error);
         }
     };
 
+    const toggleScreenShare = useCallback(async () => {
+        try {
+            await hmsActions.setScreenShareEnabled(!isLocalScreenShared);
+        } catch (error) {
+            console.error('Error toggling screen share:', error);
+        }
+    }, [hmsActions, isLocalScreenShared]);
+
       return (
         <main className={`menu-holder ${fullscreen ? isLandscape ? 'menu-holder__fullscreen-landscape' : 'menu-holder__fullscreen-portrait' : ''}`} >
-           {videoSrc && (
-                <video
-                    controls
-                    autoPlay={true}
-                    className='test'
-                    src={videoSrc}
-                    playsInline
-                />
-            )}
             <section className='menu-options-head'>
                 <article onClick={handleAudioChange} className='menu-options-head__audio'>
                     {isLocalAudioEnabled ? (
@@ -208,10 +240,10 @@ const MenuOptions = () => {
                     }
                 </article>
                 {isHost && (
-                    <article className='menu-options__container' onClick={handleRecordingToggle}>
-                        <FontAwesomeIcon className='menu-options__icon' icon={faCircle} />
-                        <span className='menu-options__label'>{isRecording ? 'Stop Recording' : 'Start Recording'}</span>
-                    </article>
+                <article className='menu-options__container' onClick={isRecording ? stopRecording : startRecording}>
+                    <FontAwesomeIcon className='menu-options__icon' icon={faCircle} />
+                    <span className='menu-options__label'>{isRecording ? 'Stop Recording' : 'Start Recording'}</span>
+                </article>
                 )}
             </section>
                 {isConnected && (
@@ -223,6 +255,13 @@ const MenuOptions = () => {
                         Leave
                     </button>
                 )}
+            {videoSrc && (
+                <video
+                    controls
+                    src={videoSrc}
+                    className='test'
+                />
+            )}
         </main>
     );
 };
