@@ -55,3 +55,14 @@
         text-decoration: none;
     }
 }
+
+.instructor-container {
+    img {
+      width: 150px;  // Adjust the size as needed
+      height: 150px;  // Same as width for a perfect circle
+      border-radius: 50%;  // This makes the image circular
+      object-fit: cover;  // Ensures the image fits well inside the circle
+      border: 2px solid #ccc;  // Optional: Add a border around the circle
+    }
+  }
+  
