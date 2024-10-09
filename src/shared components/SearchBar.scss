@@ -8,6 +8,13 @@
   background: $blue;
   padding: .5rem;
   border-radius: 50px;
+  position: sticky; // When scrolling the search bar stays on top. 🔝
+  top: 1rem;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+
   &__select, &__input{
     display: flex;
     align-items: center;
