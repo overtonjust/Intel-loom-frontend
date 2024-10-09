@@ -6,12 +6,12 @@ import './ClassCard.scss';
 
 const ClassCard = ({ classInfo }) => {
     const {pathname} = useLocation();
-    const classIsToday = formatDate(new Date()) === formatDate(classInfo.classDate);
+    /* const classIsToday = formatDate(new Date()) === formatDate(classInfo.classDate);
     const currentTime = new Date().getHours() + ':' + new Date().getMinutes();
     const checkedTime = checkTime(currentTime, classInfo.classTimeStart);
     const withInTime =  checkedTime.hours <= 1 && checkedTime.minutes === 0;
+    */
 
-    console.log(classInfo)
     return (
         <Link to={`/classinfo/${classInfo.classId}`}>
             <section className='class'>
