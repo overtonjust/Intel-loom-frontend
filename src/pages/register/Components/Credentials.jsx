@@ -17,6 +17,11 @@ const Credentials = ({ formData, handleChange, setFormSection }) => {
         number: false,
         specialChar: false
     })
+    const [validatedUsername, setValidatedUsername] = useState('')
+    const [validatedEmail, setValidatedEmail] = useState('')
+    const [validateForm, setValidateForm] = useState({
+
+    })
     const [passwordPassed, setPasswordPassed] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
 
@@ -26,6 +31,7 @@ const Credentials = ({ formData, handleChange, setFormSection }) => {
 
     const validate = () => {
         let formErrors = [];
+
 
         if (!formData.username) formErrors.push('Username is required');
         if (!formData.email) formErrors.push('Email is required');
@@ -44,6 +50,26 @@ const Credentials = ({ formData, handleChange, setFormSection }) => {
         }
     };
 
+
+    useEffect(() => {
+        axios.post(`${API}/users/validate-username`, { username: formData.username })
+            .then(res => {
+                setValidatedUsername('')
+            })
+            .catch(err => {
+                setValidatedUsername(err.data)
+            })
+    }, [formData.username])
+
+    useEffect(() => {
+        axios.post(`${API}/users/validate-email`, { email: formData.email })
+            .then(res => {
+                setValidatedEmail('');
+            })
+            .catch(err => {
+                setValidatedEmail(err.data)
+            })
+    }, [formData.email])
 
     useEffect(() => {
         axios.post(`${API}/users/validate-password`, { password: formData.password })
