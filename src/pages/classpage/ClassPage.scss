@@ -25,7 +25,7 @@
     align-items: center;
     width: 100%;
     max-width: 800px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
   
     .title-container {
       font-size: 30px;
@@ -33,15 +33,15 @@
     }
   
     .book-now-button {
-      padding: 10px 20px; 
+      padding: 6px 16px; 
       background-color: $orange;
       color: $white;
-      border: none; 
+      border: $blue 1px solid; 
       cursor: pointer;
       font-size: 1rem;
       text-align: center; 
       white-space: nowrap; 
-      border-radius: 15px;
+      border-radius: 10px;
      
   
     
@@ -49,25 +49,183 @@
   }
 
   .description-container {
-    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    height: 130px;
+    width: 85vw;
     font-size: 1.1rem;
     line-height: 1.6;
-    background-color: $card;
-    padding: 1.5rem;
-    border-radius: .3em;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    color: $white;
+    padding: 10px;
+    margin-bottom: 2px;
+    border-radius: .4em;
+    color: $blue;
+    position: relative;
+    
+  
   }
 
-  .instructor-bio-container {
-    max-width: 500px;
-    font-size: 1rem;
-    line-height: 1.5;
-    background-color: $footer;
-    padding: 1rem;
+  .instructor-container {
+    padding: 10px;
+    background-color: $white;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px $blue;  
     color: $blue;
+    border-radius: .3em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
+
+  .instructor-info {
+   display: flex;
+   flex-direction: column;
+   
+    }
+
+    .instructor-name {
+      font-size: 25px;
+      margin: -10px;
+      margin-left: 20px;
+    }
+
+   
+    
+  }
+
+  .class-slot-title {
+    padding: 20px;
+    float: left;
+    width: 200px;
+  }
+  
+  @media (max-width: 768px) {
+    .class-slot-title {
+      margin: -5%;
+      float: none;
+      width: 90%;
+      text-align: left;
+      padding:0%;
+    }
+  }
+
+  .time-slot-dropdown {
+    border-radius: .4em;
+    width: 60%;
+    padding: 0.3rem;
+    background-color: $white;
+    border-radius: .4em;
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: repeat(6, auto);
+    place-items: center;
+    row-gap: 2.5rem;
+   
+  
+  }
+
+  .see-profile-button {
+    display: block;
+    margin: 0 auto; 
+    padding: 9px 18px;
+    background-color: $blue;
+    color: $white;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .instructor-email {
+    font-size: 20px;
+      margin: -10px;
+      margin-left: 20px;
+
+  }
+
+  .display-container {
+
+ padding: 20px;
+  }
+
+
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;  // Ensure it appears on top of everything
+  }
+  
+  .modal-content {
+    background: $white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .close-modal-button {
+    background-color: $blue;
+    color: $white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+
+  .no-link-style {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
+
+.instructor-info {
+  
+  display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.instructor-name {
+  
+  display: flex;
+  padding: 20px;
+ 
+   
+    
+}
+
+.display-container {
+ text-align: center;
+  
+
+}
+
+.instructor-email {
+  font-size: 1em;
+}
+
+
+
+  
+  
+  
+  
+ 
+  
+
+
 
