@@ -22,7 +22,8 @@ const UserPage = () => {
       .then(res => setUserData(res.data))
       .catch(err => console.log(err));
   }, []);
-console.log(userData)
+
+  console.log(user)
 
 return (
   <div className='userPage-container'>

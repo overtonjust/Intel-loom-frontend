@@ -16,6 +16,7 @@ import Conference from './pages/conference/Conference';
 import ClassPage from './pages/classpage/ClassPage';
 import MyClasses from './pages/myclasses/MyClasses';
 import Register from './pages/register/Register';
+import InstructorView from './pages/instructorview/InstructorView';
 
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
         <Route path='/classInfo/:id' element={<ClassPage />} />
         <Route path='/view' element={<Conference/>}/>
         <Route path='/myclasses' element={<MyClasses/>}/>
+        <Route path='mylectures/:id' element={<InstructorView/>}/>
         <Route path='/register' element={<Register />} />
       </Route>  
     </Routes>
