@@ -24,6 +24,7 @@
     select, input {
       border: none;
       outline: none;
+      background: transparent;
     }
   }
   &__select{
@@ -37,7 +38,6 @@
     input {
       width: 100%;
       font-size: 16px;
-      background: transparent;
       &::placeholder {
         color: #aaa;
       }

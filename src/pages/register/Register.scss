@@ -1,14 +1,11 @@
-@import '../../shared.scss';
+@import "../../shared.scss";
 
 .sign-up-form {
-    padding: 1rem 0;
+  width: 90%;
+  padding: 1rem;
   background-color: $card;
-  border-radius: .4rem;
-  margin: 0 auto;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+  border-radius: 0.4rem;
+  margin: 2rem auto;
   &__group {
     width: 100%;
     display: grid;
@@ -17,23 +14,23 @@ align-items: center;
   }
 }
 
-.instructor-answers{
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 1rem;
-    &__opt{
-        input {
-            margin-right: .5rem;
-        }
+.instructor-answers {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 1rem;
+  &__opt {
+    input {
+      margin-right: 0.5rem;
     }
+  }
 }
 
-.disclaimer{
-    font-size: 13px;
-    text-align: center;
+.disclaimer {
+  font-size: 13px;
+  text-align: center;
 }
 
-.text{
+.text {
   color: $white;
 }
