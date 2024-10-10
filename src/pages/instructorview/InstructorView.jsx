@@ -1,9 +1,13 @@
+// Dependencies
 import React from 'react';
+
+// Components
+import StudentCard from './components/studentCard';
 
 const InstructorView = () => {
     return (
         <div>
-            hello bobby
+            <StudentCard/>
         </div>
     );
 };
