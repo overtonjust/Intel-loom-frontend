@@ -1,43 +1,69 @@
 // Dependencies
-import './DefaultLayout.scss'
-import { useState, useEffect } from "react";
+import "./DefaultLayout.scss";
+import { useState, useEffect, useRef } from "react";
 import { Outlet } from "react-router-dom";
 
 // Contexts
-import { UserContext } from '../../context/UserContext';
+import { UserContext } from "../../context/UserContext";
 
 // Components
 import Footer from "./components/Footer";
 import MobileNav from "./components/MobileNav";
-import Brand from './components/Brand';
-import PopUp from './components/PopUp';
+import Brand from "./components/Brand";
+import PopUp from "./components/PopUp";
 
 const DefaultLayout = () => {
   const API = import.meta.env.VITE_API_URL;
   const [user, setUser] = useState(() => {
     const savedUser = sessionStorage.getItem("user");
     return savedUser ? JSON.parse(savedUser) : false;
-  })
+  });
   const [message, setMessage] = useState(false);
+
+  const [isNavVisible, setIsNavVisible] = useState(true);
+
+  const scrollRef = useRef(null);
 
   useEffect(() => {
     sessionStorage.setItem("user", JSON.stringify(user));
   }, [user]);
-  
+
+  useEffect(() => {
+    let lastScrollY = 0;
+    const handleScroll = () => {
+      const currentScrollY = scrollRef.current.scrollTop;
+      if (currentScrollY > lastScrollY) {
+        setIsNavVisible(false);
+      } else {
+        setIsNavVisible(true);
+      }
+      lastScrollY = currentScrollY;
+    };
+    const scrollContainer = scrollRef.current;
+    if (scrollContainer) {
+      scrollContainer.addEventListener("scroll", handleScroll);
+    }
+    return () => {
+      if (scrollContainer) {
+        scrollContainer.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
+
   return (
     <UserContext.Provider value={{ user, setUser, setMessage, API }}>
-      <article className='default-mobile-layout'>
-        <header className='default-mobile-layout__header'>
+      <article className="default-mobile-layout">
+        <header className="default-mobile-layout__header">
           <Brand />
         </header>
-        <section className='default-mobile-layout__content'>
+        <section ref={scrollRef} className="default-mobile-layout__content">
           <Outlet />
           <Footer />
-          {message && <PopUp message={message} setMessage={setMessage}/>}
+          {message && <PopUp message={message} setMessage={setMessage} />}
         </section>
-        <footer className='default-mobile-layout__footer'>
-          <MobileNav />
-        </footer>
+          <footer className = {`default-mobile-layout__footer ${isNavVisible ? 'visible' : 'hidden'}`}>
+            <MobileNav />
+          </footer>
       </article>
     </UserContext.Provider>
   );
