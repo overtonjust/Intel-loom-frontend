@@ -1,5 +1,11 @@
 @import '../shared.scss';
 
+.search-container {
+  position: sticky; // When scrolling the search bar stays on top. 🔝
+  top: 0;
+  z-index: 1000;
+}
+
 .search {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -8,13 +14,6 @@
   background: $blue;
   padding: .5rem;
   border-radius: 50px;
-  position: sticky; // When scrolling the search bar stays on top. 🔝
-  top: 1rem;
-  bottom: 1rem;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-
   &__select, &__input{
     display: flex;
     align-items: center;
@@ -24,6 +23,7 @@
     select, input {
       border: none;
       outline: none;
+      background: transparent;
     }
   }
   &__select{
@@ -37,7 +37,6 @@
     input {
       width: 100%;
       font-size: 16px;
-      background: transparent;
       &::placeholder {
         color: #aaa;
       }

@@ -1,14 +1,15 @@
-@import '../../shared.scss'; 
+@import "../../shared.scss";
 
 .form-container {
   display: grid;
   align-items: center;
 }
 
-.login-form{
-  padding: 2rem;
+.login-form {
+  width: 90%;
+  padding: 1rem;
   background-color: $card;
-  border-radius: .4em;
+  border-radius: 0.4em;
   margin: 0 auto;
   display: grid;
   grid-template-rows: repeat(6, auto);
@@ -20,19 +21,21 @@
     place-items: center;
     padding: 0 1rem;
   }
-  &__text{
+  &__text {
     color: $white;
   }
 }
 
 .form-input {
   display: flex;
+  align-items: center;
   border: 0.1rem solid $blue;
   border-radius: 1.2rem;
   padding: 0.5rem 1rem;
   width: 100%;
   background: white;
-  select, input {
+  select,
+  input {
     margin-left: 0.5rem;
     border: none;
     background: transparent;
@@ -47,5 +50,3 @@
   display: flex;
   justify-content: space-evenly;
 }
-
-

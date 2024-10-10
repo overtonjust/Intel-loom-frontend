@@ -15,7 +15,28 @@
     &__content {
       position: relative;
       overflow-y: auto;
+      scroll-behavior: smooth;
       display: grid;
       grid-template-rows: 1fr auto;
     }
+    &__footer{
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      z-index: 1000;
+      background: white;
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+}
+
+.hidden {
+  transform: translateY(100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
 }
