@@ -27,7 +27,7 @@ const Instructor = ({ formData, handleChange, setFormSection }) => {
     return (
         <>
             <div className='sign-up-form__group'>
-                <h3 className='text'>Would you like to register as an Instructor?</h3>
+                <h6 className='text'>Would you like to register as an Instructor?</h6>
                 <div className='instructor-answers text'>
                     <div className='instructor-answers__opt'>
                         <input type='radio'
