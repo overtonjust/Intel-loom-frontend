@@ -13,7 +13,7 @@ const ClassPage = () => {
   const [isBooked, setIsBooked] = useState(false); // State for pop-up visibility
 
   useEffect(() => {
-    axios.get(`${API}/classes/classInfo/${id}`)
+    axios.get(`${API}/classes/class-info/${id}`, {withCredentials: true})
       .then(res => setClassData(res.data))
       .catch(err => console.log(err));
   }, [API, id]);
