@@ -1,21 +1,38 @@
-@import '../../shared.scss';
-
+@import "../../shared.scss";
 
 .default-mobile-layout {
-    height: 100vh;
-    width: 100vw;
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background-color: #fff;
+  overflow: hidden;
+  &__header,
+  &__footer {
+    padding: 0.75rem;
     display: grid;
-    grid-template-rows: auto 1fr auto;
-    background-color: #fff;
-    &__header, &__footer {
-      padding: .75rem;
-      display: grid;
-      place-items: center;
-    }
-    &__content {
-      position: relative;
-      overflow-y: auto;
-      display: grid;
-      grid-template-rows: 1fr auto;
-    }
+    place-items: center;
+  }
+  &__content {
+    position: relative;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    display: grid;
+    grid-template-rows: 1fr auto;
+  }
+  &__footer {
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+.hidden {
+  transform: translateY(100%);
+  opacity: 0;
+  height: 0;
+}
+
+.visible {
+  transform: translateY(0);
+  opacity: 1;
+  height: auto;
 }
