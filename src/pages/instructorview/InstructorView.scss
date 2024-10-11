@@ -1,0 +1,17 @@
+@import '../../shared.scss';
+
+
+.lectures {
+
+    &__students-grid {
+        height: fit-content;
+        max-height: 300px;
+        padding: 2%;
+        place-items: center;
+        row-gap: 10px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        overflow-y: scroll;
+        scrollbar-width: none;
+    }
+}
