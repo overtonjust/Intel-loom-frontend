@@ -2,12 +2,20 @@
 
 
 .lectures {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 2%;
+
+    &__title {
+        color: $blue;
+    }
 
     &__students-grid {
         height: fit-content;
-        max-height: 300px;
-        padding: 2%;
+        max-height: 350px;
         place-items: center;
+        padding-bottom: 2%;
         row-gap: 10px;
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));

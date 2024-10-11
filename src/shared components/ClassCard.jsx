@@ -5,7 +5,7 @@ import { formatDate, formatTime, checkTime } from '../../utils';
 import './ClassCard.scss';
 
 const ClassCard = ({ classInfo, dateId }) => {
-    const { classId , title, highlightPicture, price } = classInfo;
+    const { classId , title, highlightPicture, classPictures, price } = classInfo;
     const { pathname } = useLocation();
     const navigate = useNavigate();
     /* const classIsToday = formatDate(new Date()) === formatDate(classInfo.classDate);
@@ -17,7 +17,7 @@ const ClassCard = ({ classInfo, dateId }) => {
     return (
         <section onClick={ dateId ? () => navigate(`/mylectures/${dateId}`) : () => navigate(`/classInfo/${classId}`)} className='class'>
             <h2 className='class__title '>{ pathname.includes('classInfo') ? '' : title }</h2>
-            <img className='class__image' src={ highlightPicture } alt={ title } />
+            <img className='class__image' src={ highlightPicture ? highlightPicture : classPictures[0] } alt={ title } />
             <article className='class__info-box'>
                 <div className='class__column'>
                     <p className='class__text'>2 hr</p>

@@ -2,9 +2,9 @@ import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../../context/UserContext";
-import ClassCard from '../../shared components/ClassCard';
 import './ClassPage.scss';
 import { Link } from 'react-router-dom';
+import MobileCarousel from "../../shared components/carousels/MobileCarousel";
 
 const ClassPage = () => {
   const { API } = useContext(UserContext);
@@ -45,7 +45,7 @@ const ClassPage = () => {
         <h1 className="title-container">{classData.title}</h1>
       </div>
 
-      <ClassCard key={classData.classId} classInfo={classData} />
+      <MobileCarousel imageArr={classData.classPictures}/>
 
       {/* // Description Container */}
       <div className="description-container">{classData.description}</div>

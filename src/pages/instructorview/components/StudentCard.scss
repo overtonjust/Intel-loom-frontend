@@ -2,10 +2,11 @@
 
 
 .student-card {
+    height: 100%;
     width: 190px;
     border-radius: .6em;
     display: flex;
-    padding: 2% 4%;
+    padding: 4%;
     gap: 16px;
     align-items: center;
     background-color: $white;
@@ -26,13 +27,13 @@
     }
         &__name, &__email {
             text-align: center;
-            width: 100px;
+            width: fit-content;
             color: $blue;
             margin: 0;
         }
 
         &__name {
-            font-size: 1em;
+            font-size: .9em;
             font-weight: 600;
         }
 
