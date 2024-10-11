@@ -19,14 +19,14 @@ const InstructorView = () => {
         classPictures: []
     });
     const { classStudents, classInfo } = lectureInfo;
-    const { title, classPictures } =  classInfo
+    const { title, classPictures } =  classInfo;
     
     useEffect(() => {
         axios(`${API}/classes/class-date-info/${id}`, { withCredentials: true })
         .then(res => setLectureInfo(res.data))
         .catch(err => console.error(err))
-    },[id])
-    console.log(lectureInfo)
+    },[id]);
+
     return (
         <main className='lectures'>
             <h1 className='lectures__title'>{title}</h1>
