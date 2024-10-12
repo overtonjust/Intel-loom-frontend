@@ -103,7 +103,7 @@ const CreateClass = () => {
       })
       .then((res) => {
         clearForm();
-        console.log(res.data.classId);
+        navigate(`/class-template/${res.data.classId}`);
       })
       .catch((err) => {
         setMessage('Problem with creating class, try again later. If problem persists, contact support.');
