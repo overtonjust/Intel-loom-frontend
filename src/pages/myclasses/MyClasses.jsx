@@ -13,9 +13,6 @@ const MyClasses = () => {
     API,
     user: { isInstructor },
   } = useContext(UserContext);
-<<<<<<< HEAD
-  const [view, setView] = useState("classes");
-=======
   const navigate = useNavigate();
   const location = useLocation();
   const [view, setView] = useState('');
@@ -30,8 +27,6 @@ const MyClasses = () => {
     setView(currentPath);
   }, [location]);
 
->>>>>>> 864f184 (Added routing within myClasses. Class templates page created)
-  
   return (
     <main className="my-classes-container">
       <section className="my-classes-container__header">
