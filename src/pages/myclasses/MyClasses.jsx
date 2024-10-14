@@ -56,8 +56,8 @@ const MyClasses = () => {
         <Routes>
           <Route
             path="templates"
-            element={
-              <button className="button-orange">
+    element={
+      <button className="button-orange" onClick={() => navigate('/create-class')}>
                 <MdNoteAdd className="create-button" />
               </button>
             }

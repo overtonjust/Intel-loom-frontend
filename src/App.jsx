@@ -17,6 +17,7 @@ import ClassPage from './pages/classpage/ClassPage';
 import MyClasses from './pages/myclasses/MyClasses';
 import Register from './pages/register/Register';
 import InstructorView from './pages/instructorview/InstructorView';
+import CreateClass from './pages/createclass/CreateClass';
 
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
         <Route path='mylectures/:id' element={<InstructorView/>}/>
         <Route path='/myclasses/*' element={<MyClasses/>}/>
         <Route path='/register' element={<Register />} />
+        <Route path='/create-class' element={<CreateClass />} />
       </Route>  
     </Routes>
 
