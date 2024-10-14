@@ -4,10 +4,12 @@ import {
     selectIsConnectedToRoom,
     useHMSActions,
     useHMSStore,
+    useAVToggle
 } from '@100mslive/react-sdk';
-import { useAVToggle } from '@100mslive/react-sdk';
+import { WebcamContext, UserContext } from '../../context/UserContext';
+import { useParams } from 'react-router-dom';
 import './Conference.scss';
-import { WebcamContext } from '../../context/UserContext';
+import axios from 'axios';
 
 // Components
 import JoinCall from './components/JoinCall';
@@ -17,7 +19,10 @@ import ConferenceInfo from './components/ConferenceInfo';
 import Participants from './components/Participants';
 import Chat from './components/Chat';
 
-const Conference = ({/** Grab room / class data */}) => {
+const Conference = () => {
+    const { id } = useParams();
+    const { API, user } = useContext(UserContext);
+    const msUrl = import.meta.env.MS_URL;
     const isConnected = useHMSStore(selectIsConnectedToRoom);
     const hmsActions = useHMSActions();
     const [showParticipants, setShowParticipants] = useState(false);
@@ -31,6 +36,29 @@ const Conference = ({/** Grab room / class data */}) => {
     } = useAVToggle();
     window.addEventListener('beforeunload', () => hmsActions.leave());
     window.addEventListener('onunload', () => hmsActions.leave());
+
+    const handleUserJoinRoom =  async (roomData) => {
+        const { firstName, lastName, roomCode } = roomData;
+        const authToken = await hmsActions.getAuthTokenByRoomCode({ roomCode }); 
+        console.log(authToken)  
+
+        const displayName = `${firstName} ${lastName.charAt(0)}.`;
+
+        try {
+            await hmsActions.join({userName: displayName, authToken })
+        } catch (error) {
+            console.error(error)
+        }
+    };
+
+    useEffect(() => {
+            axios(`${API}/classes/get-room-code/${id}`, { withCredentials: true })
+                .then(res => {
+                    handleUserJoinRoom(res.data)
+                })
+                .catch(err => console.error(err))    
+        
+    },[id])
 
     return (
         <WebcamContext.Provider value={{ fullscreen, setFullscreen, showParticipants, setShowParticipants, isLocalAudioEnabled, isLocalVideoEnabled, toggleAudio, toggleVideo, chatOpen, setChatOpen}}>

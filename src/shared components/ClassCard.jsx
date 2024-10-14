@@ -30,7 +30,7 @@ const ClassCard = ({ classInfo, dateId, dateInfo }) => {
                         <p className='class__text'>{startTime} - {endTime}</p>
                     }
                     {pathname.includes('/myclasses') && today === classDay && startTime <= currentTime && 
-                            <Link className='button-orange class__link' to={'/view'}>
+                            <Link className='button-orange class__link' to={`/view/${classId}`}>
                                 Join Class
                             </Link>
                     }
