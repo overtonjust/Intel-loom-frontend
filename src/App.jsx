@@ -28,8 +28,8 @@ const App = () => {
         <Route path='/login' element={<Login />} />
         <Route path='/classInfo/:id' element={<ClassPage />} />
         <Route path='/view' element={<Conference/>}/>
-        <Route path='/myclasses' element={<MyClasses/>}/>
         <Route path='mylectures/:id' element={<InstructorView/>}/>
+        <Route path='/myclasses/*' element={<MyClasses/>}/>
         <Route path='/register' element={<Register />} />
       </Route>  
     </Routes>
