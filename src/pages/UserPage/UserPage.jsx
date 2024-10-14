@@ -4,7 +4,7 @@ import axios from 'axios';
 import { UserContext } from '../../context/UserContext';
 import { FaLinkedin, FaYoutube } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
-import './userPageMobile.scss'
+import './UserPageMobile.scss'
 import MobileCarousel from '../../shared components/carousels/MobileCarousel';
 import bannerImage from '../../assets/banner-img.png'
 // import './UserPage.scss'
