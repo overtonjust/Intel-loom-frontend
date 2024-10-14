@@ -25,6 +25,7 @@ const Home = () => {
       .catch(err => console.log(err))
   }, [page])
 
+
   return (
     <main className='home-container'>
       <SearchBar classes={allClasses} setDisplay={setClassesDisplay}/>
