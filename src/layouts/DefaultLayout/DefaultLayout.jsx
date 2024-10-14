@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import MobileNav from "./components/MobileNav";
 import Brand from "./components/Brand";
 import PopUp from "./components/PopUp";
+import { FaCaretUp } from "react-icons/fa";
 
 const DefaultLayout = () => {
   const API = import.meta.env.VITE_API_URL;
@@ -20,6 +21,8 @@ const DefaultLayout = () => {
   });
   const [message, setMessage] = useState(false);
 
+  const [showScrollUpButton, setShowScrollUpButton] = useState(false);
+
   const [isNavVisible, setIsNavVisible] = useState(true);
 
   const scrollRef = useRef(null);
@@ -28,14 +31,24 @@ const DefaultLayout = () => {
     sessionStorage.setItem("user", JSON.stringify(user));
   }, [user]);
 
+  const scrollToTop = () => {
+    scrollRef.current.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+    setShowScrollUpButton(false);
+  };
+
   useEffect(() => {
     let lastScrollY = 0;
     const handleScroll = () => {
       const currentScrollY = scrollRef.current.scrollTop;
       if (currentScrollY > lastScrollY) {
         setIsNavVisible(false);
+        setShowScrollUpButton(true);
       } else {
         setIsNavVisible(true);
+        setShowScrollUpButton(false);
       }
       lastScrollY = currentScrollY;
     };
@@ -60,10 +73,17 @@ const DefaultLayout = () => {
           <Outlet />
           <Footer />
           {message && <PopUp message={message} setMessage={setMessage} />}
+          {showScrollUpButton && (
+            <button className="scroll-up-button" onClick={scrollToTop}>
+              <FaCaretUp />
+            </button>
+          )}
         </section>
-          <footer className = {`default-mobile-layout__footer ${isNavVisible ? 'visible' : 'hidden'}`}>
-            <MobileNav />
-          </footer>
+        <footer
+          className={`default-mobile-layout__footer ${isNavVisible ? "visible" : "hidden"}`}
+        >
+          <MobileNav />
+        </footer>
       </article>
     </UserContext.Provider>
   );
