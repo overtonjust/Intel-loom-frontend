@@ -194,7 +194,6 @@
     gap: 10px;
     padding-bottom: 10px;
     text-overflow: ellipsis;
-   
 
 }
 
@@ -238,12 +237,43 @@
         
     }
 
-    &__text1 {
-        font-size: 80px;
+    &__header {
+        display: flex;
+        font-size: 50px;
+        justify-content: center;
+        margin-bottom: 12px;
+        margin-top: -2px;
+    }
+
+    &__buttons-container {
+        // border: 2px solid green;
+        height: 324px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+       
+    }
+
+    &__buttons {
+        border: 2px solid $blue;
+    outline: none;
+    cursor: pointer;
+    padding: 2% 4%;
+    border-radius: .6em;
+    background-color: $blue;
+    color: $white;
+    text-decoration: none;
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 .6rem .2rem $orange-faded;
+    }
+    &:active {
+        transform: translateY(2px);
+        background-color: $blue-faded;
+        box-shadow: none;
+    }
     }
 }
-
-
 
 
 .signout_button {

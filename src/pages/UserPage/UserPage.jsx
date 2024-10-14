@@ -90,8 +90,14 @@ return (
 {settingsMenu && 
 <div className='settings'>
   <div className='settings__card'>
-  <div className='settings__text1'>hello</div>
+  <div className='settings__header'>Settings</div>
+  <div className='settings__buttons-container'>
+  <button className='settings__buttons'>Become an Instructor!</button>
+  <button className='settings__buttons'>Edit Profile</button>
+  <button className='settings__buttons'>Change Password</button>
+  <button className='settings__buttons'>Delete User</button>
   <button className='button-orange' onClick={() => setSettingsMenu(false)}>Cancel</button>
+  </div>
   </div>
 </div> }
 
