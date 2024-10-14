@@ -21,10 +21,10 @@ const InstructorView = () => {
     const { classStudents, classInfo, classEnd, classStart } = lectureInfo;
     const { title } =  classInfo;
     const today = formatDate(new Date());
-    const currentTime = new Date().getHours();
-    const classDay = formatDate(new Date(classStart));
-    const startTime = new Date(classStart).getHours();
-    const endTime = new Date(classEnd).getHours();
+    const classDay = formatDate(classStart);
+    const currentTime = new Date().toLocaleTimeString('en-US', {timeStyle: 'short'});
+    const startTime = new Date(classStart).toLocaleTimeString('en-US', {timeStyle: "short"});
+    const endTime = new Date(classEnd).toLocaleTimeString('en-US', {timeStyle: "short"});
     
     useEffect(() => {
         axios(`${API}/classes/class-date-info/${id}`, { withCredentials: true })
@@ -32,11 +32,12 @@ const InstructorView = () => {
         .catch(err => console.error(err))
     },[id]);
 
+    console.log(startTime , currentTime )
     return (
         <main className='lectures'>
             <header>
                 <h1 className='lectures__title'>{title}</h1>
-                <h2 className='lectures__title'><span className={classDay === today ? 'alert' : ''}>{classDay === today ? 'Today' : classDay}</span> ({startTime > 12 ? `${startTime - 12}pm` : startTime === 0 ? '12am' : `${startTime}am`} - {endTime > 12 ? `${endTime - 12}pm` :  endTime === 0 ? '12am' : `${endTime}am` }) {today && (startTime - currentTime) < 1 && <button className='button-orange' onClick={() => navigate('/view')}>Join call</button>}</h2>
+                <h2 className='lectures__title'><span className={classDay === today ? 'alert' : ''}>{classDay === today ? 'Today' : classDay}</span> ({startTime} - {endTime}) {today === classDay && startTime <= currentTime && <button className='button-orange' onClick={() => navigate('/view')}>Join call</button>}</h2>
             </header>
             <h4 className='lectures__title'>Students enrolled:</h4>  
             <section className='lectures__students-grid'>

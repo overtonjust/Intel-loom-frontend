@@ -9,6 +9,7 @@
     border-radius: .4em;
     height: 400px;
     width: 85vw;
+    max-width: 500px;
     cursor: pointer;
 
     &__image{
@@ -24,18 +25,21 @@
 
     &__info-box {
         padding: 2% 0 0;
-        display: flex;
-        justify-content: space-between;       
     }
 
-    &__text {
-        color: $white;
-        font-size: 1.2em;
-    }
-    
-    &__link {
-       align-self: center;
-    }
+        &__row {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            grid-template-rows: 1fr;
+        }
+            &__text {
+                color: $white;
+                font-size: 1.2em;
+            }
+            
+            &__link {
+                place-self: start;
+            }
 }
 
 .instructor-container {

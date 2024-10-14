@@ -19,10 +19,12 @@ const ClassesByDay = ({API}) => {
         return (
           <section key={day} className="by-day">
             <h2>{formatDateKey(day)}</h2>
-            <section key={day} className="by-day__time">
-              {myClasses[day].map((classDate, idx) => (
-                <ClassCard key={idx} classInfo={classDate.classInfo} />
-              ))}
+            <section key={day} className="by-day">
+              {myClasses[day].map((classDate, idx) => {
+                const { classStart, classEnd } = classDate;
+                return (
+                <ClassCard key={idx} classInfo={classDate.classInfo} dateInfo={{classStart, classEnd}} />
+              )})}
             </section>
           </section>
         );
