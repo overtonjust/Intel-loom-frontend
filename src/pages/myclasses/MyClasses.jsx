@@ -13,7 +13,6 @@ const MyClasses = () => {
     user: { isInstructor },
   } = useContext(UserContext);
   const [view, setView] = useState("classes");
-
   
   return (
     <main className="my-classes-container">

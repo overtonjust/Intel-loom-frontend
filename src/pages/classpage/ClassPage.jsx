@@ -2,9 +2,9 @@ import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../../context/UserContext";
-import ClassCard from '../../shared components/ClassCard';
 import './ClassPage.scss';
 import { Link } from 'react-router-dom';
+import MobileCarousel from "../../shared components/carousels/MobileCarousel";
 
 const ClassPage = () => {
   const { API } = useContext(UserContext);
@@ -13,7 +13,7 @@ const ClassPage = () => {
   const [isBooked, setIsBooked] = useState(false); // State for pop-up visibility
 
   useEffect(() => {
-    axios.get(`${API}/classes/classInfo/${id}`)
+    axios.get(`${API}/classes/class-info/${id}`, {withCredentials: true})
       .then(res => setClassData(res.data))
       .catch(err => console.log(err));
   }, [API, id]);
@@ -45,7 +45,7 @@ const ClassPage = () => {
         <h1 className="title-container">{classData.title}</h1>
       </div>
 
-      <ClassCard key={classData.classId} classInfo={classData} />
+      <MobileCarousel imageArr={classData.classPictures}/>
 
       {/* // Description Container */}
       <div className="description-container">{classData.description}</div>

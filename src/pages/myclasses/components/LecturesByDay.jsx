@@ -14,6 +14,7 @@ const LecturesByDay = ({ API }) => {
       .catch((err) => console.log(err));
   }, []);
 
+
   return (
     <>
       {Object.keys(mylectures).map((day) => {
@@ -22,7 +23,7 @@ const LecturesByDay = ({ API }) => {
             <h2>{formatDateKey(day)}</h2>
             <section key={day} className="by-day">
               {mylectures[day].map((classDate, idx) => (
-                <ClassCard key={idx} classInfo={classDate.classInfo} />
+                <ClassCard key={idx} classInfo={classDate.classInfo} dateId={classDate.classDateId} />
               ))}
             </section>
           </section>

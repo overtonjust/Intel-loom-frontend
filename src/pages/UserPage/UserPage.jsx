@@ -5,7 +5,7 @@ import { UserContext } from '../../context/UserContext';
 import { FaLinkedin, FaYoutube } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 import './userPageMobile.scss'
-import MobileCarousel from './MobileCarousel';
+import MobileCarousel from '../../shared components/carousels/MobileCarousel';
 import bannerImage from '../../assets/banner-img.png'
 // import './UserPage.scss'
 // import CarouselRatio from './Carousel';
@@ -22,7 +22,8 @@ const UserPage = () => {
       .then(res => setUserData(res.data))
       .catch(err => console.log(err));
   }, []);
-console.log(userData)
+
+  console.log(user)
 
 return (
   <div className='userPage-container'>
