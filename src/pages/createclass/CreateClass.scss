@@ -1,0 +1,87 @@
+@import '../../shared.scss';
+
+.create-class-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  &__header {
+    h2 {
+      color: $blue;
+    }
+  }
+  &__form {
+    display: grid;
+    grid-template-rows: repeat(8, auto);
+    gap: 1rem;
+  }
+}
+
+.form-group {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  input, select, textarea {
+    border-radius: .75rem;
+    border: 1px solid $grey;
+  }
+  #title, #description {
+    width: 100%;
+    margin: 0 1rem;
+    padding: 0.3rem .5rem;
+  }
+  #price, #capacity {
+    width: 70px;
+    margin: 0 1rem;
+    padding: 0 .5rem;
+  }
+  button {
+    margin: 0 1rem;
+  }
+}
+
+.form-preview {
+  display: flex;
+  overflow-x: scroll;
+  &__image {
+    position: relative;
+    img {
+      width: min-content;
+      height: 300px;
+    }
+  }
+  &__btns {
+    top: 3%;
+    left: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    width: 100px;
+    height: fit-content;
+    .remove-pic {
+      background: $orange;
+      color: $white;
+      border: none;
+      border-radius: 50%;
+      padding: 0.3rem;
+    }
+    .highlight-pic {
+      font-size: 1.5rem;
+      background: $white;
+    }
+  }
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  button {
+    margin: 0 1rem;
+  }
+}
+
+.form-message {
+  text-align: center;
+}

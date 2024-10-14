@@ -1,36 +1,73 @@
 import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../context/UserContext";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import ClassesByDay from "./components/ClassesByDay";
 import LecturesByDay from "./components/LecturesByDay";
-import axios from "axios";
-import ClassCard from "../../shared components/ClassCard";
-import { formatDateKey } from "../../../utils";
+import Templates from "./components/Templates";
+import { MdNoteAdd } from "react-icons/md";
 import "./MyClasses.scss";
+import axios from "axios";
 
 const MyClasses = () => {
   const {
     API,
     user: { isInstructor },
   } = useContext(UserContext);
-  const [view, setView] = useState("classes");
-  
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [view, setView] = useState('');
+
+  const handleViewChange = (e) => {
+    setView(e.target.value);
+    navigate(e.target.value);
+  };
+
+  useEffect(() => {
+    const currentPath = location.pathname.split("/")[2] || "";
+    setView(currentPath);
+  }, [location]);
+
   return (
     <main className="my-classes-container">
-      <section className="select-view">
-        <label htmlFor="view">View:</label>
-        <select name="view" id="view" onChange={(e) => setView(e.target.value)}>
-          <option value="classes">My Classes</option>
-          {isInstructor && (
-            <>
-              <option value="lectures">My Lectures</option>
-              <option value="templates">Class Templates</option>
-            </>
-          )}
-          <option value="recording">Class Recordings</option>
-        </select>
+      <section className="my-classes-container__header">
+        <section className="select-view">
+          <label htmlFor="view">View:</label>
+          <select
+            name="view"
+            id="view"
+            value={view}
+            onChange={handleViewChange}
+          >
+            <option value="">My Classes</option>
+            {isInstructor && (
+              <>
+                <option value="lectures">My Lectures</option>
+                <option value="templates">Class Templates</option>
+              </>
+            )}
+            <option value="recording">Class Recordings</option>
+          </select>
+        </section>
+        <Routes>
+          <Route
+            path="templates"
+    element={
+      <button className="button-orange" onClick={() => navigate('/create-class')}>
+                <MdNoteAdd className="create-button" />
+              </button>
+            }
+          />
+        </Routes>
       </section>
-      {view === "classes" && <ClassesByDay API={API} />}
-      {view === "lectures" && <LecturesByDay API={API} />}
+      <Routes>
+        <Route path="" element={<ClassesByDay API={API} />} />
+        <Route path="lectures" element={<LecturesByDay API={API} />} />
+        <Route path="templates" element={<Templates API={API} />}/>
+        <Route
+          path="recordings"
+          element={<div>Class Recordings Component</div>}
+        />
+      </Routes>
     </main>
   );
 };

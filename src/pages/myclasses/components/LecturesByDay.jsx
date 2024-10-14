@@ -5,7 +5,6 @@ import { formatDateKey } from "../../../../utils";
 
 const LecturesByDay = ({ API }) => {
   const [mylectures, setMyLectures] = useState([]);
-  const [lecturesDisplay, setLecturesDisplay] = useState([]);
 
   useEffect(() => {
     axios
@@ -19,9 +18,9 @@ const LecturesByDay = ({ API }) => {
     <>
       {Object.keys(mylectures).map((day) => {
         return (
-          <section key={day}>
+          <section key={day} className="by-day">
             <h2>{formatDateKey(day)}</h2>
-            <section key={day} className="by-day">
+            <section key={day} className="by-day__time">
               {mylectures[day].map((classDate, idx) => (
                 <ClassCard key={idx} classInfo={classDate.classInfo} dateId={classDate.classDateId} />
               ))}

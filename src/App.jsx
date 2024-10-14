@@ -17,6 +17,8 @@ import ClassPage from './pages/classpage/ClassPage';
 import MyClasses from './pages/myclasses/MyClasses';
 import Register from './pages/register/Register';
 import InstructorView from './pages/instructorview/InstructorView';
+import CreateClass from './pages/createclass/CreateClass';
+import ClassTemplate from './pages/classtemplate/ClassTemplate';
 
 
 const App = () => {
@@ -28,9 +30,11 @@ const App = () => {
         <Route path='/login' element={<Login />} />
         <Route path='/classInfo/:id' element={<ClassPage />} />
         <Route path='/view' element={<Conference/>}/>
-        <Route path='/myclasses' element={<MyClasses/>}/>
         <Route path='mylectures/:id' element={<InstructorView/>}/>
+        <Route path='/myclasses/*' element={<MyClasses/>}/>
         <Route path='/register' element={<Register />} />
+        <Route path='/create-class' element={<CreateClass />} />
+        <Route path='class-template/:id' element={<ClassTemplate />} />
       </Route>  
     </Routes>
 

@@ -33,7 +33,7 @@ const Home = () => {
           <ClassCard key={classInfo?.classId} classInfo={classInfo}/>
         ))}
       </div>
-      {moreClasses && 
+      {(moreClasses && allClasses.length > 0) && 
         <FaAnglesDown onClick={() => setPage((prevState) => prevState+= 1)} className='home-container__more' size={30}/>
       }
     </main>
