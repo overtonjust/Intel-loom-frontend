@@ -26,8 +26,6 @@ const InstructorView = () => {
     const startTime = new Date(classStart).getHours();
     const endTime = new Date(classEnd).getHours();
     
-    
-
     useEffect(() => {
         axios(`${API}/classes/class-date-info/${id}`, { withCredentials: true })
         .then(res => setLectureInfo(res.data))
