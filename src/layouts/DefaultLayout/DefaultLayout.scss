@@ -4,13 +4,12 @@
   0% {
     transform: translateY(0);
   }
-  50% { 
+  50% {
     transform: translateY(-8px);
   }
-  100% { 
+  100% {
     transform: translateY(0px);
   }
-
 }
 
 .default-mobile-layout {
@@ -33,35 +32,4 @@
     display: grid;
     grid-template-rows: 1fr auto;
   }
-  &__footer {
-    transition: all 0.3s ease-in-out;
-  }
-}
-
-.scroll-up-button {
-  position: fixed;
-  bottom: 3.5rem;
-  right: .5rem;
-  background: $white;
-  color: $blue;
-  border: none;
-  border-radius: 50%;
-  padding: 0.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  display: grid;
-  place-items: center;
-  animation: 2s infinite scroll-up;
-}
-
-.hidden {
-  transform: translateY(100%);
-  opacity: 0;
-  height: 0;
-}
-
-.visible {
-  transform: translateY(0);
-  opacity: 1;
-  height: auto;
 }
