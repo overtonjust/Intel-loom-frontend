@@ -1,6 +1,6 @@
 // Dependencies
 import React, { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import {  useLocation, useNavigate } from 'react-router-dom';
 import {  isHourFromStart, isClassDayToday } from '../../utils';
 import './ClassCard.scss';
 
@@ -13,6 +13,10 @@ const ClassCard = ({ classInfo, dateId, dateInfo }) => {
     const startTime = new Date(classStart).toLocaleTimeString('en-US', {timeStyle: "short"});
     const endTime = new Date(classEnd).toLocaleTimeString('en-US', {timeStyle: "short"});
 
+    const handleJoinRoom = (e, id) => {
+        e.stopPropagation();
+        navigate(`/view/${id}`)
+    };
 
     return (
         <section onClick={ dateId ? () => navigate(`/mylectures/${dateId}`) : () => navigate(`/classInfo/${classId}`)} className='class'>
@@ -25,9 +29,9 @@ const ClassCard = ({ classInfo, dateId, dateInfo }) => {
                         <p className='class__text'>{startTime} - {endTime}</p>
                     }
                     {pathname.includes('/myclasses') && isClassDayToday(classStart) && isHourFromStart(classStart) && 
-                            <Link className='button-orange class__link' to={`/view/${classId}`}>
+                            <button className='button-orange class__link' onClick={(e) => handleJoinRoom(e, classId)}>
                                 Join Class
-                            </Link>
+                            </button>
                     }
                 </div>
             </article>

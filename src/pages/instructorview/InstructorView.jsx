@@ -19,7 +19,7 @@ const InstructorView = () => {
         title: '',
     });
     const { classStudents, classInfo, classEnd, classStart } = lectureInfo;
-    const { title } =  classInfo;
+    const { title, classId } =  classInfo;
     const startTime = new Date(classStart).toLocaleTimeString('en-US', {timeStyle: "short"});
     const endTime = new Date(classEnd).toLocaleTimeString('en-US', {timeStyle: "short"});
     
@@ -33,7 +33,7 @@ const InstructorView = () => {
         <main className='lectures'>
             <header>
                 <h1 className='lectures__title'>{title}</h1>
-                <h2 className='lectures__title'><span className={isClassDayToday(classStart) ? 'alert' : ''}>{isClassDayToday(classStart) ? 'Today' : formatDate(classStart)}</span> ({startTime} - {endTime}) {isClassDayToday(classStart) && isHourFromStart(classStart) && <button className='button-orange' onClick={() => navigate('/view')}>Join call</button>}</h2>
+                <h2 className='lectures__title'><span className={isClassDayToday(classStart) ? 'alert' : ''}>{isClassDayToday(classStart) ? 'Today' : formatDate(classStart)}</span> ({startTime} - {endTime}) {isClassDayToday(classStart) && isHourFromStart(classStart) && <button className='button-orange' onClick={() => navigate(`/view/${classId}`)}>Join call</button>}</h2>
             </header>
             <h4 className='lectures__title'>Students enrolled:</h4>  
             <section className='lectures__students-grid'>
