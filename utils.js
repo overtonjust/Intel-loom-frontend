@@ -1,3 +1,4 @@
+import moment from "moment";
 
 const formatDate = (dateStr) => {
     const options = {
@@ -7,6 +8,20 @@ const formatDate = (dateStr) => {
     }
     const date = new Date(dateStr)
     return date.toLocaleDateString('en-US', options )
+};
+
+const isClassDayToday = (dateStr) => {
+    const today = formatDate(new Date());
+    const classDay = formatDate(dateStr);
+
+    return today === classDay;
+};
+
+const isHourFromStart = (dateStr) => {
+    const currentTime = moment(new Date().getTime());
+    const startTime = moment(new Date(dateStr).getTime());
+
+    return Math.abs(currentTime.diff(startTime)) <= 3600000;
 };
 
 const convertTimeToMilliseconds = (timeString) => {
@@ -53,4 +68,4 @@ const formatDateKey = dateStr => {
   return `${day} ${dateParts[1]} ${dateParts[2]}, ${dateParts[3]}`;
 }
 
-export { formatDate, formatTime, checkTime, formatDateKey };
+export { formatDate, formatTime, checkTime, formatDateKey, isClassDayToday, isHourFromStart };
