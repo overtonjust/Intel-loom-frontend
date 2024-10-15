@@ -18,6 +18,24 @@
   flex-direction: column;
   gap: 20px;
 
+  &__more-classes {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+
+  &__more-classes-header {
+    color: $blue;
+  }
+
+  &__more-classes-carousel {
+    width: calc(100vw - 2rem);
+    display: flex;
+    gap: 1em;
+    overflow-x: scroll;
+  }
+
 
   .title-button-container {
     display: flex;
@@ -42,11 +60,8 @@
       text-align: center; 
       white-space: nowrap; 
       border-radius: 10px;
-     
-  
-    
     }
-  }
+}
 
   .description-container {
     display: flex;

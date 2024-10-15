@@ -24,6 +24,7 @@ const DefaultLayout = () => {
   const [showScrollUpButton, setShowScrollUpButton] = useState(false);
 
   const [isNavVisible, setIsNavVisible] = useState(true);
+  const [shouldScroll, setShouldScroll] = useState(false);
 
   const scrollRef = useRef(null);
 
@@ -63,8 +64,18 @@ const DefaultLayout = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if(shouldScroll) {
+      scrollRef.current?.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+      setShouldScroll(false)
+    }
+  }, [shouldScroll])
+
   return (
-    <UserContext.Provider value={{ user, setUser, setMessage, API }}>
+    <UserContext.Provider value={{ user, setUser, setMessage, API, setShouldScroll }}>
       <article className="default-mobile-layout">
         <header className="default-mobile-layout__header">
           <Brand />

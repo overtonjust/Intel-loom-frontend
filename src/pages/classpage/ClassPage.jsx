@@ -1,23 +1,27 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useRef } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../../context/UserContext";
 import './ClassPage.scss';
 import { Link } from 'react-router-dom';
+import ClassCard from "../../shared components/ClassCard";
 import MobileCarousel from "../../shared components/carousels/MobileCarousel";
 
 const ClassPage = () => {
-  const { API } = useContext(UserContext);
+  const { API, setShouldScroll } = useContext(UserContext);
   const { id } = useParams();
   const [classData, setClassData] = useState(null);
   const [isBooked, setIsBooked] = useState(false); // State for pop-up visibility
 
   useEffect(() => {
     axios.get(`${API}/classes/class-info/${id}`, {withCredentials: true})
-      .then(res => setClassData(res.data))
+      .then(res => {
+        setClassData(res.data)
+        setShouldScroll(true)
+      })
       .catch(err => console.log(err));
+
   }, [API, id]);
-  console.log(classData)
 
   if (!classData) {
     return <div>Loading...</div>;
@@ -26,8 +30,8 @@ const ClassPage = () => {
   const bio = classData.instructor.bio;
   const sentences = bio.split('.');
   const display = `${sentences[0]}... `;
-  console.log(display)
   const classTitle = classData.title;
+  const { moreClassesFromInstructor } = classData;
 
   const handleBooking = () => {
     // Simulate successful booking action
@@ -38,6 +42,9 @@ const ClassPage = () => {
   const closeModal = () => {
     setIsBooked(false); // Close the modal
   };
+
+  
+
 
   return (
     <main className="class-container">
@@ -85,7 +92,15 @@ const ClassPage = () => {
   </button>
        
       </div>
-      
+
+      <div className="class-container__more-classes">
+        <h3 className="class-container__more-classes-header">More from {classData.instructor.firstName}:</h3>
+        <div className="class-container__more-classes-carousel">
+          {(moreClassesFromInstructor.length > 0) && moreClassesFromInstructor.map((classData) => (
+            <ClassCard key={classData.classId} classInfo={classData}/>
+          ))}
+        </div>
+      </div>
 
       {/* Pop-up */}
       {isBooked && (

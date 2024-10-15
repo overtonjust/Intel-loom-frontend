@@ -20,7 +20,7 @@ const ClassCard = ({ classInfo, dateId, dateInfo }) => {
 
     return (
         <section onClick={ dateId ? () => navigate(`/mylectures/${dateId}`) : () => navigate(`/classInfo/${classId}`)} className='class'>
-            <h2 className='class__title '>{ pathname.includes('classInfo') ? '' : title }</h2>
+            <h2 className='class__title '>{ title }</h2>
             <img className='class__image' src={ highlightPicture ? highlightPicture : classPictures[0] } alt={ title } />
             <article className='class__info-box'>
                 <div className='class__row'>
