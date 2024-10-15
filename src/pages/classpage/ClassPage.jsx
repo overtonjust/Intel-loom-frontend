@@ -1,24 +1,27 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useRef } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 import { UserContext } from "../../context/UserContext";
-import "./ClassPage.scss";
-import { Link } from "react-router-dom";
+import './ClassPage.scss';
+import { Link } from 'react-router-dom';
+import ClassCard from "../../shared components/ClassCard";
 import MobileCarousel from "../../shared components/carousels/MobileCarousel";
 
 const ClassPage = () => {
-  const { API, setMessage } = useContext(UserContext);
+  const { API, setShouldScroll, setMessage } = useContext(UserContext);
   const { id } = useParams();
   const [classData, setClassData] = useState(null);
 
   const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
 
   useEffect(() => {
-    axios
-      .get(`${API}/classes/class-info/${id}`, { withCredentials: true })
-      .then((res) => setClassData(res.data))
-      .catch((err) => console.log(err));
+    axios.get(`${API}/classes/class-info/${id}`, {withCredentials: true})
+      .then(res => {
+        setClassData(res.data)
+        setShouldScroll(true)
+      })
+      .catch(err => console.log(err));
   }, [API, id]);
 
   if (!classData) {
@@ -28,11 +31,14 @@ const ClassPage = () => {
   const bio = classData.instructor.bio;
   const sentences = bio.split(".");
   const display = `${sentences[0]}... `;
+  const { moreClassesFromInstructor } = classData;
+
   const classDatesFiltered = classData.classDates.filter(({classStart}) => {
     const now = moment();
     const oneHourBefore = moment(classStart).subtract(1, "hours");
     return now.isBefore(oneHourBefore);
   });
+  
   const handleChange = (e) => {
     setSelectedTimeSlot(e.target.value);
   };
@@ -51,6 +57,9 @@ const ClassPage = () => {
       })
       .catch((err) => setMessage("Error booking class"));
   };
+
+  
+
 
   return (
     <main className="class-container">
@@ -133,6 +142,14 @@ const ClassPage = () => {
             See Profile
           </Link>
         </button>
+      </div>
+      <div className="class-container__more-classes">
+        <h3 className="class-container__more-classes-header">More from {classData.instructor.firstName}:</h3>
+        <div className="class-container__more-classes-carousel">
+          {(moreClassesFromInstructor.length > 0) && moreClassesFromInstructor.map((classData) => (
+            <ClassCard key={classData.classId} classInfo={classData}/>
+          ))}
+        </div>
       </div>
     </main>
   );
