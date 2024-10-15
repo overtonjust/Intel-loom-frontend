@@ -21,7 +21,7 @@ const UserPage = () => {
     axios.get(`${API}/users/profile/${id}`, {withCredentials: true})
       .then(res => setUserData(res.data))
       .catch(err => console.log(err));
-  }, []);
+  }, [id]);
 
 return (
   <div className='userPage-container'>

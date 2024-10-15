@@ -17,7 +17,7 @@ const Home = () => {
   const [page, setPage] = useState(1)
 
   useEffect(() => {
-    axios(`${API}/classes?page=${page}`)
+    axios(`${API}/classes?page=${page}`, { withCredentials: true })
       .then(res => {
         setAllClasses(prev => prev.concat(res.data.classes))
         setMoreClasses(res.data.moreClasses)
