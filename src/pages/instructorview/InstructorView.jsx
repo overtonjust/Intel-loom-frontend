@@ -37,7 +37,7 @@ const InstructorView = () => {
         <main className='lectures'>
             <header>
                 <h1 className='lectures__title'>{title}</h1>
-                <h2 className='lectures__title'><span className={classDay === today ? 'alert' : ''}>{classDay === today ? 'Today' : classDay}</span> ({startTime} - {endTime}) {today === classDay && startTime <= currentTime && <button className='button-orange' onClick={() => navigate('/view')}>Join call</button>}</h2>
+                <h2 className='lectures__title'><span className={classDay === today ? 'alert' : ''}>{classDay === today ? 'Today' : classDay}</span> ({startTime} - {endTime}) {today === classDay && <button className='button-orange' onClick={() => navigate('/view')}>Join call</button>}</h2>
             </header>
             <h4 className='lectures__title'>Students enrolled:</h4>  
             <section className='lectures__students-grid'>
