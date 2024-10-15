@@ -1,8 +1,7 @@
 // Dependencies
 import React, { useState } from 'react';
-import moment  from 'moment'
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { formatDate, formatTime, checkTime } from '../../utils';
+import {  useLocation, useNavigate } from 'react-router-dom';
+import {  isHourFromStart, isClassDayToday } from '../../utils';
 import './ClassCard.scss';
 
 const ClassCard = ({ classInfo, dateId, dateInfo }) => {
@@ -11,13 +10,13 @@ const ClassCard = ({ classInfo, dateId, dateInfo }) => {
     const { classId , title, highlightPicture, classPictures, price } = classInfo;
     
     let { classStart, classEnd } = dateInfo || '';
-    const today = formatDate(new Date());
-    const classDay = formatDate(classStart);
-    const currentTime = new Date().toLocaleTimeString('en-US', {timeStyle: 'short'});
     const startTime = new Date(classStart).toLocaleTimeString('en-US', {timeStyle: "short"});
     const endTime = new Date(classEnd).toLocaleTimeString('en-US', {timeStyle: "short"});
-    
-    console.log(moment )
+
+    const handleJoinRoom = (e, id) => {
+        e.stopPropagation();
+        navigate(`/view/${id}`)
+    };
 
     return (
         <section onClick={ dateId ? () => navigate(`/mylectures/${dateId}`) : () => navigate(`/classInfo/${classId}`)} className='class'>
@@ -29,10 +28,10 @@ const ClassCard = ({ classInfo, dateId, dateInfo }) => {
                     {pathname.includes('/myclasses') && 
                         <p className='class__text'>{startTime} - {endTime}</p>
                     }
-                    {pathname.includes('/myclasses')  && 
-                            <Link className='button-orange class__link' to={`/view/${classId}`}>
+                    {pathname.includes('/myclasses') && isClassDayToday(classStart) && isHourFromStart(classStart) && 
+                            <button className='button-orange class__link' onClick={(e) => handleJoinRoom(e, classId)}>
                                 Join Class
-                            </Link>
+                            </button>
                     }
                 </div>
             </article>

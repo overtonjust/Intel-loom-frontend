@@ -23,8 +23,6 @@ const UserPage = () => {
       .catch(err => console.log(err));
   }, [id]);
 
-  console.log(user)
-
 return (
   <div className='userPage-container'>
     <div className='banner-container'>
