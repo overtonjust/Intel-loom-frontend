@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext, useRef } from "react";
+import { useEffect, useState, useContext} from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
@@ -57,9 +57,6 @@ const ClassPage = () => {
       })
       .catch((err) => setMessage("Error booking class"));
   };
-
-  
-
 
   return (
     <main className="class-container">
