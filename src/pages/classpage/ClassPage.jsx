@@ -28,7 +28,11 @@ const ClassPage = () => {
   const bio = classData.instructor.bio;
   const sentences = bio.split(".");
   const display = `${sentences[0]}... `;
-
+  const classDatesFiltered = classData.classDates.filter(({classStart}) => {
+    const now = moment();
+    const oneHourBefore = moment(classStart).subtract(1, "hours");
+    return now.isBefore(oneHourBefore);
+  });
   const handleChange = (e) => {
     setSelectedTimeSlot(e.target.value);
   };
@@ -59,14 +63,14 @@ const ClassPage = () => {
       {/* // Description Container */}
       <div className="description-container">{classData.description}</div>
 
-      {classData.classDates.length > 0 && (
+      {classDatesFiltered.length > 0 && (
         <div className="class-slot-title">
           <label htmlFor="timeSlot">Available Class Times:</label>
         </div>
       )}
 
       <div className="title-button-container">
-        {!classData.classDates.length ? (
+        {!classDatesFiltered.length ? (
           <p className="no-classes">No Dates Available</p>
         ) : (
           <>
@@ -79,12 +83,12 @@ const ClassPage = () => {
               <option value="" disabled>
                 Choose a date
               </option>
-              {classData.classDates.map(
+              {classDatesFiltered.map(
                 ({ classDateId, classStart, classEnd }, idx) => {
                   const formattedDate =
                     moment(classStart).format("ddd. MMM. D, 'YY");
-                  const startTime = moment(classStart).format("h");
-                  const endTime = moment(classEnd).format("h A");
+                  const startTime = moment(classStart).format("h:mm A");
+                  const endTime = moment(classEnd).format("h:mm A");
                   const formattedString = `${formattedDate} ${startTime} - ${endTime}`;
                   return (
                     <option
