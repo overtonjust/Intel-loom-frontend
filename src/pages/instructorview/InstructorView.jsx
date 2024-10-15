@@ -7,7 +7,7 @@ import axios from 'axios';
 import { isClassDayToday, isHourFromStart, formatDate } from '../../../utils';
 
 // Components
-import StudentCard from './components/studentCard';
+import StudentCard from './components/StudentCard';
 
 const InstructorView = () => {
     const { API } = useContext(UserContext);
