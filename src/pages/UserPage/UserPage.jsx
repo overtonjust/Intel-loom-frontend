@@ -1,5 +1,5 @@
 import {useState, useEffect, useContext} from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { UserContext } from '../../context/UserContext';
 import { FaLinkedin, FaYoutube } from "react-icons/fa";
@@ -12,7 +12,8 @@ import bannerImage from '../../assets/banner-img.png'
 
 
 const UserPage = () => {
-  const { API, user } = useContext(UserContext);
+  const { API, user, setUser, setMessage } = useContext(UserContext);
+  const navigate = useNavigate();
   const { id } = useParams();
   const [userData, setUserData] = useState(null);
   const [settingsMenu, setSettingsMenu] = useState(false)
@@ -22,6 +23,15 @@ const UserPage = () => {
       .then(res => setUserData(res.data))
       .catch(err => console.log(err));
   }, [id]);
+
+  const signout = () => {
+    axios.post(`${API}/users/logout`, {}, {withCredentials: true})
+      .then(() => {
+        setUser(false);
+        navigate('/');
+      })
+      .catch(err => setMessage('Failed to sign out'));
+  };
 
 return (
   <div className='userPage-container'>
@@ -75,7 +85,7 @@ return (
 
       <div className='buttons'>
       <button className='button-blue' onClick={() => setSettingsMenu(true)}>Settings</button>
-      <button className='signout_button'>Sign Out</button>
+      <button onClick={signout} className='signout_button'>Sign Out</button>
     </div>
 
 {settingsMenu && 
