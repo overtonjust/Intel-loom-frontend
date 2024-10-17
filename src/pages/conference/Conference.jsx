@@ -22,7 +22,6 @@ import Chat from './components/Chat';
 const Conference = () => {
     const { id } = useParams();
     const { API, user } = useContext(UserContext);
-    const msUrl = import.meta.env.MS_URL;
     const isConnected = useHMSStore(selectIsConnectedToRoom);
     const hmsActions = useHMSActions();
     const [showParticipants, setShowParticipants] = useState(false);
@@ -40,12 +39,12 @@ const Conference = () => {
     const handleUserJoinRoom =  async (roomData) => {
         const { firstName, lastName, roomCode } = roomData;
         const authToken = await hmsActions.getAuthTokenByRoomCode({ roomCode }); 
-        console.log(authToken)  
 
         const displayName = `${firstName} ${lastName.charAt(0)}.`;
 
         try {
             await hmsActions.join({userName: displayName, authToken })
+            await hmsActions.setAudioSettings({echoCancellation: true, noiseSuppresion: true})
         } catch (error) {
             console.error(error)
         }

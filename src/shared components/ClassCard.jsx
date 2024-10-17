@@ -1,5 +1,5 @@
 // Dependencies
-import React, { useState } from 'react';
+import React from 'react';
 import {  useLocation, useNavigate } from 'react-router-dom';
 import {  isHourFromStart, isClassDayToday } from '../../utils';
 import './ClassCard.scss';
