@@ -1,13 +1,16 @@
 // Dependencies
-import React, { useEffect } from 'react';
+import React, { useContext } from 'react';
+import { WebcamContext } from '../../../context/UserContext';
 import './ConferenceInfo.scss'
 
-const ConferenceInfo = ({/* grab class info for instructor name and rules */ }) => {
+const ConferenceInfo = () => {
+    const { instructorName } = useContext(WebcamContext);
+    
     return (
        <section className='call-info'>
             <article className='call-info__rules'>
                 <h2 className='call-info__title'>
-                    "Instructor's" class etiquette {/** replace instructor with appropriate name  and map their rules*/}
+                    "{instructorName || 'Instructor'}'s" class etiquette {/** replace instructor with appropriate name  and map their rules*/}
                 </h2>
                 <ul className='call-info__list'>
                     <li className='call-info__list-item'>
@@ -26,7 +29,7 @@ const ConferenceInfo = ({/* grab class info for instructor name and rules */ }) 
                         A computer with a webcam
                     </li>
                     <li className='call-info__list-item'>
-                        An Ide installed and updated ("Instructor" prefers vscode!)
+                        An Ide installed and updated ("{instructorName || 'Instructor'}" prefers vscode!)
                     </li>
                     <li className='call-info__list-item'>
                         Your smiling face!

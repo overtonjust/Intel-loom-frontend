@@ -27,7 +27,11 @@ const Conference = () => {
     const [showParticipants, setShowParticipants] = useState(false);
     const [fullscreen, setFullscreen] = useState(false);
     const [chatOpen, setChatOpen] = useState(false);
-    const [title, setTitle] = useState('');
+    const [roomData, setRoomData ] = useState({
+        title: '',
+        instructorName: ''
+    });
+    const { title, instructorName } = roomData;
     const {
         isLocalAudioEnabled,
         isLocalVideoEnabled,
@@ -75,15 +79,20 @@ const Conference = () => {
                 
             axios.get(`${API}/classes/class-info/${id}`, {withCredentials: true})
                 .then(res => {
-                    setTitle(prev => res.data.title)
+                    const {title , instructor: { firstName } } = res.data
+                    setRoomData(prev => {
+                        return {
+                            title,
+                            instructorName: firstName
+                        }
+                    })
                 })
                 .catch(err => console.error(err))
         
     },[id])
 
-
     return (
-        <WebcamContext.Provider value={{ fullscreen, setFullscreen, showParticipants, setShowParticipants, isLocalAudioEnabled, isLocalVideoEnabled, handleAudioChange, toggleVideo, chatOpen, setChatOpen}}>
+        <WebcamContext.Provider value={{ fullscreen, setFullscreen, instructorName, showParticipants, setShowParticipants, isLocalAudioEnabled, isLocalVideoEnabled, handleAudioChange, toggleVideo, chatOpen, setChatOpen}}>
             <section className='conference'>
                 <h2 className='conference__title'>{title}</h2>
                 {isConnected ? (
