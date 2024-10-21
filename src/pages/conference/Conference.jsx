@@ -7,6 +7,7 @@ import {
     useAVToggle
 } from '@100mslive/react-sdk';
 import { WebcamContext, UserContext } from '../../context/UserContext';
+import { useOrientation } from 'react-use';
 import { useParams } from 'react-router-dom';
 import './Conference.scss';
 import axios from 'axios';
@@ -22,6 +23,8 @@ import Chat from './components/Chat';
 const Conference = () => {
     const { id } = useParams();
     const { API } = useContext(UserContext);
+    const orientation = useOrientation();
+    const isLandscape = orientation.type === 'landscape-primary' || orientation.type === 'landscape-secondary';
     const isConnected = useHMSStore(selectIsConnectedToRoom);
     const hmsActions = useHMSActions();
     const [showParticipants, setShowParticipants] = useState(false);
@@ -92,7 +95,7 @@ const Conference = () => {
     },[id])
 
     return (
-        <WebcamContext.Provider value={{ fullscreen, setFullscreen, instructorName, showParticipants, setShowParticipants, isLocalAudioEnabled, isLocalVideoEnabled, handleAudioChange, toggleVideo, chatOpen, setChatOpen}}>
+        <WebcamContext.Provider value={{ fullscreen, setFullscreen, instructorName, showParticipants, setShowParticipants, isLocalAudioEnabled, isLocalVideoEnabled, handleAudioChange, toggleVideo, chatOpen, setChatOpen, isLandscape }}>
             <section className='conference'>
                 <h2 className='conference__title'>{title}</h2>
                 {isConnected ? (

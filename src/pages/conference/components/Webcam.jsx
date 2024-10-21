@@ -1,15 +1,12 @@
 // Dependencies
 import React, { useContext } from 'react';
 import { useVideo, selectIsPeerAudioEnabled, useHMSStore, selectIsPeerVideoEnabled } from '@100mslive/react-sdk';
-import { useOrientation } from 'react-use';
 import { AiOutlineAudioMuted } from 'react-icons/ai';
 import { WebcamContext } from '../../../context/UserContext';
 import './Webcam.scss';
 
 const Webcam = ({ peer }) => {
-    const orientation = useOrientation();
-    const isLandscape = orientation.type === 'landscape-primary' || orientation.type === 'landscape-secondary';
-    const { fullscreen } = useContext(WebcamContext);
+    const { fullscreen, isLandscape } = useContext(WebcamContext);
     const { videoRef } = useVideo({
         trackId: peer.auxiliaryTracks[0] || peer.videoTrack
     });
@@ -17,7 +14,7 @@ const Webcam = ({ peer }) => {
     const isPeerAudioEnabled = useHMSStore(selectIsPeerAudioEnabled(peer.id));
     const isPeerVideoEnabled = useHMSStore(selectIsPeerVideoEnabled(peer.id));
     
-    console.log(orientation.type, isLandscape)
+    console.log(isLandscape)
     return (
         <section className={`webcam ${peer.roleName === 'guest' && 'webcam__guest'} `}>
             <article className={`${fullscreen && peer.roleName === 'guest' ? 'webcam__mini' : 'webcam__video'}`}>

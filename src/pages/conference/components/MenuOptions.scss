@@ -12,14 +12,21 @@
     border-radius: .3em;
     gap: 10px;
 
-    &__fullscreen {
-        height: 8vh;
+    &__fullscreen-portrait, &__fullscreen-landscape {
         position: absolute;
         bottom: 0;
         left: 0;
         width: 100%;
         border-radius: 0;
         background-color: $blue;
+    }
+
+    &__fullscreen-portrait {
+        height: 8vh;
+    }
+
+    &__fullscreen-landscape {
+        height: 18vh;
     }
 }
 

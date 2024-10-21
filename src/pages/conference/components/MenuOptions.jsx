@@ -26,7 +26,7 @@ import { WebcamContext } from '../../../context/UserContext';
 const MenuOptions = () => {
     const { fullscreen, setFullscreen, showParticipants, setShowParticipants, 
         isLocalAudioEnabled, isLocalVideoEnabled, handleAudioChange, toggleVideo,
-        chatOpen, setChatOpen} = useContext(WebcamContext);
+        chatOpen, setChatOpen, isLandscape} = useContext(WebcamContext);
     const peers = useHMSStore(selectPeers);
     
     const userCount = peers.length;
@@ -44,7 +44,7 @@ const MenuOptions = () => {
     };
 
     return (
-        <main className={`menu-holder ${fullscreen ? 'menu-holder__fullscreen' : ''}`} >
+        <main className={`menu-holder ${fullscreen ? isLandscape ? 'menu-holder__fullscreen-landscape' : 'menu-holder__fullscreen-portrait' : ''}`} >
             <section className='menu-options-head'>
                 <article onClick={handleAudioChange} className='menu-options-head__audio'>
                     {isLocalAudioEnabled ? (
