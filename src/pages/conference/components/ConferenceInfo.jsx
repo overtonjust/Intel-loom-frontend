@@ -1,5 +1,5 @@
 // Dependencies
-import React from 'react';
+import React, { useEffect } from 'react';
 import './ConferenceInfo.scss'
 
 const ConferenceInfo = ({/* grab class info for instructor name and rules */ }) => {

@@ -21,6 +21,29 @@
         grid-template-columns: repeat(auto-fill, minmax(30vw, 1fr));
         gap: 20px;
     }
+
+    &__fullscreen {
+        position: fixed;
+        display: flex;
+        padding: 2%;
+        max-width: 100vw;
+        bottom: 12vh;
+        left: 0;
+        overflow-x: scroll;
+        scrollbar-width: 1px;
+        scrollbar-color: $white $white;
+        scroll-snap-type: proximity;
+    }
    
 }
 
+.conference-room-takeover {
+    position: fixed;
+    background-color: #242424;
+    top: 0;
+    left: 0;
+    height: 92vh;
+    width: 100vw;
+    max-height: none;
+    border-radius: 0;
+}

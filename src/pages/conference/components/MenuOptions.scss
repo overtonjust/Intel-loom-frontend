@@ -8,8 +8,7 @@
     align-items: center;
     padding: 2%;
     background-color: $card;
-    border: 2px $blue;
-    border-style: solid solid solid solid ;
+    border: 2px $blue solid;
     border-radius: .3em;
     gap: 10px;
 
@@ -30,12 +29,13 @@
     padding-right: 2%;
     gap: 8px;
 
-    &__audio {
-
-    }
-
-    &__video {
-
+    &__audio, &__video {
+        display: flex;
+        flex-direction: column;
+        padding: 4px;
+        gap: 5px;
+        align-items: center;
+        cursor: pointer;
     }
 }
 
@@ -47,6 +47,7 @@
     &__container {
         display: flex;
         flex-direction: column;
+        padding: 4px;
         gap: 5px;
         align-items: center;
         // width: 50px;

@@ -21,12 +21,13 @@ import Chat from './components/Chat';
 
 const Conference = () => {
     const { id } = useParams();
-    const { API, user } = useContext(UserContext);
+    const { API } = useContext(UserContext);
     const isConnected = useHMSStore(selectIsConnectedToRoom);
     const hmsActions = useHMSActions();
     const [showParticipants, setShowParticipants] = useState(false);
     const [fullscreen, setFullscreen] = useState(false);
     const [chatOpen, setChatOpen] = useState(false);
+    const [title, setTitle] = useState('');
     const {
         isLocalAudioEnabled,
         isLocalVideoEnabled,
@@ -38,16 +39,31 @@ const Conference = () => {
 
     const handleUserJoinRoom =  async (roomData) => {
         const { firstName, lastName, roomCode } = roomData;
-        const authToken = await hmsActions.getAuthTokenByRoomCode({ roomCode }); 
+        const token = await hmsActions.getAuthTokenByRoomCode({ roomCode }); 
 
         const displayName = `${firstName} ${lastName.charAt(0)}.`;
+        const config = {
+            userName: displayName,
+            authToken: token,
+            settings: {
+                isAudioMuted: true
+            }
+        };
 
         try {
-            await hmsActions.join({userName: displayName, authToken })
-            await hmsActions.setAudioSettings({echoCancellation: true, noiseSuppresion: true})
+            await hmsActions.join(config)
         } catch (error) {
             console.error(error)
         }
+    };
+
+    const handleAudioChange = async () => {
+        try {
+            await hmsActions.setAudioSettings({echoCancellation: true, noiseSuppression: true, autoGainControl: true})
+        } catch (error) {
+            console.error(error)
+        }
+        toggleAudio()
     };
 
     useEffect(() => {
@@ -55,14 +71,21 @@ const Conference = () => {
                 .then(res => {
                     handleUserJoinRoom(res.data)
                 })
-                .catch(err => console.error(err))    
+                .catch(err => console.error(err)) 
+                
+            axios.get(`${API}/classes/class-info/${id}`, {withCredentials: true})
+                .then(res => {
+                    setTitle(prev => res.data.title)
+                })
+                .catch(err => console.error(err))
         
     },[id])
 
+
     return (
-        <WebcamContext.Provider value={{ fullscreen, setFullscreen, showParticipants, setShowParticipants, isLocalAudioEnabled, isLocalVideoEnabled, toggleAudio, toggleVideo, chatOpen, setChatOpen}}>
+        <WebcamContext.Provider value={{ fullscreen, setFullscreen, showParticipants, setShowParticipants, isLocalAudioEnabled, isLocalVideoEnabled, handleAudioChange, toggleVideo, chatOpen, setChatOpen}}>
             <section className='conference'>
-                <h2 className='conference__title'>{/* class name */}Cool Class</h2>
+                <h2 className='conference__title'>{title}</h2>
                 {isConnected ? (
                     <article className={`conference__video-call ${fullscreen ? 'conference__fullscreen' : ''}`}>
                         <ConferenceRoom />

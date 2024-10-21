@@ -18,15 +18,12 @@ const ConferenceRoom = () => {
 
     
     return (
-        <div className={`conference-room`}>
+        <div className={`conference-room ${fullscreen && 'conference-room-takeover'}`}>
             <div className={`conference-room__host `}>
                 {host && <Webcam key={host.id} peer={host}/>}
             </div>
-            <div className={`conference-room__guest`}>
-                {
-                fullscreen && userCam !== host ?
-                <Webcam peer={userCam} /> :
-                guests.map((peer) => (
+            <div className={`conference-room__guest ${fullscreen ? 'conference-room__fullscreen' : ''}`}>
+                { guests.map((peer) => (
                     <Webcam key={peer.id} peer={peer} />
                 ))}
             </div>
