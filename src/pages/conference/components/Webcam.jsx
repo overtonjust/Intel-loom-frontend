@@ -17,6 +17,7 @@ const Webcam = ({ peer }) => {
     const isPeerAudioEnabled = useHMSStore(selectIsPeerAudioEnabled(peer.id));
     const isPeerVideoEnabled = useHMSStore(selectIsPeerVideoEnabled(peer.id));
     
+    console.log(orientation.type, isLandscape)
     return (
         <section className={`webcam ${peer.roleName === 'guest' && 'webcam__guest'} `}>
             <article className={`${fullscreen && peer.roleName === 'guest' ? 'webcam__mini' : 'webcam__video'}`}>
