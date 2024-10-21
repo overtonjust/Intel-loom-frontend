@@ -25,11 +25,11 @@ const Webcam = ({ peer }) => {
                 ref={videoRef}
                 autoPlay={true}
                 muted
-                className={ fullscreen && peer.roleName === 'host' ? 'webcam__fullscreen' : `webcam__video`}
+                className={ fullscreen && peer.roleName === 'host' ? isLandscape ? 'webcam__fullscreen-landscape' : 'webcam__fullscreen-portrait' : `webcam__video`}
                 playsInline 
                 />
                 {!isPeerVideoEnabled ? (
-                    <img className={`webcam__video webcam__image ${fullscreen && peer.roleName === 'guest' ? 'webcam__mini' : fullscreen && peer.roleName === 'host' ? 'webcam__fullscreen' : ''} `} src="https://placehold.co/210x100" alt="" /> 
+                    <img className={`webcam__video webcam__image ${fullscreen && peer.roleName === 'guest' ? 'webcam__mini' : fullscreen && peer.roleName === 'host' ? isLandscape ? 'webcam__fullscreen-landscape' : 'webcam__fullscreen-portrait' : ''} `} src="https://placehold.co/210x100" alt="" /> 
                 ) : null} 
                 <article className='webcam__name'>
                     {peer.name} {peer.isLocal ? "(You)": ""}

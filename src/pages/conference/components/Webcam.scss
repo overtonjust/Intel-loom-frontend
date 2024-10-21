@@ -29,9 +29,9 @@
 
     &__muted {
         position: absolute;
-        right: 4%;
-        bottom: 2%;
-        font-size: 2em;
+        left: 4%;
+        top: 2%;
+        font-size: 1.4em;
         color: red;
     }
 
@@ -44,13 +44,18 @@
         background-color: $blue;
     }
 
-    &__fullscreen {
+    &__fullscreen-portrait {
         margin-top: 15%;
         max-height: 400px;
         height: 400px;
         width: 100vw;
         border-radius: 0 !important;
         object-fit: fill;
+    }
+
+    &__fullscreen-landscape {
+        margin-left: calc(50% - 25%);
+        max-height: 300px;
     }
     
     &__mini {

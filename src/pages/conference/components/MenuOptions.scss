@@ -1,7 +1,7 @@
 @import '../../../shared.scss';
 
 .menu-holder {
-    max-width: 100vw;
+    width: 100vw;
     display: flex;
     overflow-x: scroll;
     scrollbar-width: none;
@@ -50,7 +50,6 @@
         padding: 4px;
         gap: 5px;
         align-items: center;
-        // width: 50px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
