@@ -3,7 +3,7 @@ import { FaGithub, FaGitlab, FaLinkedin, FaYoutube } from 'react-icons/fa'; // I
 
 // Reusable component for Social Media Link Input
 const SocialLinkInput = ({ icon: Icon, name, value, onChange, placeholder }) => (
-    <div className="form-input">
+    <div className="form-input" style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
         <Icon style={{ marginRight: '10px' }} />
         <input
             type="url"
@@ -18,8 +18,8 @@ const SocialLinkInput = ({ icon: Icon, name, value, onChange, placeholder }) => 
 
 const Uploads = ({ formData, setFormSection }) => {
     const [profilePic, setProfilePic] = useState(null);
-    const [setUploadFile] = useState(null);
-    const [videoLink, setVideoLink] = useState('');
+    const [uploadFile, setUploadFile] = useState(null);
+    const [videoLink, setVideoLink] = useState(''); // Default to empty string for controlled input
     const [socialLinks, setSocialLinks] = useState({
         github: '',
         gitlab: '',
@@ -28,20 +28,20 @@ const Uploads = ({ formData, setFormSection }) => {
     });
     const [formErrors, setFormErrors] = useState([]);
 
-    const isInstructor = formData.isInstructor;
+    const isInstructor = formData.isInstructor; // Check if user is an instructor
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
-        setUploadFile(file || null);
+        setUploadFile(file || null); // Ensure we are always setting a value, even if null
     };
 
     const handleProfilePicChange = (e) => {
         const file = e.target.files[0];
-        setProfilePic(file || null);
+        setProfilePic(file || null); // Ensure we are always setting a value, even if null
     };
 
     const handleLinkChange = (e) => {
-        setVideoLink(e.target.value || '');
+        setVideoLink(e.target.value || ''); // Ensure controlled input with a default empty string
     };
 
     const handleSocialLinkChange = (e) => {
@@ -52,12 +52,14 @@ const Uploads = ({ formData, setFormSection }) => {
     const handleNext = () => {
         let errors = [];
 
+        // Check if instructor and profile pic is mandatory
         if (isInstructor && !profilePic) {
             errors.push('As an instructor, please upload a profile picture.');
         }
 
+        // If the user is an instructor, ensure at least one social media link
         if (isInstructor && !socialLinks.github && !socialLinks.gitlab && !socialLinks.linkedin && !socialLinks.youtube) {
-            errors.push('As an instructor, please provide at least one social media link.');
+            errors.push('As an instructor, please provide at least one social media link (GitHub, GitLab, LinkedIn, or YouTube).');
         }
 
         if (errors.length > 0) {
@@ -66,13 +68,14 @@ const Uploads = ({ formData, setFormSection }) => {
             return;
         }
 
+        // Proceed to the next section (complete)
         setFormSection('complete');
     };
 
     return (
         <>
             {/* Profile Picture Upload */}
-            <div className="signup-form__group">
+            <div className="signup-form__group" style={{ marginBottom: '1.5rem' }}>
                 <div className="form-input">
                     <label htmlFor="profilePic">
                         {isInstructor ? 'Upload Profile Picture (Required for Instructors)' : 'Upload Profile Picture (Optional)'}
@@ -86,8 +89,8 @@ const Uploads = ({ formData, setFormSection }) => {
                 </div>
             </div>
 
-            {/* Video File Upload */}
-            <div className="signup-form__group">
+            {/* Video File Upload (Optional) */}
+            <div className="signup-form__group" style={{ marginBottom: '1.5rem' }}>
                 <div className="form-input">
                     <label htmlFor="uploadFile">Upload Video File (Optional)</label>
                     <input
@@ -99,22 +102,22 @@ const Uploads = ({ formData, setFormSection }) => {
                 </div>
             </div>
 
-            {/* Video Link Input */}
-            <div className="signup-form__group">
+            {/* Video Link Input (Optional) */}
+            <div className="signup-form__group" style={{ marginBottom: '1.5rem' }}>
                 <div className="form-input">
                     <label htmlFor="videoLink">Enter Video Link (Optional)</label>
                     <input
                         type="url"
                         id="videoLink"
-                        value={videoLink || ''}
+                        value={videoLink || ''} // Ensure controlled input with a default empty string
                         onChange={handleLinkChange}
                         placeholder="https://example.com/video"
                     />
                 </div>
             </div>
 
-            {/* Social Media Links */}
-            <div className="signup-form__group">
+            {/* Social Media Links (Mandatory only for instructors) */}
+            <div className="signup-form__group" style={{ marginBottom: '1.5rem', display: 'flex', flexDirection: 'column' }}>
                 <SocialLinkInput
                     icon={FaGithub}
                     name="github"
@@ -145,9 +148,9 @@ const Uploads = ({ formData, setFormSection }) => {
                 />
             </div>
 
-            {/* Error Handling */}
+            {/* Error Message */}
             {formErrors.length > 0 && (
-                <div className="error-container">
+                <div className="error-container" style={{ marginBottom: '1.5rem', color: 'red' }}>
                     {formErrors.map((error, index) => (
                         <p key={index} className="error">{error}</p>
                     ))}
@@ -155,7 +158,7 @@ const Uploads = ({ formData, setFormSection }) => {
             )}
 
             {/* Navigation Buttons */}
-            <div className="signup-form__group main-btns">
+            <div className="signup-form__group main-btns" style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <button type="button" onClick={() => setFormSection('personal')}>
                     Previous
                 </button>
