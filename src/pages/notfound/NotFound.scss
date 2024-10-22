@@ -1,0 +1,68 @@
+.not-found {
+    text-align: center;
+    margin-top: 100px;
+
+    .logo-wrapper {
+        position: relative;
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        margin-bottom: 20px;
+  
+    .logo {
+      width: 100px;
+    }
+  
+.magnifying-glass {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-image: url('/magnifying-glass.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: 75px 50%;
+    animation: circularMotion 4s infinite linear;
+    }
+}
+
+    h1 {
+      font-size: 2rem;
+      color: #ff4500;
+      margin-bottom: 20px;
+    }
+  
+    p {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 20px;
+    }
+  
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #01204e;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #ff4500;
+      }
+    }
+  }
+
+  // Animation feature for magnifying glass mving around logo 🔎
+  @keyframes circularMotion {
+    0% {
+        transform: rotate(0deg) translateX(50px) rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg) translateX(50px) rotate(-360deg);
+      }
+  }
+  

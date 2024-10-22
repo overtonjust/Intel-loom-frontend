@@ -16,7 +16,7 @@ import Conference from './pages/conference/Conference';
 import ClassPage from './pages/classpage/ClassPage';
 import MyClasses from './pages/myclasses/MyClasses';
 import Register from './pages/register/Register';
-
+import NotFound from './pages/notfound/NotFound';
 
 const App = () => {
   return (
@@ -26,10 +26,11 @@ const App = () => {
         <Route path='/profile/:id' element={<UserPage />} />
         <Route path='/login' element={<Login />} />
         <Route path='/classInfo/:id' element={<ClassPage />} />
-        <Route path='/view' element={<Conference/>}/>
-        <Route path='/myclasses' element={<MyClasses/>}/>
+        <Route path='/view' element={<Conference />} />
+        <Route path='/myclasses' element={<MyClasses />} />
         <Route path='/register' element={<Register />} />
-      </Route>  
+        <Route path='*' element={<NotFound />} />
+      </Route>
     </Routes>
 
   );
