@@ -6,7 +6,6 @@ import LecturesByDay from "./components/LecturesByDay";
 import Templates from "./components/Templates";
 import { MdNoteAdd } from "react-icons/md";
 import "./Myclasses.scss";
-import axios from "axios";
 
 const MyClasses = () => {
   const {
