@@ -52,8 +52,8 @@ return (
         <div className='video-header'>
         <h3>Videos</h3>
         <div className="videos_buttons">
-        <button className='videos-upload_button'>Upload +</button>
-        <button className='videos-edit_button'>Manage</button>
+        <button className='button-blue'>Upload +</button>
+        <button className='button-orange'>Manage</button>
         </div>
         </div>
         <MobileCarousel links={userData?.instructorLinks}/>
@@ -75,7 +75,7 @@ return (
 
       <div className='buttons'>
       <button className='button-blue' onClick={() => setSettingsMenu(true)}>Settings</button>
-      <button className='signout_button'>Sign Out</button>
+      <button className='button-orange'>Sign Out</button>
     </div>
 
 {settingsMenu && 

@@ -8,7 +8,7 @@
 .login-form {
   width: 90%;
   padding: 1rem;
-  background-color: $card;
+  background-color: transparent;
   border-radius: 0.4em;
   margin: 0 auto;
   display: grid;
@@ -22,7 +22,7 @@
     padding: 0 1rem;
   }
   &__text {
-    color: $white;
+    color: $blue;
   }
 }
 
