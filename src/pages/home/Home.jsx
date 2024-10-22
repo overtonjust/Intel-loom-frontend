@@ -9,6 +9,7 @@ import './Home.scss'
 import { FaAnglesDown } from "react-icons/fa6";
 import ClassCard from '../../shared components/ClassCard'
 
+
 const Home = () => {
   const { API } = useContext(UserContext)
   const [allClasses, setAllClasses] = useState([])

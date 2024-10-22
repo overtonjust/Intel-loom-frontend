@@ -2,15 +2,17 @@
 
 
 .class {
+    border-top: 2px solid $card;
     display: flex;
     flex-direction: column;
-    background-color: $white;
-    border-radius: .8em;
+    background-color: #fff;
+    border-radius: 0 0 .8em .8em;
+    // border-radius: .8em;
     height: fit-content;
     min-width: 300px;
     width: 85vw;
     max-width: 400px;
-    box-shadow: 0 .1em .6em  $blue;
+    box-shadow: 0 10px 4px -4px $card;
     cursor: pointer;
 
     &__image{
