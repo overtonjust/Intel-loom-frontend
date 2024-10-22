@@ -1,0 +1,118 @@
+@import "../../shared.scss";
+
+.forum-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  &__back {
+    button {
+      display: flex;
+      align-items: center;
+      padding: 0.1rem 1rem;
+      border-radius: 0.5rem;
+      background-color: $orange;
+      color: $white;
+      font-size: 1.2rem;
+      border: none;
+      cursor: pointer;
+    }
+  }
+}
+
+.reply-input {
+  display: flex;
+  height: 30px;
+  gap: 1rem;
+  input {
+    flex: 1;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 0.1rem solid $white;
+  }
+  button {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: $orange;
+    color: $white;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.forum-responses {
+  &__title {
+    color: $blue;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  &__more {
+    display: flex;
+    justify-content: center;
+    p {
+      color: $orange;
+      cursor: pointer;
+    }
+  }
+}
+
+.response-card {
+  border-top: 0.1rem solid $white;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  &__user {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+  }
+  &__resp {
+    padding: 0 1rem;
+    color: $blue;
+  }
+  &__more {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.response-page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  &__back {
+    button {
+      display: flex;
+      align-items: center;
+      padding: 0.1rem 1rem;
+      border-radius: 0.5rem;
+      background-color: $orange;
+      color: $white;
+      font-size: 1.2rem;
+      border: none;
+      cursor: pointer;
+    }
+  }
+  &__responses {
+    padding: 0 1rem;  
+  }
+  &__more {
+    display: flex;
+    justify-content: center;
+    p {
+      color: $orange;
+      cursor: pointer;
+    }
+  }
+}

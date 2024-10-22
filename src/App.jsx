@@ -37,7 +37,7 @@ const App = () => {
         <Route path='/create-class' element={<CreateClass />} />
         <Route path='class-template/:id' element={<ClassTemplate />} />
         <Route path='/forums' element={<Forums />} />
-        <Route path='/forum/:id' element={<ForumPage />} />
+        <Route path='/forum/:id/*' element={<ForumPage />} />
       </Route>  
     </Routes>
 
