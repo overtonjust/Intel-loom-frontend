@@ -12,6 +12,9 @@ import MobileNav from "./components/MobileNav";
 import Brand from "./components/Brand";
 import PopUp from "./components/PopUp";
 
+// Hooks
+import useSessionChecker from "./hooks/useSessionChecker";
+
 const DefaultLayout = () => {
   const API = import.meta.env.VITE_API_URL;
   const [user, setUser] = useState(() => {
@@ -37,6 +40,8 @@ const DefaultLayout = () => {
       setShouldScroll(false)
     }
   }, [shouldScroll])
+
+  useSessionChecker(API, setUser, user);
   
   return (
     <UserContext.Provider value={{ user, setUser, setMessage, API, setShouldScroll }}>
