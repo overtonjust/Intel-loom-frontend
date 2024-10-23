@@ -9,9 +9,9 @@ import "./MobileNav.scss";
 import {
   faHouse,
   faCalendarCheck,
-  faBookmark,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import { BsFillChatSquareTextFill } from "react-icons/bs";
 
 const MobileNav = () => {
   const { user } = useContext(UserContext);
@@ -29,8 +29,8 @@ const MobileNav = () => {
               icon={faCalendarCheck}
             />
           </Link>
-          <Link className="mobile-nav__link" to={"/"}>
-            <FontAwesomeIcon className="mobile-nav__icon" icon={faBookmark} />
+          <Link className="mobile-nav__link" to={"/forums"}>
+            <BsFillChatSquareTextFill className="mobile-nav__icon" />
           </Link>
         </>
       )}
