@@ -2,6 +2,7 @@
 import React, { useContext } from 'react';
 import { selectPeers, useHMSStore } from '@100mslive/react-sdk';
 import { WebcamContext } from '../../../context/UserContext';
+import { useOrientation } from 'react-use';
 import './ConferenceRoom.scss';
 
 // Components
@@ -9,6 +10,8 @@ import Webcam from './Webcam';
 
 
 const ConferenceRoom = () => {
+    const orientation = useOrientation();
+    const isLandscape = orientation.type === 'landscape-primary' || orientation.type === 'landscape-secondary';
     const { fullscreen } = useContext(WebcamContext);
     const peers = useHMSStore(selectPeers);
     
@@ -18,15 +21,12 @@ const ConferenceRoom = () => {
 
     
     return (
-        <div className={`conference-room`}>
-            <div className={`conference-room__host `}>
+        <div className={`conference-room ${fullscreen && 'conference-room-overlay'}`}>
+            <div className={`conference-room__host ${isLandscape && 'conference-room__wide-gap'}`}>
                 {host && <Webcam key={host.id} peer={host}/>}
             </div>
-            <div className={`conference-room__guest`}>
-                {
-                fullscreen && userCam !== host ?
-                <Webcam peer={userCam} /> :
-                guests.map((peer) => (
+            <div className={`conference-room__guest ${fullscreen ? isLandscape ? 'conference-room__landscape-guests' : 'conference-room__portrait-guests' : ''}`}>
+                { guests.map((peer) => (
                     <Webcam key={peer.id} peer={peer} />
                 ))}
             </div>
