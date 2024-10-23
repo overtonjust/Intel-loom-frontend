@@ -7,8 +7,7 @@
     scrollbar-width: none;
     align-items: center;
     padding: 2%;
-    background-color: $card;
-    border: 2px $blue solid;
+    background-color: $blue;
     border-radius: .3em;
     gap: 10px;
 
@@ -49,6 +48,7 @@
 .menu-options {
     display: flex;
     align-items: center;
+    width: 100%;
     gap: 15px;
 
     &__container {
@@ -77,4 +77,8 @@
         color: $white;
     }
     
+}
+
+.leave-btn {
+    padding: 1% 2% !important;
 }
