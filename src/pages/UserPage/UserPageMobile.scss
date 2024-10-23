@@ -143,7 +143,7 @@
     padding-bottom: 10px;
 }
 
-.review1 {
+.review {
     border: 2px solid lightgrey;
     border-radius: 10px;
     padding: 20px;
@@ -154,7 +154,7 @@
     flex-shrink: 0;
 
 
-    &__review {
+    &__comment {
         overflow: auto;
     
     }
@@ -230,7 +230,7 @@
        
     }
 
-    &__buttons {
+    &__button {
         border: 2px solid $blue;
     outline: none;
     cursor: pointer;
