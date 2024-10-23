@@ -39,7 +39,7 @@
     &__fullscreen-portrait {
         margin-top: 15%;
         max-height: 400px;
-        height: 400px;
+        height: 300px;
         width: 100vw;
         border-radius: 0 !important;
         object-fit: fill;
@@ -81,5 +81,10 @@
 }
 
 .mini-portrait {
+    height: 15vh;
     width: 25vw;
+}
+
+.mini-name {
+    bottom: 12%;
 }
