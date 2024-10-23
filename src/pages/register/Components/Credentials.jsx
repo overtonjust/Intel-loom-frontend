@@ -29,25 +29,32 @@ const Credentials = ({ formData, handleChange, setFormSection }) => {
 
     // Validation function for username, email, passsword & confirmation password
 
-    const validate = () => {
-        let formErrors = [];
+  const validate = () => {
+    const {username, email, password, confirmPassword, securityQuestion, securityAnswer} = formData;
+      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const formErrors = {};
 
 
-        if (!formData.username) formErrors.push('Username is required');
-        if (!formData.email) formErrors.push('Email is required');
-        if (!formData.password) formErrors.push('Password is required');
-        if (formData.password !== formData.confirmPassword) {
-            formErrors.push('Passwords do not match');
-        }
+        if (username === '') formErrors.username = 'Username is required';
+        if (email === '') formErrors.email = 'Email is required';
+        if (email !== '' && !emailRegex.test(email)) formErrors.email = 'Invalid email address';
+        if (password === '') formErrors.password = 'Password is required';
+        if (confirmPassword === '') formErrors.confirmPassword = 'Confirm Password is required';
+        if ((password !== '' && confirmPassword !== '') && password !== confirmPassword) formErrors.confirmPassword = 'Passwords do not match';
+        if (securityQuestion === '') formErrors.securityQuestion = 'Security Question is required';
+        if (securityAnswer === '') formErrors.securityAnswer = 'Security Answer is required';
 
         setErrors(formErrors);
-        return formErrors.length === 0;
+        return Object.keys(formErrors).length === 0;
     };
 
     const handleNext = () => {
-        if (validate() && passwordPassed) {
+        if (validate()) {
             setFormSection('personal');
         }
+        setTimeout(() => {
+          setErrors({})
+        }, 5000);
     };
 
 
@@ -57,7 +64,7 @@ const Credentials = ({ formData, handleChange, setFormSection }) => {
                 setValidatedUsername('')
             })
             .catch(err => {
-                setValidatedUsername(err.data)
+                setValidatedUsername(err.response.data)
             })
     }, [formData.username])
 
@@ -67,7 +74,7 @@ const Credentials = ({ formData, handleChange, setFormSection }) => {
                 setValidatedEmail('');
             })
             .catch(err => {
-                setValidatedEmail(err.data)
+                setValidatedEmail(err.response.data)
             })
     }, [formData.email])
 
@@ -96,6 +103,8 @@ const Credentials = ({ formData, handleChange, setFormSection }) => {
                     />
                 </div>
             </section>
+            {validatedUsername ? <p className='error-message'>{validatedUsername}</p> : ''}
+            {errors.username ? <p className='error-message'>{errors.username}</p> : ''}
             <section className='sign-up-form__group'>
                 <div className='form-input'>
                     <MdAlternateEmail />
@@ -111,6 +120,8 @@ const Credentials = ({ formData, handleChange, setFormSection }) => {
                     />
                 </div>
             </section>
+            {validatedEmail ? <p className='error-message'>{validatedEmail}</p> : ''}
+            {errors.email ? <p className='error-message'>{errors.email}</p> : ''}
             <section className="sign-up-form__group">
                 <div className="form-input">
                     <TbPasswordUser />
@@ -137,6 +148,7 @@ const Credentials = ({ formData, handleChange, setFormSection }) => {
                     )}
                 </div>
             </section>
+            {errors.password ? <p className='error-message'>{errors.password}</p> : ''}
             {!formData.password ? (
                 ""
             ) : formData.password && !passwordPassed ? (
@@ -158,7 +170,8 @@ const Credentials = ({ formData, handleChange, setFormSection }) => {
                     </li>
                 </ul>
             ) : (
-                <div className="sign-up-form__group">
+                <>
+                <section className="sign-up-form__group">
                     <div className="form-input">
                         <TbPasswordUser />
                         <input
@@ -183,9 +196,11 @@ const Credentials = ({ formData, handleChange, setFormSection }) => {
                             />
                         )}
                     </div>
-                </div>
+                </section>
+                {errors.confirmPassword ? <p className='error-message'>{errors.confirmPassword}</p> : ''}
+              </>
             )}
-            <div className="sign-up-form__group">
+            <section className="sign-up-form__group">
                 <div className="form-input">
                     <FaRegQuestionCircle />
                     <select
@@ -226,8 +241,9 @@ const Credentials = ({ formData, handleChange, setFormSection }) => {
                         </option>
                     </select>
                 </div>
-            </div>
-            <div className="sign-up-form__group">
+            </section>
+            {errors.securityQuestion ? <p className='error-message'>{errors.securityQuestion}</p> : ''}
+            <section className="sign-up-form__group">
                 <div className="form-input">
                     <BsInfoCircle />
                     <input
@@ -240,10 +256,17 @@ const Credentials = ({ formData, handleChange, setFormSection }) => {
                         placeholder="Security Answer"
                     />
                 </div>
-            </div>
-            <div className="sign-up-form__group">
+            </section>
+            {errors.securityAnswer ? <p className='error-message'>{errors.securityAnswer}</p> : ''}
+            <div className="sign-up-form__group steps-btns">
                 <button
                     type="button"
+                    className='button-large-orange'
+                    onClick={() => setFormSection('instructor')}
+                >Previous</button>
+                <button
+                    type="button"
+                    className='button-large-orange'
                     onClick={handleNext}
                     disabled={Object.keys(errors).length > 0}
                 >Next</button>
