@@ -22,7 +22,7 @@
     &__name {
         position: absolute;
         left: 4%;
-        bottom: 2%;
+        bottom: 4%;
         font-size: 1.2em;
         color: $white;
     }
@@ -30,9 +30,31 @@
     &__muted {
         position: absolute;
         left: 4%;
-        top: 2%;
+        top: 4%;
         font-size: 1.4em;
         color: red;
+    }
+
+    
+    &__fullscreen-portrait {
+        margin-top: 15%;
+        max-height: 400px;
+        height: 300px;
+        width: 100vw;
+        border-radius: 0 !important;
+        object-fit: fill;
+    }
+    
+    &__fullscreen-landscape {
+        margin-left: calc(50% - 30%);
+        height: 300px;
+        max-width: 500px;
+    }
+    
+    &__mini {
+        height: 20vh;
+        width: 10vw;
+        border-radius: .8em;
     }
 
     &__image {
@@ -41,29 +63,28 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: $blue;
-    }
-
-    &__fullscreen-portrait {
-        margin-top: 15%;
-        max-height: 400px;
-        height: 400px;
-        width: 100vw;
-        border-radius: 0 !important;
-        object-fit: fill;
-    }
-
-    &__fullscreen-landscape {
-        margin-left: calc(50% - 25%);
-        max-height: 300px;
-    }
-    
-    &__mini {
-        height: 100%;
-        width: 20vh;
-        border-radius: .8em;
-        border: 2px solid $blue;
     }
    
 }
 
+.landscape-name-host, .landscape-muted-host {
+    left: 22%;
+    bottom: 6%;
+}
+
+.landscape-name-guest, .landscape-muted-guest {
+    font-size: .8em;
+}
+
+.portrait-muted-host {
+    top: 16%;
+}
+
+.mini-portrait {
+    height: 15vh;
+    width: 25vw;
+}
+
+.mini-name {
+    bottom: 12%;
+}

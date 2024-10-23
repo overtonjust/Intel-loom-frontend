@@ -93,15 +93,15 @@ const MenuOptions = () => {
                     <span className='menu-options__label'>{fullscreen ? 'Close' : 'Fullscreen'}</span>
                 </article>
             </section>
-            {isConnected && (
-                <button
-                id='leave-btn'
-                className='button-orange'
-                onClick={() => hmsActions.leave()}
-                >
-                    Leave
-                </button>
-            )}
+                {isConnected && (
+                    <button
+                    id='leave-btn'
+                    className='button-orange leave-btn'
+                    onClick={() => hmsActions.leave()}
+                    >
+                        Leave
+                    </button>
+                )}
         </main>
     );
 };

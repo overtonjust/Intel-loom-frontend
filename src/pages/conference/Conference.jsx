@@ -102,7 +102,7 @@ const Conference = () => {
                     <article className={`conference__video-call ${fullscreen ? 'conference__fullscreen' : ''}`}>
                         <ConferenceRoom />
                         <MenuOptions />
-                        {showParticipants && !fullscreen && <Participants/>}
+                        {showParticipants  && <Participants/>}
                         {chatOpen && !fullscreen && <Chat/>}
                     </article>
                 ): (
