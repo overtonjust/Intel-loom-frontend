@@ -3,19 +3,12 @@
 
 .footer {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding: 2% 4%;
-    margin-top: auto;
+    justify-content: space-between;
+    padding: 0 4%;
     background-color: $blue;
-
-    &__row {
-        display: flex;
-        gap: 20px;
-    }
-
     &__text {
         color: $white;
+        margin: auto 0;
     }
 
     &__link {

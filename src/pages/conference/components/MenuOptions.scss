@@ -1,26 +1,32 @@
 @import '../../../shared.scss';
 
 .menu-holder {
-    max-width: 100vw;
+    width: 100vw;
     display: flex;
     overflow-x: scroll;
     scrollbar-width: none;
     align-items: center;
     padding: 2%;
     background-color: $card;
-    border: 2px $blue;
-    border-style: solid solid solid solid ;
+    border: 2px $blue solid;
     border-radius: .3em;
     gap: 10px;
 
-    &__fullscreen {
-        height: 8vh;
+    &__fullscreen-portrait, &__fullscreen-landscape {
         position: absolute;
         bottom: 0;
         left: 0;
         width: 100%;
         border-radius: 0;
         background-color: $blue;
+    }
+
+    &__fullscreen-portrait {
+        height: 8vh;
+    }
+
+    &__fullscreen-landscape {
+        height: 18vh;
     }
 }
 
@@ -30,12 +36,13 @@
     padding-right: 2%;
     gap: 8px;
 
-    &__audio {
-
-    }
-
-    &__video {
-
+    &__audio, &__video {
+        display: flex;
+        flex-direction: column;
+        padding: 4px;
+        gap: 5px;
+        align-items: center;
+        cursor: pointer;
     }
 }
 
@@ -47,9 +54,9 @@
     &__container {
         display: flex;
         flex-direction: column;
+        padding: 4px;
         gap: 5px;
         align-items: center;
-        // width: 50px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;

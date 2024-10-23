@@ -9,6 +9,7 @@ import './Home.scss'
 import { FaAnglesDown } from "react-icons/fa6";
 import ClassCard from '../../shared components/ClassCard'
 
+
 const Home = () => {
   const { API } = useContext(UserContext)
   const [allClasses, setAllClasses] = useState([])
@@ -17,13 +18,14 @@ const Home = () => {
   const [page, setPage] = useState(1)
 
   useEffect(() => {
-    axios(`${API}/classes?page=${page}`)
+    axios(`${API}/classes?page=${page}`, { withCredentials: true })
       .then(res => {
         setAllClasses(prev => prev.concat(res.data.classes))
         setMoreClasses(res.data.moreClasses)
       })
       .catch(err => console.log(err))
   }, [page])
+
 
   return (
     <main className='home-container'>
@@ -33,7 +35,7 @@ const Home = () => {
           <ClassCard key={classInfo?.classId} classInfo={classInfo}/>
         ))}
       </div>
-      {moreClasses && 
+      {(moreClasses && allClasses.length > 0) && 
         <FaAnglesDown onClick={() => setPage((prevState) => prevState+= 1)} className='home-container__more' size={30}/>
       }
     </main>

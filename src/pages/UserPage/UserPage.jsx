@@ -1,28 +1,37 @@
 import {useState, useEffect, useContext} from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { UserContext } from '../../context/UserContext';
 import { FaLinkedin, FaYoutube } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
-import './userPageMobile.scss'
-import MobileCarousel from './MobileCarousel';
+import './UserPageMobile.scss'
+import MobileCarousel from '../../shared components/carousels/MobileCarousel';
 import bannerImage from '../../assets/banner-img.png'
 // import './UserPage.scss'
 // import CarouselRatio from './Carousel';
 
 
 const UserPage = () => {
-  const { API, user } = useContext(UserContext);
+  const { API, user, setUser, setMessage } = useContext(UserContext);
+  const navigate = useNavigate();
   const { id } = useParams();
   const [userData, setUserData] = useState(null);
   const [settingsMenu, setSettingsMenu] = useState(false)
 
   useEffect(() => {
-    axios.get(`${API}/users/${id}`, {headers: {Authorization: user.token}})
+    axios.get(`${API}/users/profile/${id}`, {withCredentials: true})
       .then(res => setUserData(res.data))
       .catch(err => console.log(err));
-  }, []);
-console.log(userData)
+  }, [id]);
+
+  const signout = () => {
+    axios.post(`${API}/users/logout`, {}, {withCredentials: true})
+      .then(() => {
+        setUser(false);
+        navigate('/');
+      })
+      .catch(err => setMessage('Failed to sign out'));
+  };
 
 return (
   <div className='userPage-container'>
@@ -36,8 +45,8 @@ return (
       <div className='profile-picture-container'>
     <img className='profile-picture' src={userData?.profilePicture} alt="profile picture" />
     </div>
-      <h2 className='userPage-name'>{userData?.firstName + userData?.lastName}</h2>
-      <p>Rating: 4.8</p>
+      <h2 className='userPage-name'>{userData?.firstName + " " + userData?.lastName}</h2>
+      <p>Rating: {userData?.rating}</p>
       <div className='userPage-bio'>
         <p>{userData?.bio}</p>
 
@@ -53,46 +62,43 @@ return (
         <div className='video-header'>
         <h3>Videos</h3>
         <div className="videos_buttons">
-        <button className='videos-upload_button'>Upload +</button>
-        <button className='videos-edit_button'>Manage</button>
+        <button className='button-blue'>Upload +</button>
+        <button className='button-orange'>Manage</button>
         </div>
         </div>
-        <MobileCarousel />
+        <MobileCarousel links={userData?.instructorLinks}/>
         <div className="videos"></div>
       </div>
 
       <div className="reviews-container">
-        <h3 className='Reviews-header'>Reviews</h3>
+        <h3 className='reviews-header'>Reviews</h3>
         <div className='reviews-all'>
-        <div className="review1">
-          <h4 className='review1_name'>Andy</h4>
-          <p className='review1__review'>"Nicole's Intro to Javascript class was lots of fun! I truly learned a lot!"</p>
+          {userData?.instructorReviews?.map((review, idx) => (
+
+        <div className="review1" key={idx}>
+          <h4 className='review1_name'>{`${review.firstName} ${review.lastName[0]}.`}</h4>
+          <p className='review1__review'>{review?.review}</p>
         </div>
-        <div className="review2">
-          <h4 className='review2_name'>Jacky</h4>
-          <p className='review2-review'>"Would highly recommend any class taught by Nicole!"</p>
-        </div>
-        <div className="review3">
-          <h4 className='review3_name'>Susanna</h4>
-          <p className='review3-review'>"I would give 10 stars if I could!"</p>
-        </div>
-        <div className="review4">
-          <h4 className='review4_name'>Michelle</h4>
-          <p className='review4-review'>"Great class!"</p>
-        </div>
+          ))}
         </div>
       </div>
 
       <div className='buttons'>
       <button className='button-blue' onClick={() => setSettingsMenu(true)}>Settings</button>
-      <button className='signout_button'>Sign Out</button>
+      <button onClick={signout} className='signout_button'>Sign Out</button>
     </div>
 
 {settingsMenu && 
 <div className='settings'>
   <div className='settings__card'>
-  <div className='settings__text1'>hello</div>
+  <div className='settings__header'>Settings</div>
+  <div className='settings__buttons-container'>
+  <button className='settings__buttons'>Become an Instructor!</button>
+  <button className='settings__buttons'>Edit Profile</button>
+  <button className='settings__buttons'>Change Password</button>
+  <button className='settings__buttons'>Delete User</button>
   <button className='button-orange' onClick={() => setSettingsMenu(false)}>Cancel</button>
+  </div>
   </div>
 </div> }
 
