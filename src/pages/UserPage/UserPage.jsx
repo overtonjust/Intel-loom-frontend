@@ -62,8 +62,8 @@ return (
         <div className='video-header'>
         <h3>Videos</h3>
         <div className="videos_buttons">
-        <button className='videos-upload_button'>Upload +</button>
-        <button className='videos-edit_button'>Manage</button>
+        <button className='button-blue'>Upload +</button>
+        <button className='button-orange'>Manage</button>
         </div>
         </div>
         <MobileCarousel links={userData?.instructorLinks}/>

@@ -53,14 +53,22 @@
    
 }
 
-.conference-room-overlay {
+.conference-room-landscape , .conference-room-portrait{
     position: fixed;
     background-color: #242424;
+    width: 100vw;
     top: 0;
     left: 0;
-    height: 92vh;
-    width: 100vw;
-    max-height: none;
     border-radius: 0;
+    max-height: none;
     overflow-y: hidden;
 }
+
+.conference-room-portrait {
+    height: 92vh;
+}
+
+.conference-room-landscape {
+    height: 82vh;
+}
+
