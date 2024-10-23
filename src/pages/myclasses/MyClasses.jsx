@@ -4,9 +4,9 @@ import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import ClassesByDay from "./components/ClassesByDay";
 import LecturesByDay from "./components/LecturesByDay";
 import Templates from "./components/Templates";
+import Recordings from "./components/Recordings";
 import { MdNoteAdd } from "react-icons/md";
 import "./Myclasses.scss";
-import axios from "axios";
 
 const MyClasses = () => {
   const {
@@ -15,7 +15,7 @@ const MyClasses = () => {
   } = useContext(UserContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const [view, setView] = useState('');
+  const [view, setView] = useState("");
 
   const handleViewChange = (e) => {
     setView(e.target.value);
@@ -45,14 +45,17 @@ const MyClasses = () => {
                 <option value="templates">Class Templates</option>
               </>
             )}
-            <option value="recording">Class Recordings</option>
+            <option value="recordings">Class Recordings</option>
           </select>
         </section>
         <Routes>
           <Route
             path="templates"
-    element={
-      <button className="button-orange" onClick={() => navigate('/create-class')}>
+            element={
+              <button
+                className="button-orange"
+                onClick={() => navigate("/create-class")}
+              >
                 <MdNoteAdd className="create-button" />
               </button>
             }
@@ -62,11 +65,8 @@ const MyClasses = () => {
       <Routes>
         <Route path="" element={<ClassesByDay API={API} />} />
         <Route path="lectures" element={<LecturesByDay API={API} />} />
-        <Route path="templates" element={<Templates API={API} />}/>
-        <Route
-          path="recordings"
-          element={<div>Class Recordings Component</div>}
-        />
+        <Route path="templates" element={<Templates API={API} />} />
+        <Route path="recordings" element={<Recordings API={API} />} />
       </Routes>
     </main>
   );
