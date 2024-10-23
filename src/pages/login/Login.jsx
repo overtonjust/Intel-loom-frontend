@@ -90,7 +90,7 @@ const Login = () => {
           </div>
         </section>
         <section className="login-form__group main-btns">
-          <button className="button-orange" type='button' onClick={() => navigate(-1)}>Cancel</button>
+          <button className="button-orange" type='button' onClick={() => navigate('/')}>Cancel</button>
           <button className="button-orange" type="submit">Log In</button>
         </section>
         <section className="login-form__group">

@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from "react";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 import { BsCalendar2Date } from "react-icons/bs";
 
-const Personal = ({ formData, handleChange, setFormSection, setError }) => {
-    const [birthDateValid, setBirthDateValid] = useState(true);
-
+const Personal = ({ formData, handleChange, setFormSection }) => {
+  const [errors, setErrors] = useState({});
     // Function to validate age 18+
     const validateBirthDate = () => {
         const today = new Date();
@@ -18,30 +17,30 @@ const Personal = ({ formData, handleChange, setFormSection, setError }) => {
         return age;
     };
 
-    const handleNext = () => {
-        const requiredFields = ['firstName', 'lastName', 'birthDate'];
+  const validate = () => {
+    const { firstName, lastName, birthDate, isInstructor, bio } = formData;
+    const formErrors = {};
+    if (firstName === '') formErrors.firstName = "First Name is required";
+    if (lastName === '') formErrors.lastName = "Last Name is required";
+    if (birthDate === '') formErrors.birthDate = "Birth Date is required";
+    if (birthDate !== '' && validateBirthDate() < 18) formErrors.birthDate = "You must be at least 18 years old to create an account";
+    if (isInstructor && bio === '') formErrors.bio = "Bio is required";
+    setErrors(formErrors);
+    return Object.keys(formErrors).length === 0;
+  };
 
-        if (requiredFields.every((field) => formData[field])) {
-            const age = validateBirthDate();
-            if (age >= 18) {
-                setBirthDateValid(true);
-                setFormSection('uploads'); // Proceed to the next section (uploads)
-            } else {
-                setBirthDateValid(false);
-                setError("You must be at least 18 years old to create an account.");
-                setTimeout(() => setError(""), 3000);
-            }
-        } else {
-            const missingFields = requiredFields.filter((field) => !formData[field])
-                .map((field) => field === 'firstName' ? 'First Name' : field === 'lastName' ? 'Last Name' : 'Birth Date');
-            setError(`Please fill in: ${missingFields.join(', ')}`);
-            setTimeout(() => setError(""), 3000);
-        }
+    const handleNext = () => {
+      if (validate()) {
+        setFormSection('uploads');
+      }
+      setTimeout(() => {
+        setErrors({});
+      }, 5000);
     };
 
     return (
         <>
-            <div className="signup-form__group">
+            <div className="sign-up-form__group">
                 <div className="form-input">
                     <MdOutlineDriveFileRenameOutline />
                     <input
@@ -56,7 +55,8 @@ const Personal = ({ formData, handleChange, setFormSection, setError }) => {
                     />
                 </div>
             </div>
-            <div className="signup-form__group">
+            {errors.firstName && <p className="error-message">{errors.firstName}</p>}
+            <div className="sign-up-form__group">
                 <div className="form-input">
                     <MdOutlineDriveFileRenameOutline />
                     <input
@@ -70,7 +70,7 @@ const Personal = ({ formData, handleChange, setFormSection, setError }) => {
                     />
                 </div>
             </div>
-            <div className="signup-form__group">
+            <div className="sign-up-form__group">
                 <div className="form-input">
                     <MdOutlineDriveFileRenameOutline />
                     <input
@@ -85,7 +85,8 @@ const Personal = ({ formData, handleChange, setFormSection, setError }) => {
                     />
                 </div>
             </div>
-            <div className="signup-form__group">
+            {errors.lastName && <p className="error-message">{errors.lastName}</p>}
+            <div className="sign-up-form__group">
                 <div className="form-input">
                     <BsCalendar2Date />
                     <input
@@ -99,16 +100,28 @@ const Personal = ({ formData, handleChange, setFormSection, setError }) => {
                         placeholder="Birth Date"
                     />
                 </div>
-                <div className='error-container'>
-                    {!birthDateValid && <p className="error">You must be at least 18 years old to create an account.</p>}
-                </div>
+                
             </div>
-
-            <div className="signup-form__group main-btns">
-                <button type="button" onClick={() => setFormSection('credentials')}>
+            {errors.birthDate && <p className="error-message">{errors.birthDate}</p>}
+            <div className="sign-up-form__group">
+              <div className="form-input">
+                <textarea
+                  name="bio"
+                  id="bio"
+                  value={formData.bio}
+                  onChange={handleChange}
+                  required
+                  autoComplete="off"
+                  placeholder={`Bio ${!formData.isInstructor ? ' (optional)' : ''}`}
+                />
+              </div>
+            </div>
+            {errors.bio && <p className="error-message">{errors.bio}</p>}
+            <div className="sign-up-form__group steps-btns">
+                <button type="button" onClick={() => setFormSection('credentials')} className='button-large-orange'>
                     Previous
                 </button>
-                <button type="button" onClick={handleNext}>
+                <button type="button" onClick={handleNext} className='button-large-orange'>
                     Next
                 </button>
             </div>

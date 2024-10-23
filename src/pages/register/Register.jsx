@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Instructor from './Components/Instructor';
 import Credentials from './Components/Credentials';
 import Personal from './Components/Personal';
 import Uploads from './Components/Uploads';
-import Complete from './Components/Complete';
 import './Register.scss'
 
 const Register = () => {
     // current state in the registration process
     const [formSection, setFormSection] = useState('instructor');
+    const navigate = useNavigate();
 
     // Global form state
     const [formData, setFormData] = useState({
@@ -19,18 +20,17 @@ const Register = () => {
         email: '',
         password: '',
         confirmPassword: '',
-        profilePicture: '',
+        profilePicture: null,
         bio: '',
         github: '',
         gitlab: '',
         linkedin: '',
         youtube: '',
         isInstructor: false,
-        instructorBio: '',
-        instructorMedia: [],
         instructorLinks: [],
         securityQuestion: '',
-        securityAnswer: ''
+        securityAnswer: '',
+        birthDate: '',
     });
 
     // Update form state
@@ -43,8 +43,6 @@ const Register = () => {
             setFormData({ ...formData, [key]: e.target.value });
         }
     };
-
-    // console.log(formData)
 
     return (
         <main className='form-container'>
@@ -84,17 +82,13 @@ const Register = () => {
                         formData={formData}
                         handleChange={handleChange}
                         setFormSection={setFormSection}
+                        setFormData={setFormData}
                     />
                 )
                 }
 
-                {formSection === 'complete' && (
-                    <Complete setFormSection={setFormSection} />
-                )}
-
-
                 <section className='sign-up-form__group'>
-                    <button>Cancel</button>
+                    <button type='button' className='button-blue' onClick={() => navigate('/login')}>Cancel</button>
                 </section>
             </form>
         </main>
