@@ -16,6 +16,7 @@ import Conference from './pages/conference/Conference';
 import ClassPage from './pages/classpage/ClassPage';
 import MyClasses from './pages/myclasses/MyClasses';
 import Register from './pages/register/Register';
+import NotFound from './pages/notfound/NotFound';
 import InstructorView from './pages/instructorview/InstructorView';
 import CreateClass from './pages/createclass/CreateClass';
 import ClassTemplate from './pages/classtemplate/ClassTemplate';
@@ -38,6 +39,7 @@ const App = () => {
         <Route path='class-template/:id' element={<ClassTemplate />} />
         <Route path='/forums' element={<Forums />} />
         <Route path='/forum/:id/*' element={<ForumPage />} />
+        <Route path='*' element={<NotFound />} />
       </Route>  
     </Routes>
 

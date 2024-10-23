@@ -1,6 +1,6 @@
 // Dependencies
 import React, { useContext } from 'react';
-import { selectIsLocalScreenShared, useAVToggle } from '@100mslive/react-sdk';
+import { selectIsLocalScreenShared } from '@100mslive/react-sdk';
 import {
     selectIsConnectedToRoom,
     useHMSActions,
@@ -25,8 +25,8 @@ import { WebcamContext } from '../../../context/UserContext';
 
 const MenuOptions = () => {
     const { fullscreen, setFullscreen, showParticipants, setShowParticipants, 
-        isLocalAudioEnabled, isLocalVideoEnabled, toggleAudio, toggleVideo,
-        chatOpen, setChatOpen} = useContext(WebcamContext);
+        isLocalAudioEnabled, isLocalVideoEnabled, handleAudioChange, toggleVideo,
+        chatOpen, setChatOpen, isLandscape} = useContext(WebcamContext);
     const peers = useHMSStore(selectPeers);
     
     const userCount = peers.length;
@@ -44,9 +44,9 @@ const MenuOptions = () => {
     };
 
     return (
-        <main className={`menu-holder ${fullscreen ? 'menu-holder__fullscreen' : ''}`} >
+        <main className={`menu-holder ${fullscreen ? isLandscape ? 'menu-holder__fullscreen-landscape' : 'menu-holder__fullscreen-portrait' : ''}`} >
             <section className='menu-options-head'>
-                <article onClick={toggleAudio} className='menu-options-head__audio'>
+                <article onClick={handleAudioChange} className='menu-options-head__audio'>
                     {isLocalAudioEnabled ? (
                         <>
                             <FontAwesomeIcon className='menu-options__icon' icon={faMicrophoneSlash} />
@@ -63,12 +63,12 @@ const MenuOptions = () => {
                     {isLocalVideoEnabled ? (
                         <>
                             <FontAwesomeIcon className='menu-options__icon' icon={faVideoSlash} />
-                            <span className='menu-options__label'>Stop Video</span>
+                            <span className='menu-options__label'>Video</span>
                         </>
                     ) : 
                         <>
                             <FontAwesomeIcon className='menu-options__icon' icon={faVideo} />
-                            <span className='menu-options__label'>Start Video</span>
+                            <span className='menu-options__label'>Video</span>
                         </>
                     }
                 </article>

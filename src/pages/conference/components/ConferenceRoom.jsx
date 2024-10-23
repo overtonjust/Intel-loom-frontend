@@ -9,7 +9,7 @@ import Webcam from './Webcam';
 
 
 const ConferenceRoom = () => {
-    const { fullscreen } = useContext(WebcamContext);
+    const { fullscreen, isLandscape } = useContext(WebcamContext);
     const peers = useHMSStore(selectPeers);
     
     const host = peers.find(peer => peer.roleName === 'host');
@@ -18,15 +18,12 @@ const ConferenceRoom = () => {
 
     
     return (
-        <div className={`conference-room`}>
-            <div className={`conference-room__host `}>
+        <div className={`conference-room ${fullscreen ? isLandscape ? 'conference-room-landscape' : 'conference-room-portrait' : ''}`}>
+            <div className={`conference-room__host ${isLandscape && 'conference-room__wide-gap'}`}>
                 {host && <Webcam key={host.id} peer={host}/>}
             </div>
-            <div className={`conference-room__guest`}>
-                {
-                fullscreen && userCam !== host ?
-                <Webcam peer={userCam} /> :
-                guests.map((peer) => (
+            <div className={`conference-room__guest ${fullscreen ? isLandscape ? 'conference-room__landscape-guests' : 'conference-room__portrait-guests' : ''}`}>
+                { guests.map((peer) => (
                     <Webcam key={peer.id} peer={peer} />
                 ))}
             </div>

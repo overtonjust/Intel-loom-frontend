@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../../context/UserContext";
 import { LuEye, LuEyeOff } from "react-icons/lu";
@@ -10,8 +10,11 @@ import "./Login.scss";
 const Login = () => {
   const { API, setUser, setMessage } = useContext(UserContext);
   const navigate = useNavigate();
+  const location = useLocation();
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
+  const getPath = location.state?.from?.pathname || "/";
+  const from = getPath === "/login" ? "/" : getPath;
 
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -32,7 +35,7 @@ const Login = () => {
       .post(`${API}/users/login`, credentials, { withCredentials: true })
       .then((res) => {
         setUser(res.data);
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         if (err.response.data.error) {

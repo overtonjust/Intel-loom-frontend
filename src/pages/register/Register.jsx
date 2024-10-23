@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Instructor from './Components/Instructor';
 import Credentials from './Components/Credentials';
 import Personal from './Components/Personal';
+import Uploads from './Components/Uploads';
+import Complete from './Components/Complete';
 import './Register.scss'
 
 const Register = () => {
@@ -77,15 +79,19 @@ const Register = () => {
                 )
                 }
 
-                {/* {formSection === 'uploads' && (
-                    <Uploads />
+                {formSection === 'uploads' && (
+                    <Uploads
+                        formData={formData}
+                        handleChange={handleChange}
+                        setFormSection={setFormSection}
+                    />
                 )
                 }
 
-                {formSection === 'submission' && (
-                    <Submission />
-                )
-                } */}
+                {formSection === 'complete' && (
+                    <Complete setFormSection={setFormSection} />
+                )}
+
 
                 <section className='sign-up-form__group'>
                     <button>Cancel</button>

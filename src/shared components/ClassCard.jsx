@@ -1,5 +1,5 @@
 // Dependencies
-import React, { useState } from 'react';
+import React from 'react';
 import {  useLocation, useNavigate } from 'react-router-dom';
 import {  isHourFromStart, isClassDayToday } from '../../utils';
 import './ClassCard.scss';
@@ -26,7 +26,7 @@ const ClassCard = ({ classInfo, dateId, dateInfo }) => {
                 <div className='class__row'>
                     <p className='class__text'>${Number(price).toFixed(0)}</p>
                     {pathname.includes('/myclasses') && 
-                        <p className='class__text'>{startTime} - {endTime}</p>
+                        <p className='class__time'>{startTime} - {endTime}</p>
                     }
                     {pathname.includes('/myclasses') && isClassDayToday(classStart) && isHourFromStart(classStart) && 
                             <button className='button-orange class__link' onClick={(e) => handleJoinRoom(e, classId)}>
