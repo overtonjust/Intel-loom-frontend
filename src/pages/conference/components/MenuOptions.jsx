@@ -1,6 +1,7 @@
 // Dependencies
 import React, { useContext, useEffect } from 'react';
 import { WebcamContext } from '../../../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 import {
     selectIsLocalScreenShared,
     selectIsConnectedToRoom,
@@ -26,7 +27,8 @@ import './MenuOptions.scss'
 const MenuOptions = () => {
     const { fullscreen, setFullscreen, showParticipants, setShowParticipants, 
         isLocalAudioEnabled, isLocalVideoEnabled, handleAudioChange, toggleVideo,
-        chatOpen, setChatOpen, isLandscape, isDesktop, isMobile} = useContext(WebcamContext);
+        chatOpen, setChatOpen, isLandscape, isDesktop, isMobile, prompt, setPrompt, instructorId, instructorName, title, id} = useContext(WebcamContext);
+    const navigate = useNavigate();
     const peers = useHMSStore(selectPeers);
     const host = peers.find(peer => peer.roleName === 'host');
     const userCam = peers.find(peer => peer.isLocal);    
@@ -42,6 +44,12 @@ const MenuOptions = () => {
         } catch (error) {
             console.error(error)
         }
+    };
+
+    const handleLeave = async () => {
+        await hmsActions.leave();
+        navigate(`/view/${id}`)
+        setPrompt(`Thank you for attending ${title} with ${instructorName}. Would you like to leave them a review? `)
     };
 
     return (
@@ -75,13 +83,19 @@ const MenuOptions = () => {
                 </article>
             </section>
             <section className='menu-options'>
-                <article className='menu-options__container' onClick={() => setShowParticipants(!showParticipants)}>
+                <article className='menu-options__container' onClick={() => {
+                        setShowParticipants(!showParticipants)
+                        setChatOpen(false)
+                    }}>
                     <span className='menu-options__count'>
                         <FontAwesomeIcon className='menu-options__icon' icon={faUserPlus} /><>{userCount}</>
                     </span>
                     <span className='menu-options__label'>{showParticipants ? 'Close' : 'Participants'}</span>
                 </article>
-                <article className='menu-options__container' onClick={() => setChatOpen(!chatOpen)} >
+                <article className='menu-options__container' onClick={() => {
+                    setChatOpen(!chatOpen)
+                    setShowParticipants(false)
+                }} >
                     <FontAwesomeIcon className='menu-options__icon' icon={faMessage}/>
                     <span className='menu-options__label'>{chatOpen ? 'close chat' : 'Chat'}</span>
                 </article>
@@ -100,7 +114,7 @@ const MenuOptions = () => {
                     <button
                     id='leave-btn'
                     className='button-orange leave-btn'
-                    onClick={() => hmsActions.leave()}
+                    onClick={handleLeave}
                     >
                         Leave
                     </button>

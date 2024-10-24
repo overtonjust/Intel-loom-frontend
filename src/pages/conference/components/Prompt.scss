@@ -1,0 +1,24 @@
+@import '../../../shared.scss';
+
+.prompt {
+    width: 370px;
+    height: 170px;
+    background: white;
+    border-radius: 1.2rem;
+    box-shadow: 0 2px 4px 1px $card;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+
+    &__message {
+        font-size: 1.1em;
+        color: $blue;
+        text-align: center;
+    }
+
+    &__options {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+    }
+}

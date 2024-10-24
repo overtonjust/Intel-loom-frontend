@@ -20,6 +20,7 @@ import MenuOptions from './components/MenuOptions';
 import ConferenceInfo from './components/ConferenceInfo';
 import Participants from './components/Participants';
 import Chat from './components/Chat';
+import Prompt from './components/Prompt';
 
 const Conference = () => {
     const { id } = useParams();
@@ -31,11 +32,13 @@ const Conference = () => {
     const [showParticipants, setShowParticipants] = useState(false);
     const [fullscreen, setFullscreen] = useState(false);
     const [chatOpen, setChatOpen] = useState(false);
+    const [prompt, setPrompt] = useState(false);
     const [roomData, setRoomData ] = useState({
         title: '',
-        instructorName: ''
+        instructorName: '',
+        instructorId: 0
     });
-    const { title, instructorName } = roomData;
+    const { title, instructorName, instructorId } = roomData;
     const {
         isLocalAudioEnabled,
         isLocalVideoEnabled,
@@ -83,11 +86,13 @@ const Conference = () => {
                 
             axios.get(`${API}/classes/class-info/${id}`, {withCredentials: true})
                 .then(res => {
-                    const {title , instructor: { firstName } } = res.data
+                    const {title , instructor: { firstName, instructorId } } = res.data
+                    console.log(res.data, instructorId)
                     setRoomData(prev => {
                         return {
                             title,
-                            instructorName: firstName
+                            instructorName: firstName,
+                            instructorId
                         }
                     })
                 })
@@ -96,7 +101,7 @@ const Conference = () => {
     },[id])
 
     return (
-        <WebcamContext.Provider value={{ fullscreen, setFullscreen, instructorName, showParticipants, setShowParticipants, isLocalAudioEnabled, isLocalVideoEnabled, handleAudioChange, toggleVideo, chatOpen, setChatOpen, isLandscape, isDesktop, isMobile }}>
+        <WebcamContext.Provider value={{ fullscreen, setFullscreen, instructorName, showParticipants, setShowParticipants, isLocalAudioEnabled, isLocalVideoEnabled, handleAudioChange, toggleVideo, chatOpen, setChatOpen, isLandscape, isDesktop, isMobile, prompt, setPrompt, title, instructorName, instructorId, id }}>
             <section className='conference'>
                 <h2 className='conference__title'>{title}</h2>
                 {isConnected ? (
@@ -106,7 +111,9 @@ const Conference = () => {
                         {showParticipants  && <Participants/>}
                         {chatOpen &&  <Chat/>}
                     </article>
-                ): (
+                ) : prompt ? (
+                    <Prompt prompt={prompt} setPromt={setPrompt}/> 
+                ) : (
                     <div>Loading...</div>
                 )}
                 <ConferenceInfo/>
