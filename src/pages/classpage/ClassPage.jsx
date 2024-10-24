@@ -53,8 +53,10 @@ const ClassPage = () => {
         { withCredentials: true }
       )
       .then((res) => {
-        const idx = classDates.findIndex(({classDateId})=> classDateId == selectedTimeSlot);
-        classDates.splice(idx, 1);
+
+        const idx = classData.classDates.findIndex(({classDateId})=> classDateId == selectedTimeSlot);
+        setClassData({...classData, classDates: classData.classDates.filter((_, index) => index !== idx)});
+        setSelectedTimeSlot("");
         setMessage("Class successfully booked!");
       })
       .catch((err) => setMessage("Error booking class"));
