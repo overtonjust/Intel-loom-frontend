@@ -1,4 +1,5 @@
 import { Link, useParams } from "react-router-dom";
+import profilePic from '../../../assets/default-profile.png';
 
 const ResponseLink = ({ res }) => {
   const { responseId, response, userId, username, profilePicture } = res;
@@ -6,7 +7,7 @@ const ResponseLink = ({ res }) => {
   return (
     <div className="response-card" key={`response${responseId}`}>
       <div className="response-card__user">
-        <img src={profilePicture} alt={username} />
+        <img src={profilePicture ? profilePicture : profilePic} alt={username} />
         <Link className="forum-link" to={`/profile/${userId}`}>
           {username}
         </Link>
