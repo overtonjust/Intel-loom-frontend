@@ -1,10 +1,10 @@
 // Dependencies
+import { isClassDayToday, isHourFromStart, formatDate } from '../../../utils';
 import React, { useEffect, useState, useContext } from 'react';
-import { UserContext } from '../../context/UserContext';
 import { useParams, useNavigate } from 'react-router-dom';
+import { UserContext } from '../../context/UserContext';
 import './InstructorView.scss';
 import axios from 'axios';
-import { isClassDayToday, isHourFromStart, formatDate } from '../../../utils';
 
 // Components
 import StudentCard from './components/StudentCard';
