@@ -8,6 +8,11 @@
     gap: 20px;
     padding: 4%;
 
+    &__video-call {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     &__title {
         margin: 2% 0;
         align-self: flex-start;

@@ -49,13 +49,14 @@ const Conference = () => {
     window.addEventListener('onunload', () => hmsActions.leave());
 
     const handleUserJoinRoom =  async (roomData) => {
-        const { firstName, lastName, roomCode } = roomData;
+        const { firstName, lastName, roomCode, profilePicture } = roomData;
         const token = await hmsActions.getAuthTokenByRoomCode({ roomCode }); 
 
         const displayName = `${firstName} ${lastName.charAt(0)}.`;
         const config = {
             userName: displayName,
             authToken: token,
+            metaData: profilePicture,
             settings: {
                 isAudioMuted: true
             }
@@ -81,6 +82,7 @@ const Conference = () => {
             axios(`${API}/classes/get-room-code/${id}`, { withCredentials: true })
                 .then(res => {
                     handleUserJoinRoom(res.data)
+
                 })
                 .catch(err => console.error(err)) 
                 

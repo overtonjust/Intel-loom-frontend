@@ -66,6 +66,12 @@
         max-height: calc(82vh - 8px);
         max-width: fit-content;
     }
+
+    &__image-landscape {
+        max-width: fit-content;
+        top: 50%;
+        left: 50%;
+    }
 }
 
 .landscape-name-host, .landscape-muted-host {
@@ -87,4 +93,8 @@
 
 .mini-name {
     bottom:2%;
+}
+
+.image-name {
+    bottom: -80%;
 }

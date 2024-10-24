@@ -11,6 +11,8 @@ const Webcam = ({ peer }) => {
     const { videoRef } = useVideo({
         trackId: peer.auxiliaryTracks[0] || peer.videoTrack
     });
+
+    console.log(peer)
     
     const isPeerAudioEnabled = useHMSStore(selectIsPeerAudioEnabled(peer.id));
     const isPeerVideoEnabled = useHMSStore(selectIsPeerVideoEnabled(peer.id));
@@ -26,12 +28,12 @@ const Webcam = ({ peer }) => {
                 playsInline 
                 />
                 {!isPeerVideoEnabled ? (
-                    <img className={`webcam__video webcam__image ${fullscreen && peer.roleName === 'guest' ? 'webcam__mini' : fullscreen && peer.roleName === 'host' ? isLandscape ? 'webcam__fullscreen-landscape' : 'webcam__fullscreen-portrait' : ''} ${!isLandscape && fullscreen && peer.roleName === 'guest' && 'mini-portrait'} `} src={defaultImg} alt="" /> 
+                    <img className={`webcam__video webcam__image ${fullscreen && peer.roleName === 'guest' ? 'webcam__mini' : fullscreen && peer.roleName === 'host' ? isLandscape ? 'webcam__image-landscape' : 'webcam__image-portrait' : ''} ${!isLandscape && fullscreen && peer.roleName === 'guest' && 'mini-portrait'} `} src={peer.metadata} alt="" /> 
                 ) : null} 
-                <article className={`webcam__name ${fullscreen && isLandscape && peer.roleName === 'host' ? 'landscape-name-host' : 'landscape-name-guest'} ${!isLandscape && fullscreen && peer.roleName === 'guest' && 'mini-name'}`}>
+                <article className={`webcam__name ${fullscreen && isLandscape && peer.roleName === 'host' ? 'landscape-name-host' : 'landscape-name-guest'} ${!isLandscape && fullscreen && peer.roleName === 'guest' && 'mini-name'} ${!isPeerVideoEnabled && peer.roleName === 'host' && 'image-name'}`}>
                     {peer.name} {peer.isLocal ? "(You)": ""}
                 </article>
-                <article className={`webcam__muted ${fullscreen && isLandscape ? peer.roleName === 'host' ? 'landscape-muted-host' : 'landscape-muted-guest' : fullscreen && !isLandscape && peer.roleName === 'host' && 'portrait-muted-host' }`}>
+                <article className={`webcam__muted ${fullscreen && isLandscape ? peer.roleName === 'host' ? 'landscape-muted-host' : 'landscape-muted-guest' : fullscreen && !isLandscape && peer.roleName === 'host' && 'portrait-muted-host' } `}>
                     {!isPeerAudioEnabled  && <AiOutlineAudioMuted/>}
                 </article>
             </article>         
