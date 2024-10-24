@@ -6,6 +6,7 @@ import "./ForumPage.scss";
 import ResponseLink from "./components/ResponseLink";
 import ResponsePage from "./components/ResponsePage";
 import { TbArrowBackUpDouble } from "react-icons/tb";
+import profilePic from '../../assets/default-profile.png';
 
 const ForumPage = () => {
   const { API } = useContext(UserContext);
@@ -66,7 +67,7 @@ const ForumPage = () => {
       </section>
       <section className="forum-card">
         <div className="forum-card__user">
-          <img src={profilePicture} alt={username} />
+          <img src={profilePicture ? profilePicture : profilePic} alt={username} />
           <Link className="forum-link" to={`/profile/${userId}`}>
             {username}
           </Link>

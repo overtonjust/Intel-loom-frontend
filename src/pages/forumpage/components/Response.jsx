@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import profilePic from '../../../assets/default-profile.png';
 
 const Response = ({ API, res, setResponses }) => {
   const {
@@ -36,7 +37,7 @@ const Response = ({ API, res, setResponses }) => {
     <main className="response-container">
       <section className="response-card">
         <div className="response-card__user">
-          <img src={profilePicture} alt={username} />
+          <img src={profilePicture ? profilePicture : profilePic} alt={username} />
           <Link className="forum-link" to={`/profile/${userId}`}>
             {username}
           </Link>
