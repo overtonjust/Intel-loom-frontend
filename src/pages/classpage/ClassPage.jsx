@@ -1,12 +1,14 @@
+// Dependencies
 import { useEffect, useState, useContext} from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
-import moment from "moment";
 import { UserContext } from "../../context/UserContext";
+import { useParams, Link } from "react-router-dom";
+import moment from "moment";
+import axios from "axios";
 import './ClassPage.scss';
-import { Link } from 'react-router-dom';
-import ClassCard from "../../shared components/ClassCard";
+
+// Components
 import MobileCarousel from "../../shared components/carousels/MobileCarousel";
+import ClassCard from "../../shared components/ClassCard";
 
 const ClassPage = () => {
   const { API, setShouldScroll, setMessage } = useContext(UserContext);
@@ -28,12 +30,12 @@ const ClassPage = () => {
     return <div>Loading...</div>;
   }
 
-  const bio = classData.instructor.bio;
+  const { classDates , classPictures, description, instructor, moreClassesFromInstructor, title } = classData;
+  const { bio, email, firstName, instructorId, lastName, profilePicture } = instructor;
   const sentences = bio.split(".");
   const display = `${sentences[0]}... `;
-  const { moreClassesFromInstructor } = classData;
 
-  const classDatesFiltered = classData.classDates.filter(({classStart}) => {
+  const classDatesFiltered = classDates.filter(({classStart}) => {
     const now = moment();
     const oneHourBefore = moment(classStart).subtract(1, "hours");
     return now.isBefore(oneHourBefore);
@@ -51,6 +53,7 @@ const ClassPage = () => {
         { withCredentials: true }
       )
       .then((res) => {
+
         const idx = classData.classDates.findIndex(({classDateId})=> classDateId == selectedTimeSlot);
         setClassData({...classData, classDates: classData.classDates.filter((_, index) => index !== idx)});
         setSelectedTimeSlot("");
@@ -62,13 +65,12 @@ const ClassPage = () => {
   return (
     <main className="class-container">
       <div className="title-button-container">
-        <h1 className="title-container">{classData.title}</h1>
+        <h1 className="title-container">{title}</h1>
       </div>
 
-      <MobileCarousel imageArr={classData.classPictures} />
+      <MobileCarousel imageArr={classPictures} />
 
-      {/* // Description Container */}
-      <div className="description-container">{classData.description}</div>
+      <div className="description-container">{description}</div>
 
       {classDatesFiltered.length > 0 && (
         <div className="class-slot-title">
@@ -115,26 +117,25 @@ const ClassPage = () => {
         )}
       </div>
 
-      {/* Instructor container */}
       <div className="instructor-container">
         <div className="img-container">
           <img
-            src={classData.instructor.profilePicture}
-            alt={`${classData.instructor.firstName}'s profile`}
+            src={profilePicture}
+            alt={`${firstName}'s profile`}
           />
         </div>
 
         <div className="instructor-info">
           <h1 className="instructor-name">
-            {classData.instructor.firstName} {classData.instructor.lastName}
+            {firstName} {lastName}
           </h1>
-          <p className="instructor-email">{classData.instructor.email}</p>
+          <p className="instructor-email">{email}</p>
         </div>
 
         <p className="display-container">{display}</p>
         <button className="see-profile-button">
           <Link
-            to={`/profile/${classData.instructor.id}`}
+            to={`/profile/${instructorId}`}
             className="no-link-style"
           >
             See Profile
@@ -142,7 +143,7 @@ const ClassPage = () => {
         </button>
       </div>
       <div className="class-container__more-classes">
-        <h3 className="class-container__more-classes-header">More from {classData.instructor.firstName}:</h3>
+        <h3 className="class-container__more-classes-header">More from {firstName}:</h3>
         <div className="class-container__more-classes-carousel">
           {(moreClassesFromInstructor.length > 0) && moreClassesFromInstructor.map((classData) => (
             <ClassCard key={classData.classId} classInfo={classData}/>
