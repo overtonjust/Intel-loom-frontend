@@ -1,5 +1,6 @@
 // Dependencies
 import React, { useEffect, useState, useContext } from 'react';
+import { isMobile, isDesktop } from 'react-device-detect';
 import {
     selectIsConnectedToRoom,
     useHMSActions,
@@ -95,7 +96,7 @@ const Conference = () => {
     },[id])
 
     return (
-        <WebcamContext.Provider value={{ fullscreen, setFullscreen, instructorName, showParticipants, setShowParticipants, isLocalAudioEnabled, isLocalVideoEnabled, handleAudioChange, toggleVideo, chatOpen, setChatOpen, isLandscape }}>
+        <WebcamContext.Provider value={{ fullscreen, setFullscreen, instructorName, showParticipants, setShowParticipants, isLocalAudioEnabled, isLocalVideoEnabled, handleAudioChange, toggleVideo, chatOpen, setChatOpen, isLandscape, isDesktop, isMobile }}>
             <section className='conference'>
                 <h2 className='conference__title'>{title}</h2>
                 {isConnected ? (
@@ -103,10 +104,10 @@ const Conference = () => {
                         <ConferenceRoom />
                         <MenuOptions />
                         {showParticipants  && <Participants/>}
-                        {chatOpen && !fullscreen && <Chat/>}
+                        {chatOpen &&  <Chat/>}
                     </article>
                 ): (
-                    <JoinCall/>
+                    <div>Loading...</div>
                 )}
                 <ConferenceInfo/>
             </section>

@@ -1,7 +1,8 @@
 // Dependencies
-import React, { useContext } from 'react';
-import { selectIsLocalScreenShared } from '@100mslive/react-sdk';
+import React, { useContext, useEffect } from 'react';
+import { WebcamContext } from '../../../context/UserContext';
 import {
+    selectIsLocalScreenShared,
     selectIsConnectedToRoom,
     useHMSActions,
     useHMSStore,
@@ -19,16 +20,16 @@ import {
     faArrowUpFromBracket
 } from '@fortawesome/free-solid-svg-icons'
 import './MenuOptions.scss'
-import { WebcamContext } from '../../../context/UserContext';
 
 // Components
 
 const MenuOptions = () => {
     const { fullscreen, setFullscreen, showParticipants, setShowParticipants, 
         isLocalAudioEnabled, isLocalVideoEnabled, handleAudioChange, toggleVideo,
-        chatOpen, setChatOpen, isLandscape} = useContext(WebcamContext);
+        chatOpen, setChatOpen, isLandscape, isDesktop, isMobile} = useContext(WebcamContext);
     const peers = useHMSStore(selectPeers);
-    
+    const host = peers.find(peer => peer.roleName === 'host');
+    const userCam = peers.find(peer => peer.isLocal);    
     const userCount = peers.length;
 
     const isConnected = useHMSStore(selectIsConnectedToRoom);
@@ -49,12 +50,12 @@ const MenuOptions = () => {
                 <article onClick={handleAudioChange} className='menu-options-head__audio'>
                     {isLocalAudioEnabled ? (
                         <>
-                            <FontAwesomeIcon className='menu-options__icon' icon={faMicrophoneSlash} />
+                            <FontAwesomeIcon className='menu-options__icon' icon={faMicrophone} />
                             <span className='menu-options__label'>Mute</span>
                         </>
                     ) : (
                         <>
-                            <FontAwesomeIcon className='menu-options__icon' icon={faMicrophone}/>
+                            <FontAwesomeIcon className='menu-options__icon' icon={faMicrophoneSlash}/>
                             <span className='menu-options__label'>Unmute</span>
                         </>
                     )}
@@ -62,12 +63,12 @@ const MenuOptions = () => {
                 <article onClick={toggleVideo} className='menu-options-head__video'>
                     {isLocalVideoEnabled ? (
                         <>
-                            <FontAwesomeIcon className='menu-options__icon' icon={faVideoSlash} />
+                            <FontAwesomeIcon className='menu-options__icon' icon={faVideo} />
                             <span className='menu-options__label'>Video</span>
                         </>
                     ) : 
                         <>
-                            <FontAwesomeIcon className='menu-options__icon' icon={faVideo} />
+                            <FontAwesomeIcon className='menu-options__icon' icon={faVideoSlash} />
                             <span className='menu-options__label'>Video</span>
                         </>
                     }
@@ -84,10 +85,12 @@ const MenuOptions = () => {
                     <FontAwesomeIcon className='menu-options__icon' icon={faMessage}/>
                     <span className='menu-options__label'>{chatOpen ? 'close chat' : 'Chat'}</span>
                 </article>
-                <article className='menu-options__container' onClick={toggleScreenShare} >
-                    <FontAwesomeIcon className='menu-options__icon' icon={faArrowUpFromBracket}/>
-                    <span className='menu-options__label'>{isLocalScreenShared ? 'stop sharing' : 'Share'}</span>
-                </article>
+                {isDesktop && host === userCam &&
+                    <article className='menu-options__container' onClick={toggleScreenShare} >
+                        <FontAwesomeIcon className='menu-options__icon' icon={faArrowUpFromBracket}/>
+                        <span className='menu-options__label'>{isLocalScreenShared ? 'stop sharing' : 'Share'}</span>
+                    </article>
+                }
                 <article className='menu-options__container' onClick={() => setFullscreen(!fullscreen)}>
                     <FontAwesomeIcon className='menu-options__icon' icon={faUpRightAndDownLeftFromCenter}/>
                     <span className='menu-options__label'>{fullscreen ? 'Close' : 'Fullscreen'}</span>
