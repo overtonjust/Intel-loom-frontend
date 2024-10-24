@@ -18,6 +18,7 @@ const Response = ({ API, res, setResponses }) => {
   };
 
   const handleSubmit = () => {
+    if (!response) return;
     const data = {
       response,
       postId,
