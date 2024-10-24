@@ -22,6 +22,7 @@ const ForumPage = () => {
   };
 
   const handleSubmit = () => {
+    if (!response) return;
     const data = {
       response,
       postId,

@@ -17,6 +17,7 @@ const Forums = () => {
   };
 
   const handleSubmit = () => {
+    if (!post) return;
     const data = {
       post,
     };
