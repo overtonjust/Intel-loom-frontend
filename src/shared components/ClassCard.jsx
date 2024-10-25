@@ -24,14 +24,15 @@ const ClassCard = ({ classInfo, dateId, dateInfo }) => {
             <img className='class__image' src={ highlightPicture ? highlightPicture : classPictures[0] } alt={ title } />
             <article className='class__info-box'>
                 <div className='class__row'>
-                    <p className='class__text'>${Number(price).toFixed(0)}</p>
-                    {pathname.includes('/myclasses') && 
-                        <p className='class__time'>{startTime} - {endTime}</p>
-                    }
-                    {pathname.includes('/myclasses') && isClassDayToday(classStart) && isHourFromStart(classStart) && 
+                    {pathname.includes('/myclasses') && isClassDayToday(classStart) && isHourFromStart(classStart) ? 
                             <button className='button-orange class__link' onClick={(e) => handleJoinRoom(e, classId)}>
                                 Join Class
                             </button>
+                            :
+                        <p className='class__text'>${Number(price).toFixed(0)}</p>
+                    }
+                    {pathname.includes('/myclasses') && 
+                        <p className='class__time'>{startTime} - {endTime}</p>
                     }
                 </div>
             </article>

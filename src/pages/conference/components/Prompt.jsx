@@ -12,7 +12,7 @@ const Prompt = ({ promptObj, setPrompt }) => {
     const { message, instructor, instructorId } = promptObj;
     const [isFormActive, setIsFormActive] = useState(false);
     const [reviewContent, setReviewContent] = useState({
-      rating: 1,
+      rating: 0,
       review: ''
     });
     const maxChar = 180;
@@ -48,12 +48,14 @@ const Prompt = ({ promptObj, setPrompt }) => {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-      await axios.post(`${API}/users/add-instructor-review`,
-        { instructorId, review, rating },
-        { withCredentials: true }
-      )
-      .then(res => setMessage("Thank you for the feedback!"))
-      .catch(err => setMessage('Error submitting review'))
+      if(rating !== 0 || review.length !== 0) {
+        await axios.post(`${API}/users/add-instructor-review`,
+          { instructorId, review, rating },
+          { withCredentials: true }
+        )
+        .then(res => setMessage("Thank you for the feedback!"))
+        .catch(err => setMessage('Error submitting review'))
+      }
 
       navigate('/')
     };
@@ -134,7 +136,7 @@ const Prompt = ({ promptObj, setPrompt }) => {
             </FloatingLabel>
             <div className='prompt__options'>
               <button type='submit' className='button-orange' >Submit</button>
-              <button className='prompt__skip' onClick={() => setIsFormActive(false)}>Skip</button>
+              <button className='prompt__skip' onClick={handleSkip}>Skip</button>
             </div>
           </Form>
           :

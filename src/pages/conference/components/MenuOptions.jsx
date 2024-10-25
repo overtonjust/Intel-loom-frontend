@@ -1,6 +1,6 @@
 // Dependencies
 import React, { useContext } from 'react';
-import { WebcamContext } from '../../../context/UserContext';
+import { WebcamContext, UserContext } from '../../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import {
@@ -29,6 +29,7 @@ const MenuOptions = () => {
     const { fullscreen, setFullscreen, showParticipants, setShowParticipants, 
         isLocalAudioEnabled, isLocalVideoEnabled, handleAudioChange, toggleVideo,
         chatOpen, setChatOpen, isLandscape, isDesktop, isMobile, setPrompt, instructorId, instructorName, title, id} = useContext(WebcamContext);
+    const { user: { userId } } = useContext(UserContext);
     const navigate = useNavigate();
     const isDesktopOrLaptop = useMediaQuery({
         query: '(min-width: 1224px)'
@@ -52,12 +53,16 @@ const MenuOptions = () => {
 
     const handleLeave = async () => {
         await hmsActions.leave();
-        navigate(`/view/${id}`)
-        setPrompt({
-            message: `Thank you for attending ${title} with ${instructorName}. Would you like to leave them a review? `,
-            instructor: instructorName,
-            instructorId: instructorId
-        })
+        if(instructorId === userId) {
+            navigate('/')
+        } else {
+            navigate(`/view/${id}`)
+            setPrompt({
+                message: `Thank you for attending ${title} with ${instructorName}. Would you like to leave them a review? `,
+                instructor: instructorName,
+                instructorId: instructorId
+            })
+        }
     };
 
     return (
