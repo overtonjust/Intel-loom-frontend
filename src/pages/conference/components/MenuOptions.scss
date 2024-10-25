@@ -3,7 +3,6 @@
 .menu-holder {
     width: 100vw;
     display: flex;
-    overflow-x: scroll;
     scrollbar-width: none;
     align-items: center;
     padding: 2%;
@@ -57,7 +56,6 @@
         padding: 4px;
         gap: 5px;
         align-items: center;
-        overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         cursor: pointer;
@@ -81,4 +79,5 @@
 
 .leave-btn {
     padding: 1% 2% !important;
+    margin-right: 4px;
 }

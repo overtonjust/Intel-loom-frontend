@@ -11,8 +11,6 @@ const Webcam = ({ peer }) => {
     const { videoRef } = useVideo({
         trackId: peer.auxiliaryTracks[0] || peer.videoTrack
     });
-
-    console.log(peer)
     
     const isPeerAudioEnabled = useHMSStore(selectIsPeerAudioEnabled(peer.id));
     const isPeerVideoEnabled = useHMSStore(selectIsPeerVideoEnabled(peer.id));

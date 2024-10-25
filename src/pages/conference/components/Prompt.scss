@@ -2,15 +2,18 @@
 
 .prompt {
     width: 370px;
-    height: 170px;
+    min-height: 170px;
     background: white;
     border-radius: 1.2rem;
     box-shadow: 0 2px 4px 1px $card;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    gap: .4em;
     padding: 1rem;
 
     &__message {
+        margin: 0;
         font-size: 1.1em;
         color: $blue;
         text-align: center;
@@ -21,4 +24,101 @@
         justify-content: center;
         gap: 12px;
     }
+
+    &__skip {
+        border: none;
+        outline: none;
+        background-color: transparent;
+        text-decoration: underline;
+        font-size: .9em;
+        color: $blue;
+        padding: 1% 2%;
+    }
+
+    &__radio {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        color: $blue;
+        
+        .form-check {
+            margin: 0;
+            padding: 0;
+            
+            &-input {
+                display: none;
+                
+                &:checked + .form-check-label {
+                    background-color: $blue;
+                    color: white;
+                }
+            }
+            
+            &-label {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                border: 2px solid $blue;
+                cursor: pointer;
+                transition: all 0.2s;
+            }
+        }
+    }
+    
+    &__clear {
+        position: absolute;
+        top: 2%;
+        right: 2%;
+        background: transparent;
+        border: none;
+        color: rgba($blue, .7);
+        font-size: .8em;
+        padding: 1% 2%;
+        cursor: pointer;
+    }
+
+    &__char-count {
+        position: absolute;
+        bottom: 1%;
+        right: 4%;
+        font-size: 0.8em;
+        color: rgba($blue, 0.7);
+    }
+    
+}
+.form-floating {
+    
+    textarea.form-control {
+        border-radius: 0.8rem;
+        padding: 1rem;
+        color: $blue;
+        min-height: 150px;
+        
+        &:focus {
+            border: 2px solid $card;
+            box-shadow: 2px 2px 4px $card;
+
+        }
+
+        &:focus ~ label {
+            color: $card;
+            background-color: transparent !important;
+        }
+    }
+    
+    label {
+       color: $blue;
+       font-size: .9em;
+    }
+}
+
+.orange {
+    color: rgba($orange, .7);
+}
+
+.red {
+    color: red;
 }

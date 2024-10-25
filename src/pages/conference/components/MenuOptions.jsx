@@ -1,7 +1,8 @@
 // Dependencies
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { WebcamContext } from '../../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 import {
     selectIsLocalScreenShared,
     selectIsConnectedToRoom,
@@ -27,8 +28,11 @@ import './MenuOptions.scss'
 const MenuOptions = () => {
     const { fullscreen, setFullscreen, showParticipants, setShowParticipants, 
         isLocalAudioEnabled, isLocalVideoEnabled, handleAudioChange, toggleVideo,
-        chatOpen, setChatOpen, isLandscape, isDesktop, isMobile, prompt, setPrompt, instructorId, instructorName, title, id} = useContext(WebcamContext);
+        chatOpen, setChatOpen, isLandscape, isDesktop, isMobile, setPrompt, instructorId, instructorName, title, id} = useContext(WebcamContext);
     const navigate = useNavigate();
+    const isDesktopOrLaptop = useMediaQuery({
+        query: '(min-width: 1224px)'
+      })
     const peers = useHMSStore(selectPeers);
     const host = peers.find(peer => peer.roleName === 'host');
     const userCam = peers.find(peer => peer.isLocal);    
@@ -49,7 +53,11 @@ const MenuOptions = () => {
     const handleLeave = async () => {
         await hmsActions.leave();
         navigate(`/view/${id}`)
-        setPrompt(`Thank you for attending ${title} with ${instructorName}. Would you like to leave them a review? `)
+        setPrompt({
+            message: `Thank you for attending ${title} with ${instructorName}. Would you like to leave them a review? `,
+            instructor: instructorName,
+            instructorId: instructorId
+        })
     };
 
     return (
@@ -90,24 +98,32 @@ const MenuOptions = () => {
                     <span className='menu-options__count'>
                         <FontAwesomeIcon className='menu-options__icon' icon={faUserPlus} /><>{userCount}</>
                     </span>
-                    <span className='menu-options__label'>{showParticipants ? 'Close' : 'Participants'}</span>
+                    {isDesktopOrLaptop && 
+                        <span className='menu-options__label'>{showParticipants ? 'Close' : 'Participants'}</span>
+                    }
                 </article>
                 <article className='menu-options__container' onClick={() => {
                     setChatOpen(!chatOpen)
                     setShowParticipants(false)
                 }} >
                     <FontAwesomeIcon className='menu-options__icon' icon={faMessage}/>
-                    <span className='menu-options__label'>{chatOpen ? 'close chat' : 'Chat'}</span>
+                    {isDesktopOrLaptop &&
+                        <span className='menu-options__label'>{chatOpen ? 'close chat' : 'Chat'}</span>
+                    }
                 </article>
                 {isDesktop && host === userCam &&
                     <article className='menu-options__container' onClick={toggleScreenShare} >
                         <FontAwesomeIcon className='menu-options__icon' icon={faArrowUpFromBracket}/>
-                        <span className='menu-options__label'>{isLocalScreenShared ? 'stop sharing' : 'Share'}</span>
+                        {isDesktopOrLaptop && 
+                            <span className='menu-options__label'>{isLocalScreenShared ? 'stop sharing' : 'Share'}</span>
+                        }
                     </article>
                 }
                 <article className='menu-options__container' onClick={() => setFullscreen(!fullscreen)}>
                     <FontAwesomeIcon className='menu-options__icon' icon={faUpRightAndDownLeftFromCenter}/>
-                    <span className='menu-options__label'>{fullscreen ? 'Close' : 'Fullscreen'}</span>
+                    {isDesktopOrLaptop && 
+                        <span className='menu-options__label'>{fullscreen ? 'Close' : 'Fullscreen'}</span>
+                    }
                 </article>
             </section>
                 {isConnected && (

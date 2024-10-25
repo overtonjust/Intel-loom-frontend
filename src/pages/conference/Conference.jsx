@@ -89,7 +89,6 @@ const Conference = () => {
             axios.get(`${API}/classes/class-info/${id}`, {withCredentials: true})
                 .then(res => {
                     const {title , instructor: { firstName, instructorId } } = res.data
-                    console.log(res.data, instructorId)
                     setRoomData(prev => {
                         return {
                             title,
@@ -114,7 +113,7 @@ const Conference = () => {
                         {chatOpen &&  <Chat/>}
                     </article>
                 ) : prompt ? (
-                    <Prompt prompt={prompt} setPromt={setPrompt}/> 
+                    <Prompt promptObj={prompt} setPrompt={setPrompt}/> 
                 ) : (
                     <div>Loading...</div>
                 )}
