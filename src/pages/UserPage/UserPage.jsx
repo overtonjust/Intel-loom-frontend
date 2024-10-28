@@ -15,10 +15,16 @@ const UserPage = () => {
   const { id } = useParams();
   const [userData, setUserData] = useState(null);
   const [settingsMenu, setSettingsMenu] = useState(false)
+  const [isInstructor, setIsInstructor] = useState(false)
 
   useEffect(() => {
     axios.get(`${API}/users/profile/${id}`, {withCredentials: true})
-      .then(res => setUserData(res.data))
+      .then(res => {
+        setUserData(res.data)
+        setIsInstructor(res.data.isInstructor)
+        
+      })
+
       .catch(err => console.log(err));
   }, [id]);
 
@@ -55,6 +61,8 @@ return (
       </div>
     </div>
 
+    {isInstructor && 
+    <>
     <div className='userPage-videos'>
       <div className='video-header'>
         <h3>Videos</h3>
@@ -77,6 +85,9 @@ return (
         ))}
       </div>
     </div>
+    </>
+    }
+
 
     <div className='buttons'>
       <button 
