@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { UserContext } from "../../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Templates = ({API}) => {
+  const { fitsOneColumn, fitsTwoColumns, fitsThreeColumns } = useContext(UserContext);
   const [myTemplates, setMyTemplates] = useState([]);
   const navigate = useNavigate();
 
@@ -16,7 +18,7 @@ const Templates = ({API}) => {
   }, []);
 
   return (
-    <section className="class-templates-container">
+    <section className={`class-templates-container ${fitsOneColumn ? 'columns-one' : fitsTwoColumns ? 'columns-two' : fitsThreeColumns ? 'columns-three' : 'columns-four'}`}>
       {myTemplates.map((template) => (
         <div key={template.classId} className="template" onClick={() => navigate(`/class-template/${template.classId}`)}>
           <h2 className="template__title">{template.title}</h2>

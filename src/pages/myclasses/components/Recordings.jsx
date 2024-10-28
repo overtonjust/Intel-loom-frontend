@@ -6,6 +6,9 @@ import Recording from "./Recording";
 const Recordings = ({ API }) => {
   const {
     user: { isInstructor },
+    fitsOneColumn,
+    fitsTwoColumns,
+    fitsThreeColumns,
   } = useContext(UserContext);
   const [userRecordings, setUserRecordings] = useState([]);
   const [instructorRecordings, setInstructorRecordings] = useState([]);
@@ -33,32 +36,36 @@ const Recordings = ({ API }) => {
   return (
     <main className="recordings-container">
       <section className="recordings-container__view">
-        <div>
-          <input
-            type="radio"
-            id="classes"
-            name="view"
-            value="classes"
-            checked={view === "classes"}
-            onChange={() => setView("classes")}
-          />
-          <label htmlFor="classes">My Classes</label>
-        </div>
-        {isInstructor && (
-          <div>
+        <div className='choices'>
+          <div className='choices__opt'>
             <input
               type="radio"
-              id="lectures"
+              id="classes"
               name="view"
-              value="lectures"
-              checked={view === "lectures"}
-              onChange={() => setView("lectures")}
+              value="classes"
+              checked={view === "classes"}
+              onChange={() => setView("classes")}
             />
-            <label htmlFor="lectures">My Lectures</label>
+            <label htmlFor="classes">My Classes</label>
           </div>
-        )}
+          {isInstructor && (
+            <div className='choices__opt'>
+              <input
+                type="radio"
+                id="lectures"
+                name="view"
+                value="lectures"
+                checked={view === "lectures"}
+                onChange={() => setView("lectures")}
+              />
+              <label htmlFor="lectures">My Lectures</label>
+            </div>
+          )}
+        </div>
       </section>
-      <section className="recordings-container__videos">
+      <section
+        className={`recordings-container__videos ${fitsOneColumn ? "columns-one" : fitsTwoColumns ? "columns-two" : fitsThreeColumns ? "columns-three" : "columns-four"}`}
+      >
         {view === "classes" &&
           userRecordings.length > 0 &&
           userRecordings.map((recording, idx) => (

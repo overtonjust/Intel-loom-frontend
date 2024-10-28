@@ -1,0 +1,15 @@
+@import '../../../shared.scss';
+
+.desktop-nav {
+  position: relative;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: $blue;
+}

@@ -1,54 +1,51 @@
-@import '../shared.scss';
-
+@import "../shared.scss";
 
 .class {
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    border-radius: .8em;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 0.8em;
+  height: fit-content;
+  max-width: 400px;
+  min-width: 350px;
+  box-shadow: 0 2px 4px 1px $card;
+  cursor: pointer;
+  margin: 0 1rem;
+  &__image {
+    width: 100%;
     height: fit-content;
-    min-width: 300px;
-    width: 85vw;
-    max-width: 400px;
-    box-shadow: 0 2px 4px 1px $card;
-    cursor: pointer;
+    object-fit: contain;
+  }
 
-    &__image{
-        width: 100%;
-        height: fit-content;
-        object-fit: contain;
-    }
+  &__title {
+    margin: 0.4em;
+    font-size: 1.6em;
+    text-align: center;
+    color: $blue;
+  }
 
-    &__title {
-        margin: .4em;
-        font-size: 1.6em;
-        text-align: center;
-        color: $blue;     
-    }
+  &__info-box {
+    padding: 2%;
+  }
 
-    &__info-box {
-        padding: 2%;
-    }
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 40px;
+    align-items: start;
+    padding: 2% 0;
+  }
+  &__text,
+  &__time {
+    color: $blue;
+    font-size: 1.2em;
+  }
 
-        &__row {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            grid-template-rows: 40px;
-            align-items: start;
-            padding: 2% 0;
-        }
-            &__text, &__time {
-                color: $blue;
-                font-size: 1.2em;
-            }
+  &__time {
+    justify-self: end;
+  }
 
-            &__time {
-                justify-self: end;
-            }
-            
-            &__link {
-                place-self: start;
-            }
+  &__link {
+    place-self: start;
+  }
 }
-
-  

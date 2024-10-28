@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { UserContext } from '../../../context/UserContext.jsx';
 import axios from "axios";
 import ClassCard from "../../../shared components/ClassCard";
 import { formatDateKey } from "../../../../utils";
 
 const LecturesByDay = ({ API }) => {
+  const { fitsOneColumn, fitsTwoColumns, fitsThreeColumns } = useContext(UserContext);
   const [mylectures, setMyLectures] = useState([]);
 
   useEffect(() => {
@@ -20,7 +22,7 @@ const LecturesByDay = ({ API }) => {
         return (
           <section key={day} className="by-day">
             <h2>{formatDateKey(day)}</h2>
-            <section key={day} className="by-day__time">
+            <section key={day} className={`by-day__time ${fitsOneColumn ? 'columns-one' : fitsTwoColumns ? 'columns-two' : fitsThreeColumns ? 'columns-three' : 'columns-four'}`}>
               {mylectures[day].map((classDate, idx) => {
                 const { classStart, classEnd } = classDate;
 

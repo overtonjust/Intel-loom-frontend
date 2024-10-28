@@ -39,20 +39,21 @@
 
 .by-day {
   margin-bottom: 1rem;
+  h2 {
+    justify-self: start;
+  }
   &__time {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: column;
-    gap: 1.6rem;
+    display: grid;
+    justify-items: center;
+    row-gap: 2rem;
   }
 }
 
 .class-templates-container {
-  display: flex;  
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1rem 0;
+  display: grid;
+  justify-items: center;
+  row-gap: 2rem;
+  margin: 1rem 0;
 }
 
 .template {
@@ -62,9 +63,10 @@
   border-radius: .8em;
   box-shadow: 0 2px 4px 1px $card;
   gap: 0.2em;
-  height: 400px;
-  width: 85vw;
+  height: fit-content;
+  max-width: 400px;
   cursor: pointer;
+  margin: 0 1rem;
   &__title {
     margin: .4em;
     font-size: 1.6em;
@@ -81,23 +83,39 @@
 .recordings-container {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  row-gap: 1rem;
   padding: 1rem 0;
   &__view {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    color: $blue;
     input {
       margin: 0 0.5rem;
     }
+  }
+  &__videos {
+    display: grid;
+    justify-items: center;
+    gap: 2rem;
+    margin: 1rem 0;
+  }
+}
+
+.choices {
+  display: flex;
+  &__opt{
+    margin: 0 2rem;
   }
 }
 
 .recording-container {
   border-top: 0.1rem solid $white;
-  padding: 1rem 0 0 0;
+  padding-top: 1rem;
   color: $blue;
+  background: white;
   video {
     width: 400px;
+    height: 250px;
     border-radius: 0.4em;
   }
 }
