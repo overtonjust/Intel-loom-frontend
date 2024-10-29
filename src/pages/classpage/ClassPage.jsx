@@ -11,7 +11,7 @@ import MobileCarousel from "../../shared components/carousels/MobileCarousel";
 import ClassCard from "../../shared components/ClassCard";
 
 const ClassPage = () => {
-  const { API, setShouldScroll, setMessage, fitsTwoColumns } =
+  const { API, setShouldScroll, setMessage, fitsTwoColumns, user } =
     useContext(UserContext);
   const navigate = useNavigate();
   const { id } = useParams();
@@ -58,6 +58,10 @@ const ClassPage = () => {
   };
 
   const handleSubmit = () => {
+    if(!user) {
+      setMessage("Please log in to book a class.");
+      return;
+    }
     axios
       .post(
         `${API}/users/book-class`,
@@ -148,7 +152,13 @@ const ClassPage = () => {
             <div className="instructor-info-container__button">
               <button
                 className="button-blue"
-                onClick={() => navigate(`/profile/${instructorId}`)}
+                onClick={() => {
+                  if (!user) {
+                    setMessage("Please log in to view profiles.");
+                    return;
+                  }
+                  navigate(`/profile/${instructorId}`);
+                }}
               >
                 See Profile
               </button>
