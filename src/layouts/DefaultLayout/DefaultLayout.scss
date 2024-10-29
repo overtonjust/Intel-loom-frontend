@@ -1,17 +1,5 @@
 @import "../../shared.scss";
 
-@keyframes scroll-up {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-
 .default-mobile-layout {
   height: 100vh;
   width: 100vw;
@@ -26,6 +14,34 @@
     place-items: center;
   }
   &__content {
+    background-image: url('/desktop.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    display: grid;
+    grid-template-rows: 1fr auto;
+  }
+}
+
+.default-desktop-layout {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  background-color: #fff;
+  overflow: hidden;
+  &__header {
+    padding: 0.75rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+  }
+  &__content {
+    background-image: url('/desktop.png');
+    background-size: cover;
+    background-position: center;
     position: relative;
     overflow-y: auto;
     scroll-behavior: smooth;

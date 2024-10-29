@@ -11,7 +11,7 @@ import ClassCard from '../../shared components/ClassCard'
 
 
 const Home = () => {
-  const { API } = useContext(UserContext)
+  const { API, fitsOneColumn, fitsTwoColumns, fitsThreeColumns } = useContext(UserContext)
   const [allClasses, setAllClasses] = useState([])
   const [classesDisplay, setClassesDisplay] = useState([])
   const [moreClasses, setMoreClasses] = useState(true)
@@ -30,7 +30,7 @@ const Home = () => {
   return (
     <main className='home-container'>
       <SearchBar classes={allClasses} setDisplay={setClassesDisplay}/>
-      <div className='classes'>
+      <div className={`classes ${ fitsOneColumn ? 'columns-one' : fitsTwoColumns ? 'columns-two' : fitsThreeColumns ? 'columns-three' : 'columns-four' }`}>
         {classesDisplay.map((classInfo) => (
           <ClassCard key={classInfo?.classId} classInfo={classInfo}/>
         ))}

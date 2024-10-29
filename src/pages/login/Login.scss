@@ -6,10 +6,10 @@
 }
 
 .login-form {
-  width: 90%;
+  border-radius: 1.2rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+  background: white;
   padding: 1rem;
-  background-color: transparent;
-  border-radius: 0.4em;
   margin: 0 auto;
   display: grid;
   grid-template-rows: repeat(6, auto);

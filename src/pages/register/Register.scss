@@ -1,10 +1,12 @@
 @import "../../shared.scss";
 
 .sign-up-form {
-  width: 90%;
+  border-radius: 1.2rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+  background: white;
   padding: 1rem;
   border-radius: 0.4rem;
-  margin: 2rem auto;
+  margin: 0 auto;
   &__group {
     width: 100%;
     display: grid;
@@ -26,7 +28,6 @@
 }
 
 .disclaimer {
-  font-size: 13px;
   text-align: center;
 }
 
