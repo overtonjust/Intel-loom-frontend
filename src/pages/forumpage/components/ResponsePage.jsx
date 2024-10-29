@@ -29,7 +29,7 @@ const ResponsePage = ({ API }) => {
         withCredentials: true,
       })
       .then((res) => {
-        setResponses((prev) => [...prev, ...res.data.responses]);
+        setResponses((prev) => [...res.data.responses, ...prev]);
         setMoreResponses(res.data.moreResponses);
       })
       .catch((err) => console.log(err));

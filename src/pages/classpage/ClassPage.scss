@@ -17,9 +17,10 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-
+  max-width: 430px;
+  margin: 0 auto;
+  background: white;
   &__more-classes {
-    width: 100%;
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
@@ -30,10 +31,8 @@
   }
 
   &__more-classes-carousel {
-    width: calc(100vw - 2rem);
     display: flex;
     padding: 2%;
-    gap: 1em;
     overflow-x: scroll;
   }
 
@@ -67,8 +66,6 @@
   .description-container {
     display: flex;
     flex-direction: column;
-    height: 130px;
-    width: 85vw;
     font-size: 1.1rem;
     line-height: 1.6;
     padding: 10px;
@@ -84,7 +81,6 @@
     padding: 10px;
     background-color: #fff;
     border-radius: 10px;
-    // box-shadow: 0 4px 15px $blue; 
     box-shadow: 0 2px 4px 0 rgba(184, 184, 184, 0.5);
  
     color: $blue;

@@ -3,6 +3,7 @@
 .create-class-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
   padding: 1rem;
   &__header {
@@ -43,6 +44,7 @@
 
 .form-preview {
   display: flex;
+  max-width: 400px;
   overflow-x: scroll;
   &__image {
     position: relative;

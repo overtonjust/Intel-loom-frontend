@@ -4,6 +4,7 @@ import { UserContext } from "../../context/UserContext";
 import axios from "axios";
 import "./Forums.scss";
 import { FaAnglesDown } from "react-icons/fa6";
+import profilePic from '../../assets/default-profile.png';
 
 const Forums = () => {
   const { API } = useContext(UserContext);
@@ -17,6 +18,7 @@ const Forums = () => {
   };
 
   const handleSubmit = () => {
+    if (!post) return;
     const data = {
       post,
     };
@@ -60,7 +62,7 @@ const Forums = () => {
           return (
             <section className="forum-card" key={`post${postId}`}>
               <div className="forum-card__user">
-                <img src={profilePicture} alt={username} />
+                <img src={profilePicture ? profilePicture : profilePic} alt={username} />
                 <Link className="forum-link" to={`/profile/${userId}`}>
                   {username}
                 </Link>

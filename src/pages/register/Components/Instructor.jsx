@@ -54,7 +54,7 @@ const Instructor = ({ formData, handleChange, setFormSection }) => {
                     <>
                         <p className='disclaimer'>* You can become an instructor at any time.</p>
                         <p className='disclaimer'>** Additional information may be needed <br />to complete your instructor profile.</p>
-                        <p className='disclaimer'>*** At first, you'll recieve 75% of your earnings, <br />with a chance to increase it, by maintaining <br />a rating of 4 starts and higher</p>
+                        <p className='disclaimer'>*** At first, you'll recieve 75% of your earnings, <br />with a chance to increase it, by maintaining <br />a rating of 4 stars and higher</p>
                     </>
                 ) : (
                     <>
