@@ -33,6 +33,14 @@ const UserPage = () => {
       .catch(err => setMessage('Failed to sign out'));
   };
 
+  if (!userData) {
+    return (
+      <main className="loading">
+        <h1>Loading...</h1>
+      </main>
+    )
+  }
+
 return (
   <div className='userPage-container'>
     <div className='banner-container'>

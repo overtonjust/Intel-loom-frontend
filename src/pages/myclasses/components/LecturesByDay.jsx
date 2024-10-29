@@ -6,7 +6,7 @@ import { formatDateKey } from "../../../../utils";
 
 const LecturesByDay = ({ API }) => {
   const { fitsOneColumn, fitsTwoColumns, fitsThreeColumns } = useContext(UserContext);
-  const [mylectures, setMyLectures] = useState([]);
+  const [mylectures, setMyLectures] = useState(null);
 
   useEffect(() => {
     axios
@@ -15,6 +15,13 @@ const LecturesByDay = ({ API }) => {
       .catch((err) => console.log(err));
   }, []);
 
+  if (!mylectures) {
+    return (
+      <main className="loading">
+        <h1>Loading...</h1>
+      </main>
+    )
+  }
 
   return (
     <>

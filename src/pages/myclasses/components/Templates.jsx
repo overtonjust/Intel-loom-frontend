@@ -5,7 +5,7 @@ import axios from "axios";
 
 const Templates = ({API}) => {
   const { fitsOneColumn, fitsTwoColumns, fitsThreeColumns } = useContext(UserContext);
-  const [myTemplates, setMyTemplates] = useState([]);
+  const [myTemplates, setMyTemplates] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,6 +16,14 @@ const Templates = ({API}) => {
       .then((res) => setMyTemplates(res.data))
       .catch((err) => console.log(err));
   }, []);
+
+  if (!myTemplates) {
+    return (
+      <main className="loading">
+        <h1>Loading...</h1>
+      </main>
+    )
+  }
 
   return (
     <section className={`class-templates-container ${fitsOneColumn ? 'columns-one' : fitsTwoColumns ? 'columns-two' : fitsThreeColumns ? 'columns-three' : 'columns-four'}`}>

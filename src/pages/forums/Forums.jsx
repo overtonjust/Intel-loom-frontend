@@ -8,7 +8,7 @@ import profilePic from '../../assets/default-profile.png';
 
 const Forums = () => {
   const { API } = useContext(UserContext);
-  const [forums, setForums] = useState([]);
+  const [forums, setForums] = useState(null);
   const [page, setPage] = useState(1);
   const [morePosts, setMorePosts] = useState(false);
   const [post, setPost] = useState("");
@@ -35,11 +35,22 @@ const Forums = () => {
     axios
       .get(`${API}/forums?page=${page}`, { withCredentials: true })
       .then((res) => {
+        if (page === 1) {
+          setForums([]);
+        }
         setForums((prev) => prev.concat(res.data.posts));
         setMorePosts(res.data.morePosts);
       })
       .catch((err) => console.log(err));
   }, [page]);
+
+  if (!forums) {
+    return (
+      <main className="loading">
+        <h1>Loading...</h1>
+      </main>
+    )
+  }
 
   return (
     <main className="forums-container">

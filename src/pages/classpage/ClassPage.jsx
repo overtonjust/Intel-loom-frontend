@@ -30,7 +30,11 @@ const ClassPage = () => {
   }, [API, id]);
 
   if (!classData) {
-    return <div>Loading...</div>;
+    return (
+      <main className="loading">
+        <h1>Loading...</h1>
+      </main>
+    )
   }
 
   const {
