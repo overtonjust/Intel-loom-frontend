@@ -22,6 +22,7 @@ const DefaultLayout = () => {
     return savedUser ? JSON.parse(savedUser) : false;
   });
   const [message, setMessage] = useState(false);
+  const [classDateId, setClassDateId] = useState('');
 
   const [shouldScroll, setShouldScroll] = useState(false);
 
@@ -44,7 +45,7 @@ const DefaultLayout = () => {
   useSessionChecker(API, setUser, user);
   
   return (
-    <UserContext.Provider value={{ user, setUser, setMessage, API, setShouldScroll }}>
+    <UserContext.Provider value={{ user, setUser, setMessage, API, setShouldScroll, classDateId, setClassDateId }}>
       <article className="default-mobile-layout">
         <header className="default-mobile-layout__header">
           <Brand />

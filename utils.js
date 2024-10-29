@@ -68,44 +68,4 @@ const formatDateKey = dateStr => {
   return `${day} ${dateParts[1]} ${dateParts[2]}, ${dateParts[3]}`;
 }
 
-<<<<<<< HEAD
 export { formatDate, formatTime, checkTime, formatDateKey, isClassDayToday, isHourFromStart };
-=======
-export { formatDate, formatTime, checkTime };
-
-
-   // const downloadRecording = useCallback(() => {
-    //     if(recordedBlob) {
-    //         const url = URL.createObjectURL(recordedBlob);
-
-    //         const link = document.createElement('a');
-    //         link.href = url;
-    //         link.download = 'conference-recording.webm';
-    //         link.click();
-    //         URL.revokeObjectURL(url);
-    //     }
-    // }, [recordedBlob]);
-
-    // useEffect(() => {
-    //     if (isRecording) {
-    //       // Monitor for changes in active media streams
-    //       const tracks = mediaRecorderRef.current.stream.getTracks();
-    //         tracks.forEach(track => {
-    //         track.addEventListener('ended', async () => {
-    //             // If a track has ended (e.g., due to screen sharing),
-    //             // get the active stream and update the MediaRecorder
-    //             const newStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: true });
-    //             console.log(newStream)
-    //             // Ensure the new stream has a video track (screen share)
-    //             if (newStream.getVideoTracks().length > 0) {
-    //                 const newRecorder = new MediaRecorder(newStream);
-    //                 mediaRecorderRef.current = newRecorder;
-    //                 console.log(mediaRecorderRef)
-    //                 } else {
-    //                 console.error('New stream does not contain screen share');
-    //                 }
-    //             });
-    //         });
-    //     }
-    //   }, [isRecording, mediaRecorderRef]);
->>>>>>> 805d799 (working recording setup)

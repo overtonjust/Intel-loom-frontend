@@ -47,13 +47,14 @@
 .menu-options {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     width: 100%;
+    padding: 4px;
     gap: 15px;
 
     &__container {
         display: flex;
         flex-direction: column;
-        padding: 4px;
         gap: 5px;
         align-items: center;
         text-overflow: ellipsis;
