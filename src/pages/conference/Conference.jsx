@@ -1,5 +1,6 @@
 // Dependencies
 import React, { useEffect, useState, useContext } from 'react';
+import { isMobile, isDesktop } from 'react-device-detect';
 import {
     selectIsConnectedToRoom,
     useHMSActions,
@@ -19,6 +20,7 @@ import MenuOptions from './components/MenuOptions';
 import ConferenceInfo from './components/ConferenceInfo';
 import Participants from './components/Participants';
 import Chat from './components/Chat';
+import Prompt from './components/Prompt';
 
 const Conference = () => {
     const { id } = useParams();
@@ -30,11 +32,13 @@ const Conference = () => {
     const [showParticipants, setShowParticipants] = useState(false);
     const [fullscreen, setFullscreen] = useState(false);
     const [chatOpen, setChatOpen] = useState(false);
+    const [prompt, setPrompt] = useState(false);
     const [roomData, setRoomData ] = useState({
         title: '',
-        instructorName: ''
+        instructorName: '',
+        instructorId: 0
     });
-    const { title, instructorName } = roomData;
+    const { title, instructorName, instructorId } = roomData;
     const {
         isLocalAudioEnabled,
         isLocalVideoEnabled,
@@ -45,13 +49,14 @@ const Conference = () => {
     window.addEventListener('onunload', () => hmsActions.leave());
 
     const handleUserJoinRoom =  async (roomData) => {
-        const { firstName, lastName, roomCode } = roomData;
+        const { firstName, lastName, roomCode, profilePicture } = roomData;
         const token = await hmsActions.getAuthTokenByRoomCode({ roomCode }); 
 
         const displayName = `${firstName} ${lastName.charAt(0)}.`;
         const config = {
             userName: displayName,
             authToken: token,
+            metaData: profilePicture,
             settings: {
                 isAudioMuted: true
             }
@@ -77,16 +82,18 @@ const Conference = () => {
             axios(`${API}/classes/get-room-code/${id}`, { withCredentials: true })
                 .then(res => {
                     handleUserJoinRoom(res.data)
+
                 })
                 .catch(err => console.error(err)) 
                 
             axios.get(`${API}/classes/class-info/${id}`, {withCredentials: true})
                 .then(res => {
-                    const {title , instructor: { firstName } } = res.data
+                    const {title , instructor: { firstName, instructorId } } = res.data
                     setRoomData(prev => {
                         return {
                             title,
-                            instructorName: firstName
+                            instructorName: firstName,
+                            instructorId
                         }
                     })
                 })
@@ -95,7 +102,7 @@ const Conference = () => {
     },[id])
 
     return (
-        <WebcamContext.Provider value={{ fullscreen, setFullscreen, instructorName, showParticipants, setShowParticipants, isLocalAudioEnabled, isLocalVideoEnabled, handleAudioChange, toggleVideo, chatOpen, setChatOpen, isLandscape }}>
+        <WebcamContext.Provider value={{ fullscreen, setFullscreen, instructorName, showParticipants, setShowParticipants, isLocalAudioEnabled, isLocalVideoEnabled, handleAudioChange, toggleVideo, chatOpen, setChatOpen, isLandscape, isDesktop, isMobile, prompt, setPrompt, title, instructorName, instructorId, id }}>
             <section className='conference'>
                 <h2 className='conference__title'>{title}</h2>
                 {isConnected ? (
@@ -103,10 +110,12 @@ const Conference = () => {
                         <ConferenceRoom />
                         <MenuOptions />
                         {showParticipants  && <Participants/>}
-                        {chatOpen && !fullscreen && <Chat/>}
+                        {chatOpen &&  <Chat/>}
                     </article>
-                ): (
-                    <JoinCall/>
+                ) : prompt ? (
+                    <Prompt promptObj={prompt} setPrompt={setPrompt}/> 
+                ) : (
+                    <div>Loading...</div>
                 )}
                 <ConferenceInfo/>
             </section>

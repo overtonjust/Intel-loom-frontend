@@ -1,10 +1,8 @@
 // Dependencies
-import React, {useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import { WebcamContext } from '../../../context/UserContext';
 import {
     selectHMSMessages,
-    selectBroadcastMessages,
-    selectMessagesByRole,
-    selectMessagesByPeerID,
     useHMSStore,
     useHMSActions,
 } from '@100mslive/react-sdk';
@@ -14,13 +12,12 @@ import './Chat.scss'
 import Message from './Message';
 
 const Chat = () => {
+    const { fullscreen, isMobile, isLandscape } = useContext(WebcamContext);
     const allMessages = useHMSStore(selectHMSMessages);
     const [chatMessage, setChatMessage] = useState('');
     const hmsActions = useHMSActions();
     const messageRef = useRef(null);
     
-    console.log(messageRef)
-
     const handleChatInput = (e) => {
         setChatMessage(e.target.value)
     };
@@ -36,9 +33,8 @@ const Chat = () => {
         }
     }, [allMessages])
     
-    
     return (
-        <section className='chat'>
+        <section className={`chat ${fullscreen && 'chat-fullscreen'} ${fullscreen && isMobile && !isLandscape && 'chat-full-portrait'}`}>
             <article className='chat__view' ref={messageRef}>
                 {allMessages.map((msg) => (
                     <Message key={msg.id} msg={msg}/>
