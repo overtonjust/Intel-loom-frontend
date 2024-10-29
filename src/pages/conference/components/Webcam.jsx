@@ -7,7 +7,7 @@ import defaultImg from '../../../assets/default-profile.png';
 import './Webcam.scss';
 
 const Webcam = ({ peer }) => {
-    const { fullscreen, isLandscape } = useContext(WebcamContext);
+    const { fullscreen, isLandscape, isMobile } = useContext(WebcamContext);
     const { videoRef } = useVideo({
         trackId: peer.auxiliaryTracks[0] || peer.videoTrack
     });
@@ -22,11 +22,12 @@ const Webcam = ({ peer }) => {
                 ref={videoRef}
                 autoPlay={true}
                 muted
-                className={ fullscreen && peer.roleName === 'host' ? isLandscape ? 'webcam__fullscreen-landscape' : 'webcam__fullscreen-portrait' : `webcam__video`}
+                className={ fullscreen && peer.roleName === 'host' ? isLandscape && isMobile ? 'webcam__fullscreen-landscape' : !isLandscape && isMobile && 'webcam__fullscreen-portrait' : `webcam__video`}
                 playsInline 
+                data-testid={peer.auxiliaryTracks[0] ? `screen-${peer.id}` : `video-${peer.id}`}
                 />
                 {!isPeerVideoEnabled ? (
-                    <img className={`webcam__video webcam__image ${fullscreen && peer.roleName === 'guest' ? 'webcam__mini' : fullscreen && peer.roleName === 'host' ? isLandscape ? 'webcam__image-landscape' : 'webcam__image-portrait' : ''} ${!isLandscape && fullscreen && peer.roleName === 'guest' && 'mini-portrait'} `} src={peer.metadata} alt="" /> 
+                    <img className={`webcam__video webcam__image ${fullscreen && peer.roleName === 'guest' ? 'webcam__mini' : fullscreen && peer.roleName === 'host' ? isLandscape ? 'webcam__image-landscape' : 'webcam__image-portrait' : ''} ${!isLandscape && fullscreen && peer.roleName === 'guest' && 'mini-portrait'} `} src={peer.metadata || defaultImg} alt="" /> 
                 ) : null} 
                 <article className={`webcam__name ${fullscreen && isLandscape && peer.roleName === 'host' ? 'landscape-name-host' : 'landscape-name-guest'} ${!isLandscape && fullscreen && peer.roleName === 'guest' && 'mini-name'} ${!isPeerVideoEnabled && peer.roleName === 'host' && 'image-name'}`}>
                     {peer.name} {peer.isLocal ? "(You)": ""}

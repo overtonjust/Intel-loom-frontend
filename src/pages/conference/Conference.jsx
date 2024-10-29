@@ -9,18 +9,20 @@ import {
 } from '@100mslive/react-sdk';
 import { WebcamContext, UserContext } from '../../context/UserContext';
 import { useOrientation } from 'react-use';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FaCircleDot } from 'react-icons/fa6';
 import { useParams } from 'react-router-dom';
 import './Conference.scss';
 import axios from 'axios';
 
 // Components
-import JoinCall from './components/JoinCall';
 import ConferenceRoom from './components/ConferenceRoom';
 import MenuOptions from './components/MenuOptions';
 import ConferenceInfo from './components/ConferenceInfo';
 import Participants from './components/Participants';
 import Chat from './components/Chat';
 import Prompt from './components/Prompt';
+import { faCircleDot } from '@fortawesome/free-solid-svg-icons';
 
 const Conference = () => {
     const { id } = useParams();
@@ -30,6 +32,7 @@ const Conference = () => {
     const isConnected = useHMSStore(selectIsConnectedToRoom);
     const hmsActions = useHMSActions();
     const [showParticipants, setShowParticipants] = useState(false);
+    const [isRecording, setIsRecording] = useState(false);
     const [fullscreen, setFullscreen] = useState(false);
     const [chatOpen, setChatOpen] = useState(false);
     const [prompt, setPrompt] = useState(false);
@@ -82,7 +85,6 @@ const Conference = () => {
             axios(`${API}/classes/get-room-code/${id}`, { withCredentials: true })
                 .then(res => {
                     handleUserJoinRoom(res.data)
-
                 })
                 .catch(err => console.error(err)) 
                 
@@ -102,9 +104,9 @@ const Conference = () => {
     },[id])
 
     return (
-        <WebcamContext.Provider value={{ fullscreen, setFullscreen, instructorName, showParticipants, setShowParticipants, isLocalAudioEnabled, isLocalVideoEnabled, handleAudioChange, toggleVideo, chatOpen, setChatOpen, isLandscape, isDesktop, isMobile, prompt, setPrompt, title, instructorName, instructorId, id }}>
+        <WebcamContext.Provider value={{ fullscreen, setFullscreen, instructorName, showParticipants, setShowParticipants, isLocalAudioEnabled, isLocalVideoEnabled, handleAudioChange, toggleVideo, chatOpen, setChatOpen, isLandscape, isDesktop, isMobile, prompt, setPrompt, title, instructorName, instructorId, id, isRecording, setIsRecording }}>
             <section className='conference'>
-                <h2 className='conference__title'>{title}</h2>
+                <h2 className='conference__title'>{title} {isRecording && <FontAwesomeIcon className='recording-active' icon={faCircleDot}/>}</h2>
                 {isConnected ? (
                     <article className={`conference__video-call ${fullscreen ? 'conference__fullscreen' : ''}`}>
                         <ConferenceRoom />

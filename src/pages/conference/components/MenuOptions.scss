@@ -47,13 +47,14 @@
 .menu-options {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     width: 100%;
+    padding: 4px;
     gap: 15px;
 
     &__container {
         display: flex;
         flex-direction: column;
-        padding: 4px;
         gap: 5px;
         align-items: center;
         text-overflow: ellipsis;
@@ -80,4 +81,11 @@
 .leave-btn {
     padding: 1% 2% !important;
     margin-right: 4px;
+}
+.test {
+    margin-top: 10px;
+    margin-left: 5px;
+    width: 400px;
+    height: 200px;
+    border: 2px solid black;
 }

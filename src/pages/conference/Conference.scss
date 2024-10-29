@@ -1,11 +1,23 @@
 @import '../../shared.scss';
 
 
+@keyframes recording-active {
+    0% {
+      color: #2ba805;
+    }
+    50% {
+      color: #49e819;
+    }
+    100% {
+      color: #2ba805;
+    }
+  }
+
+
 .conference {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
     padding: 4%;
 
     &__video-call {
@@ -25,4 +37,10 @@
         width: 100vw;
         top: 0;
     }
+}
+
+
+.recording-active {
+    font-size: .8em;
+    animation: recording-active 3s infinite ;
 }
