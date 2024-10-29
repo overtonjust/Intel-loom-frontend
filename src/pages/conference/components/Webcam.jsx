@@ -7,7 +7,7 @@ import defaultImg from '../../../assets/default-profile.png';
 import './Webcam.scss';
 
 const Webcam = ({ peer }) => {
-    const { fullscreen, isLandscape } = useContext(WebcamContext);
+    const { fullscreen, isLandscape, isMobile } = useContext(WebcamContext);
     const { videoRef } = useVideo({
         trackId: peer.auxiliaryTracks[0] || peer.videoTrack
     });
@@ -22,7 +22,7 @@ const Webcam = ({ peer }) => {
                 ref={videoRef}
                 autoPlay={true}
                 muted
-                className={ fullscreen && peer.roleName === 'host' ? isLandscape ? 'webcam__fullscreen-landscape' : 'webcam__fullscreen-portrait' : `webcam__video`}
+                className={ fullscreen && peer.roleName === 'host' ? isLandscape && isMobile ? 'webcam__fullscreen-landscape' : !isLandscape && isMobile && 'webcam__fullscreen-portrait' : `webcam__video`}
                 playsInline 
                 data-testid={peer.auxiliaryTracks[0] ? `screen-${peer.id}` : `video-${peer.id}`}
                 />

@@ -44,7 +44,7 @@ const MenuOptions = () => {
     const peers = useHMSStore(selectPeers);
     const host = peers.find(peer => peer.roleName === 'host');
     const userCam = peers.find(peer => peer.isLocal);    
-    const isHost = host.id === userCam.id;
+    const isHost = host?.id === userCam.id; // testing testing
     const userCount = peers.length;
     const isConnected = useHMSStore(selectIsConnectedToRoom);
     const isLocalScreenShared = useHMSStore(selectIsLocalScreenShared);
