@@ -40,7 +40,7 @@ const ForumPage = () => {
     axios
       .get(`${API}/forums/forum-info/${id}`, { withCredentials: true })
       .then((res) => setForum(res.data))
-      .catch((err) => console.log(err));
+      .catch((err) => navigate('/404'));
   }, [id]);
 
   useEffect(() => {
