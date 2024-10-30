@@ -5,7 +5,7 @@ import axios from "axios";
 
 const Templates = ({API}) => {
   const { fitsOneColumn, fitsTwoColumns, fitsThreeColumns, loading, setLoading } = useContext(UserContext);
-  const [myTemplates, setMyTemplates] = useState(null);
+  const [myTemplates, setMyTemplates] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {

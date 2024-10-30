@@ -12,7 +12,7 @@ import ClassCard from '../../shared components/ClassCard'
 
 const Home = () => {
   const { API, fitsOneColumn, fitsTwoColumns, fitsThreeColumns, loading, setLoading } = useContext(UserContext)
-  const [allClasses, setAllClasses] = useState(null)
+  const [allClasses, setAllClasses] = useState([])
   const [classesDisplay, setClassesDisplay] = useState([])
   const [moreClasses, setMoreClasses] = useState(true)
   const [page, setPage] = useState(1)

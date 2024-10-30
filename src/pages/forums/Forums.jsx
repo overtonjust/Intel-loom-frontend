@@ -8,7 +8,7 @@ import profilePic from '../../assets/default-profile.png';
 
 const Forums = () => {
   const { API, loading, setLoading } = useContext(UserContext);
-  const [forums, setForums] = useState(null);
+  const [forums, setForums] = useState([]);
   const [page, setPage] = useState(1);
   const [morePosts, setMorePosts] = useState(false);
   const [post, setPost] = useState("");
