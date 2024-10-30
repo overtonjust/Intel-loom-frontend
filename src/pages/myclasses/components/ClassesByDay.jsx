@@ -6,7 +6,7 @@ import { formatDateKey } from "../../../../utils";
 
 const ClassesByDay = ({API}) => {
   const { fitsOneColumn, fitsTwoColumns, fitsThreeColumns, loading, setLoading } = useContext(UserContext);
-  const [myClasses, setMyClasses] = useState(null);
+  const [myClasses, setMyClasses] = useState([]);
 
   useEffect(() => {
     setLoading(true)
