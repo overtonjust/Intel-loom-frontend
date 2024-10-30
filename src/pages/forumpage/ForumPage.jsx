@@ -12,7 +12,13 @@ const ForumPage = () => {
   const { API, loading, setLoading } = useContext(UserContext);
   const { id } = useParams();
   const navigate = useNavigate();
-  const [forum, setForum] = useState({});
+  const [forum, setForum] = useState({
+    post: '',
+    userId: 0,
+    username: '',
+    profilePicture: '',
+    postId: 0
+  });
   const [responses, setResponses] = useState([]);
   const [moreResponses, setMoreResponses] = useState(false);
   const [page, setPage] = useState(1);

@@ -15,7 +15,21 @@ const ClassPage = () => {
     useContext(UserContext);
   const navigate = useNavigate();
   const { id } = useParams();
-  const [classData, setClassData] = useState({});
+  const [classData, setClassData] = useState({
+    classDates: [],
+    classPictures: [],
+    description: '',
+    instructor: {
+      bio: '',
+      email: '',
+      firstName: '',
+      instructorId: 0,
+      lastName: '',
+      profilePicture: ''
+    },
+    moreClassesFromInstructor: [],
+    title: ''
+  });
 
   const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
 

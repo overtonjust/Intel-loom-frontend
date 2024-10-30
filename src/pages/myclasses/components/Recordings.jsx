@@ -13,7 +13,7 @@ const Recordings = ({ API }) => {
     setLoading
   } = useContext(UserContext);
   const [userRecordings, setUserRecordings] = useState([]);
-  const [instructorRecordings, setInstructorRecordings] = useState(null);
+  const [instructorRecordings, setInstructorRecordings] = useState([]);
   const [view, setView] = useState("classes");
 
   useEffect(() => {

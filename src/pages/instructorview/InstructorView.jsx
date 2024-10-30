@@ -13,7 +13,15 @@ const InstructorView = () => {
   const { API, isTabletOrMobile, loading, setLoading } = useContext(UserContext);
   const { id } = useParams();
   const navigate = useNavigate();
-  const [lectureInfo, setLectureInfo] = useState({});
+  const [lectureInfo, setLectureInfo] = useState({
+    classStudents: [],
+    classInfo: {
+      title: '',
+      classId: 0
+    },
+    classEnd: '',
+    classStart: ''
+  });
 
   useEffect(() => {
     setLoading(true)
