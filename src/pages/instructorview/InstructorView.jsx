@@ -10,18 +10,23 @@ import axios from "axios";
 import StudentCard from "./components/StudentCard";
 
 const InstructorView = () => {
-  const { API, isTabletOrMobile } = useContext(UserContext);
+  const { API, isTabletOrMobile, loading, setLoading } = useContext(UserContext);
   const { id } = useParams();
   const navigate = useNavigate();
   const [lectureInfo, setLectureInfo] = useState(null);
 
   useEffect(() => {
+    setLoading(true)
+
     axios(`${API}/classes/class-date-info/${id}`, { withCredentials: true })
-      .then((res) => setLectureInfo(res.data))
+      .then((res) => {
+        setLectureInfo(res.data)
+        setLoading(false)
+      })
       .catch((err) => console.error(err));
   }, [id]);
 
-  if (!lectureInfo) {
+  if (loading) {
     return (
       <main className="loading">
         <h1>Loading...</h1>

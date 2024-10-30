@@ -25,7 +25,7 @@ const DefaultLayout = () => {
   });
   const [message, setMessage] = useState(false);
   const [classDateId, setClassDateId] = useState('');
-
+  const [loading, setLoading] = useState(false);
   const [shouldScroll, setShouldScroll] = useState(false);
 
   const scrollRef = useRef(null);
@@ -65,7 +65,9 @@ const DefaultLayout = () => {
         fitsTwoColumns,
         fitsThreeColumns,
         classDateId,
-        setClassDateId
+        setClassDateId,
+        loading,
+        setLoading
       }}
     >
       {isTabletOrMobile ? (

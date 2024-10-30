@@ -12,15 +12,21 @@ import bannerImage from '../../assets/banner-img.png'
 
 
 const UserPage = () => {
-  const { API, user, setUser, setMessage } = useContext(UserContext);
+  const { API, user, setUser, setMessage, loading, setLoading } = useContext(UserContext);
   const navigate = useNavigate();
   const { id } = useParams();
   const [userData, setUserData] = useState(null);
   const [settingsMenu, setSettingsMenu] = useState(false)
 
   useEffect(() => {
+    setLoading(true)
+
     axios.get(`${API}/users/profile/${id}`, {withCredentials: true})
-      .then(res => setUserData(res.data))
+      .then(res => 
+        {
+        setUserData(res.data)
+        setLoading(false)
+      })
       .catch(err => console.log(err));
   }, [id]);
 
@@ -33,7 +39,7 @@ const UserPage = () => {
       .catch(err => setMessage('Failed to sign out'));
   };
 
-  if (!userData) {
+  if (loading) {
     return (
       <main className="loading">
         <h1>Loading...</h1>
