@@ -1,5 +1,5 @@
-import { useEffect, useState, useContext} from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 import { UserContext } from "../../context/UserContext";
@@ -11,17 +11,19 @@ import MobileCarousel from "../../shared components/carousels/MobileCarousel";
 const ClassPage = () => {
   const { API, setShouldScroll, setMessage } = useContext(UserContext);
   const { id } = useParams();
+  const navigate = useNavigate();
   const [classData, setClassData] = useState(null);
 
   const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
 
   useEffect(() => {
-    axios.get(`${API}/classes/class-info/${id}`, {withCredentials: true})
+    axios.get(`${API}/classes/class-info/${id}`, { withCredentials: true })
       .then(res => {
         setClassData(res.data)
         setShouldScroll(true)
       })
       .catch(err => console.log(err));
+    navigate('/404');
   }, [API, id]);
 
   if (!classData) {
@@ -33,12 +35,12 @@ const ClassPage = () => {
   const display = `${sentences[0]}... `;
   const { moreClassesFromInstructor } = classData;
 
-  const classDatesFiltered = classData.classDates.filter(({classStart}) => {
+  const classDatesFiltered = classData.classDates.filter(({ classStart }) => {
     const now = moment();
     const oneHourBefore = moment(classStart).subtract(1, "hours");
     return now.isBefore(oneHourBefore);
   });
-  
+
   const handleChange = (e) => {
     setSelectedTimeSlot(e.target.value);
   };
@@ -51,7 +53,7 @@ const ClassPage = () => {
         { withCredentials: true }
       )
       .then((res) => {
-        const idx = classData.classDates.findIndex(({classDateId})=> classDateId == selectedTimeSlot);
+        const idx = classData.classDates.findIndex(({ classDateId }) => classDateId == selectedTimeSlot);
         classData.classDates.splice(idx, 1);
         setMessage("Class successfully booked!");
       })
@@ -144,7 +146,7 @@ const ClassPage = () => {
         <h3 className="class-container__more-classes-header">More from {classData.instructor.firstName}:</h3>
         <div className="class-container__more-classes-carousel">
           {(moreClassesFromInstructor.length > 0) && moreClassesFromInstructor.map((classData) => (
-            <ClassCard key={classData.classId} classInfo={classData}/>
+            <ClassCard key={classData.classId} classInfo={classData} />
           ))}
         </div>
       </div>

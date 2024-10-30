@@ -107,6 +107,7 @@ const CreateClass = () => {
       })
       .catch((err) => {
         setMessage('Problem with creating class, try again later. If problem persists, contact support.');
+        navigate('/404');
       });
   };
 

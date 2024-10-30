@@ -1,25 +1,29 @@
-import { useEffect, useState } from "react"; 
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 
 import axios from "axios";
 
 const InstructorPage = () => {
-    const { id } = useParams(); 
+    const { id } = useParams();
+    const navigate = { useNavigate };
     const [instructorData, setInstructorData] = useState(null);
     console.log(instructorData)
 
     useEffect(() => {
         const API = import.meta.env.VITE_API_URL;
-        
 
-        
+
+
         axios.get(`${API}/instructors/${id}`)
-            .then(res => 
-                
+            .then(res =>
+
                 setInstructorData(res.data))
-            .catch(err => console.log(err));
-    }, [id]);
+            .catch(err => {
+                console.log(err)
+                navigate('/404');
+            });
+    }, [id], navigate);
 
     // Display loading message if instructorData is not yet available
     if (!instructorData) {

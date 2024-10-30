@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import axios from "axios";
 import moment from "moment";
@@ -9,6 +9,7 @@ import "./ClassTemplate.scss";
 const ClassTemplate = () => {
   const { API, setMessage } = useContext(UserContext);
   const { id } = useParams();
+  const navigate = useNavigate();
   const [classData, setClassData] = useState(null);
   /* console.log(classData) */
   const [addClassForm, setAddClassForm] = useState(false);
@@ -51,6 +52,7 @@ const ClassTemplate = () => {
       })
       .then((res) => setClassData(res.data))
       .catch((err) => console.log(err));
+    navigate("/404");
   }, [id]);
 
   return (

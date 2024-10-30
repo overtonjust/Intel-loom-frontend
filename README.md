@@ -71,9 +71,3 @@ After starting the frontend server, you can interact with the application via th
 
 - Conference Page: Join live classes where instructors and students can interact in real-time using video and chat functionalities.
 
-### Development Team
-- ### [Nicole Marin](https://github.com/marinn6)
-- ### [Erika Medina](https://github.com/Erimed33) 
-- ### [Justin Overton](https://github.com/overtonjust)
-- ### [Marco Quispe](https://github.com/mquispe96)  
-- ### [Chris Sanchez](https://github.com/CSAN7690) 

@@ -1,5 +1,6 @@
 // Dependencies
 import { useEffect, useState, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
 import axios from 'axios'
 import SearchBar from '../../shared components/SearchBar'
@@ -12,6 +13,7 @@ import ClassCard from '../../shared components/ClassCard'
 
 const Home = () => {
   const { API } = useContext(UserContext)
+  const { navigate } = useNavigate;
   const [allClasses, setAllClasses] = useState([])
   const [classesDisplay, setClassesDisplay] = useState([])
   const [moreClasses, setMoreClasses] = useState(true)
@@ -24,19 +26,20 @@ const Home = () => {
         setMoreClasses(res.data.moreClasses)
       })
       .catch(err => console.log(err))
+    navigate('/404');
   }, [page])
 
 
   return (
     <main className='home-container'>
-      <SearchBar classes={allClasses} setDisplay={setClassesDisplay}/>
+      <SearchBar classes={allClasses} setDisplay={setClassesDisplay} />
       <div className='classes'>
         {classesDisplay.map((classInfo) => (
-          <ClassCard key={classInfo?.classId} classInfo={classInfo}/>
+          <ClassCard key={classInfo?.classId} classInfo={classInfo} />
         ))}
       </div>
-      {(moreClasses && allClasses.length > 0) && 
-        <FaAnglesDown onClick={() => setPage((prevState) => prevState+= 1)} className='home-container__more' size={30}/>
+      {(moreClasses && allClasses.length > 0) &&
+        <FaAnglesDown onClick={() => setPage((prevState) => prevState += 1)} className='home-container__more' size={30} />
       }
     </main>
   )
