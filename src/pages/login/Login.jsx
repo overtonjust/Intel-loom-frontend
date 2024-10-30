@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../../context/UserContext";
 import { LuEye, LuEyeOff } from "react-icons/lu";
@@ -10,8 +10,11 @@ import "./Login.scss";
 const Login = () => {
   const { API, setUser, setMessage } = useContext(UserContext);
   const navigate = useNavigate();
+  const location = useLocation();
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
+  const getPath = location.state?.from?.pathname || "/";
+  const from = getPath === "/login" ? "/" : getPath;
 
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -29,13 +32,13 @@ const Login = () => {
       return;
     }
     axios
-      .post(`${API}/users/login`, credentials)
+      .post(`${API}/users/login`, credentials, { withCredentials: true })
       .then((res) => {
         setUser(res.data);
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((err) => {
-        if(err.response.data.error) {
+        if (err.response.data.error) {
           setMessage(err.response.data.error);
           return;
         }
@@ -87,14 +90,14 @@ const Login = () => {
           </div>
         </section>
         <section className="login-form__group main-btns">
-          <button className="button-orange" type='button' onClick={() => navigate(-1)}>Cancel</button>
+          <button className="button-orange" type='button' onClick={() => navigate('/')}>Cancel</button>
           <button className="button-orange" type="submit">Log In</button>
         </section>
         <section className="login-form__group">
           <p className="forgot-password login-form__text">Forgot Password?</p>
         </section>
         <section className="login-form__group ">
-          <p className="button-large-blue">Register</p>
+          <button className="button-large-blue" type="button" onClick={() => navigate('/register')}>Register</button>
         </section>
       </form>
     </main>

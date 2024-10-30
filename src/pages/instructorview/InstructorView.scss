@@ -1,0 +1,30 @@
+@import '../../shared.scss';
+
+
+.lectures {
+    display: flex;
+    flex-direction: column;
+    gap: 2%;
+    padding: 2%;
+
+    &__title {
+        color: $blue;
+    }
+
+    &__students-grid {
+        height: fit-content;
+        place-items: center;
+        padding-bottom: 2%;
+        row-gap: 10px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        overflow-y: scroll;
+        scrollbar-width: none;
+    }
+}
+
+
+.alert {
+    color: $orange;
+    padding: 0;
+}

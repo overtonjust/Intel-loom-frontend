@@ -6,7 +6,7 @@ import Card from '@mui/joy/Card';
 
 const data = [
   { 
-    src: 'https://unsplash.com/photos/woman-in-black-tank-top-sitting-on-blue-sofa-chair-69wEv-G2W_s',
+    src: 'https://images.unsplash.com/photo-woman-in-black-tank-top-sitting-on-blue-sofa-chair-69wEv-G2W_s',
     youtubeUrl: 'https://www.youtube.com/embed/W6NZfCO5SIk',
     key: 1,
     // title: 'Night view',
@@ -14,15 +14,17 @@ const data = [
   },
   {
     src: 'https://images.unsplash.com/photo-1527549993586-dff825b37782',
+    youtubeUrl: 'https://www.youtube.com/embed/kJOqIaGwQ7Y',
     key: 2,
-    title: 'Lake view',
-    description: '4.74M views',
+    // title: 'Lake view',
+    // description: '4.74M views',
   },
   {
     src: 'https://images.unsplash.com/photo-1532614338840-ab30cf10ed36',
+    youtubeUrl: 'https://www.youtube.com/embed/kqtD5dpn9C8',
     key: 3,
-    title: 'Mountain view',
-    description: '3.98M views',
+    // title: 'Mountain view',
+    // description: '3.98M views',
   },
 ];
 

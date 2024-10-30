@@ -1,0 +1,61 @@
+@import "../../shared.scss";
+
+.class-template-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  color: $blue;
+  &__info {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  &__add {
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
+
+.dates-select-menu {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+  select {
+    padding: 0.5rem;
+    border: 1px solid $blue;
+    border-radius: 0.5rem;
+  }
+}
+
+.add-date-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background: white;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 1rem 0.2rem rgb(163, 167, 169);
+}
+
+.add-date-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  input {
+    padding: 0.5rem;
+    border: 1px solid $blue;
+    border-radius: 0.5rem;
+  }
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-evenly;
+  gap: .5rem;
+}

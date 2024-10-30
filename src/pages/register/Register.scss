@@ -1,0 +1,90 @@
+@import "../../shared.scss";
+
+.sign-up-form {
+  width: 90%;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  margin: 2rem auto;
+  &__group {
+    width: 100%;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+  }
+}
+
+.instructor-answers {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 1rem;
+  &__opt {
+    input {
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+.disclaimer {
+  font-size: 13px;
+  text-align: center;
+}
+
+.text {
+  color: $blue;
+}
+
+.validations {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.steps-btns {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.profile-pic {
+  margin-left: 1rem;
+}
+
+.profile-preview {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.error-message {
+  color: red;
+  justify-self: center;
+  text-align: center;
+}
+
+.instructor-links {
+  list-style: none;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: scroll;
+  height: 150px;
+  padding: 1rem 0;
+  li {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-around;
+    align-items: center;
+    width: 300px;
+  }
+}
+
+.delete-link {
+  color: white;
+  background: red;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: .2rem;
+  border-radius: 50%;
+}
