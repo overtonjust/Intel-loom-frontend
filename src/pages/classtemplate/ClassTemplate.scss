@@ -1,6 +1,9 @@
 @import "../../shared.scss";
 
 .class-template-container {
+  margin: 0 auto;
+  max-width: 430px;
+  background: white;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
