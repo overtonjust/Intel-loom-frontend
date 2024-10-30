@@ -36,7 +36,6 @@ const MenuOptions = () => {
     const isDesktopOrLaptop = useMediaQuery({
         query: '(min-width: 1224px)'
       })
-      console.log(classDateId)
     const mediaRecorderRef = useRef(null);
     const chunksRef = useRef([]);
       
