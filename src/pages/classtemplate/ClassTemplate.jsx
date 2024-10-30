@@ -10,7 +10,6 @@ const ClassTemplate = () => {
   const { API, setMessage } = useContext(UserContext);
   const { id } = useParams();
   const [classData, setClassData] = useState(null);
-  /* console.log(classData) */
   const [addClassForm, setAddClassForm] = useState(false);
   const [classDates, setClassDates] = useState({
     classStart: "",
@@ -52,6 +51,14 @@ const ClassTemplate = () => {
       .then((res) => setClassData(res.data))
       .catch((err) => console.log(err));
   }, [id]);
+
+  if (!classData) {
+    return (
+      <main className="loading">
+        <h1>Loading...</h1>
+      </main>
+    )
+  }
 
   return (
     <main className="class-template-container">

@@ -10,8 +10,8 @@ const Recordings = ({ API }) => {
     fitsTwoColumns,
     fitsThreeColumns,
   } = useContext(UserContext);
-  const [userRecordings, setUserRecordings] = useState([]);
-  const [instructorRecordings, setInstructorRecordings] = useState([]);
+  const [userRecordings, setUserRecordings] = useState(null);
+  const [instructorRecordings, setInstructorRecordings] = useState(null);
   const [view, setView] = useState("classes");
 
   useEffect(() => {
@@ -32,6 +32,14 @@ const Recordings = ({ API }) => {
         .catch((err) => console.error(err));
     }
   }, []);
+
+  if (!userRecordings && !instructorRecordings) {
+    return (
+      <main className="loading">
+        <h1>Loading...</h1>
+      </main>
+    )
+  }
 
   return (
     <main className="recordings-container">

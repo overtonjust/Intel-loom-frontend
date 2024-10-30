@@ -12,7 +12,7 @@ const ForumPage = () => {
   const { API } = useContext(UserContext);
   const { id } = useParams();
   const navigate = useNavigate();
-  const [forum, setForum] = useState({});
+  const [forum, setForum] = useState(null);
   const [responses, setResponses] = useState([]);
   const [moreResponses, setMoreResponses] = useState(false);
   const [page, setPage] = useState(1);
@@ -56,6 +56,14 @@ const ForumPage = () => {
       })
       .catch((err) => console.log(err));
   }, [page]);
+
+  if (!forum) {
+    return (
+      <main className="loading">
+        <h1>Loading...</h1>
+      </main>
+    )
+  }
 
   const { post, userId, username, profilePicture, postId } = forum;
 

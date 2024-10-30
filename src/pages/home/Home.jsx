@@ -12,7 +12,7 @@ import ClassCard from '../../shared components/ClassCard'
 
 const Home = () => {
   const { API, fitsOneColumn, fitsTwoColumns, fitsThreeColumns } = useContext(UserContext)
-  const [allClasses, setAllClasses] = useState([])
+  const [allClasses, setAllClasses] = useState(null)
   const [classesDisplay, setClassesDisplay] = useState([])
   const [moreClasses, setMoreClasses] = useState(true)
   const [page, setPage] = useState(1)
@@ -20,12 +20,22 @@ const Home = () => {
   useEffect(() => {
     axios(`${API}/classes?page=${page}`, { withCredentials: true })
       .then(res => {
+        if (page === 1) {
+          setAllClasses([])
+        }
         setAllClasses(prev => prev.concat(res.data.classes))
         setMoreClasses(res.data.moreClasses)
       })
       .catch(err => console.log(err))
   }, [page])
 
+  if (!allClasses) {
+    return (
+      <main className="loading">
+        <h1>Loading...</h1>
+      </main>
+    )
+  }
 
   return (
     <main className='home-container'>
