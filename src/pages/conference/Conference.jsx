@@ -105,21 +105,23 @@ const Conference = () => {
 
     return (
         <WebcamContext.Provider value={{ fullscreen, setFullscreen, instructorName, showParticipants, setShowParticipants, isLocalAudioEnabled, isLocalVideoEnabled, handleAudioChange, toggleVideo, chatOpen, setChatOpen, isLandscape, isDesktop, isMobile, prompt, setPrompt, title, instructorName, instructorId, id, isRecording, setIsRecording }}>
-            <section className='conference'>
-                <h2 className='conference__title'>{title} {isRecording && <FontAwesomeIcon className='recording-active' icon={faCircleDot}/>}</h2>
-                {isConnected ? (
-                    <article className={`conference__video-call ${fullscreen ? 'conference__fullscreen' : ''}`}>
-                        <ConferenceRoom />
-                        <MenuOptions />
-                        {showParticipants  && <Participants/>}
-                        {chatOpen &&  <Chat/>}
-                    </article>
-                ) : prompt ? (
-                    <Prompt promptObj={prompt} setPrompt={setPrompt}/> 
-                ) : (
-                    <div>Loading...</div>
-                )}
-                <ConferenceInfo/>
+            <section className={`${isDesktop ? 'conference__grid' : 'conference' }`}>
+                <article className={isDesktop ? 'conference__column' : ''}>
+                    <h2 className='conference__title'>{title} {isRecording && <FontAwesomeIcon className='recording-active' icon={faCircleDot}/>}</h2>
+                    {isConnected ? (
+                        <article className={`conference__video-call ${fullscreen ? 'conference__fullscreen' : ''}`}>
+                            <ConferenceRoom />
+                            <MenuOptions />
+                            {showParticipants  && <Participants/>}
+                            {chatOpen &&  <Chat/>}
+                        </article>
+                    ) : prompt ? (
+                        <Prompt promptObj={prompt} setPrompt={setPrompt}/> 
+                    ) : (
+                        <div>Loading...</div>
+                    )}
+                    <ConferenceInfo/>
+                </article>
             </section>
         </WebcamContext.Provider>
     );

@@ -20,6 +20,7 @@ import {
     faVideoSlash,
     faUserPlus,
     faUpRightAndDownLeftFromCenter,
+    faDownLeftAndUpRightToCenter,
     faMessage,
     faArrowUpFromBracket
 } from '@fortawesome/free-solid-svg-icons'
@@ -253,7 +254,7 @@ const MenuOptions = () => {
                     </article>
                 }
                 <article className='menu-options__container' onClick={() => setFullscreen(!fullscreen)}>
-                    <FontAwesomeIcon className='menu-options__icon' icon={faUpRightAndDownLeftFromCenter}/>
+                    <FontAwesomeIcon className='menu-options__icon' icon={fullscreen ? faDownLeftAndUpRightToCenter : faUpRightAndDownLeftFromCenter }/>
                     {isDesktopOrLaptop && 
                         <span className='menu-options__label'>{fullscreen ? 'Close' : 'Fullscreen'}</span>
                     }

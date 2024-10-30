@@ -7,7 +7,7 @@ import defaultImg from '../../../assets/default-profile.png';
 import './Webcam.scss';
 
 const Webcam = ({ peer }) => {
-    const { fullscreen, isLandscape, isMobile } = useContext(WebcamContext);
+    const { fullscreen, isLandscape, isMobile, isDesktop } = useContext(WebcamContext);
     const { videoRef } = useVideo({
         trackId: peer.auxiliaryTracks[0] || peer.videoTrack
     });
