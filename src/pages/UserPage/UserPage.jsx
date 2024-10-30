@@ -2,21 +2,21 @@ import {useState, useEffect, useContext} from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { UserContext } from '../../context/UserContext';
-import { FaLinkedin, FaYoutube } from "react-icons/fa";
+import { FaLinkedin, FaYoutube, FaGitlab, FaGithub } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
-import './UserPageMobile.scss'
+import './UserPage.scss'
 import MobileCarousel from '../../shared components/carousels/MobileCarousel';
 import bannerImage from '../../assets/banner-img.png'
 
 
 const UserPage = () => {
-  const { API, user, setUser, setMessage } = useContext(UserContext);
+  const { API, setUser, setMessage, fitsTwoColumns, user } = useContext(UserContext);
   const navigate = useNavigate();
   const { id } = useParams();
   const [userData, setUserData] = useState(null);
   const [settingsMenu, setSettingsMenu] = useState(false)
   const [isInstructor, setIsInstructor] = useState(false)
-
+console.log(user, userData)
   useEffect(() => {
     axios.get(`${API}/users/profile/${id}`, {withCredentials: true})
       .then(res => {
@@ -38,38 +38,42 @@ const UserPage = () => {
   };
 
 return (
-  <div className='userPage-container'>
-    <div className='banner-container'>
-      <img className='banner' src={bannerImage} alt="Banner Image" />
-    </div>
-
-
-    <div className='userPage-info-container'>
-      <div className='profile-picture-container'>
-        <img className='profile-picture' src={userData?.profilePicture} alt={userData?.firstName} />
+  <main className={`userpage-container ${fitsTwoColumns ? 'userpage-mobile' : (!fitsTwoColumns && isInstructor) ? 'userpage-desktop-instructor' :
+  'userpage-desktop-student'}`}>
+    <section className={`userpage-container__main-user ${fitsTwoColumns ? 'userpage-mobile__main-user' :  (!fitsTwoColumns && isInstructor) ? 'userpage-desktop-instructor__main-user' : 'userpage-desktop-student__main-user'} ${!fitsTwoColumns ? 'card-desktop' : ''}`}>
+      <div className='banner-container'>
+        <img className='banner' src={bannerImage} alt="Banner Image" />
       </div>
-      <h2 className='userPage-name'>{userData?.firstName + " " + userData?.lastName}</h2>
-      <p>Rating: {userData?.rating}</p>
-      <div className='userPage-bio'>
-        <p>{userData?.bio}</p>
 
-        <div className='userPage-socials'>
-          <FaLinkedin size={25} />
-          <MdOutlineEmail {...userData?.info?.email} size={31}/> 
-          <FaYoutube size={31}/>
+      <div className={`user-info ${fitsTwoColumns ? 'user-info-bottom-border' : ''}`}>
+        <div className='user-info__profile-pic-container'>
+          <img className='profile-picture' src={userData?.profilePicture} alt={userData?.firstName} />
+        </div>
+        <h2 className='user-info__name'>{userData?.firstName + " " + userData?.lastName}</h2>
+        {isInstructor && <p>Rating: {userData?.rating}</p>}
+        <div className='user-info__bio'>
+          <p>{userData?.bio}</p>
+          <div className='user-info__socials'>
+            <MdOutlineEmail {...userData?.info?.email} size={31}/> 
+            {userData?.linkedin && <FaLinkedin size={25} />}
+            {userData?.youtube && <FaYoutube size={31}/>}
+            {userData?.github && <FaGithub size={31}/>}
+            {userData?.gitlab && <FaGitlab size={31}/>}
+          </div>
         </div>
       </div>
-    </div>
-
+    </section>
     {isInstructor && 
-    <>
+    <section className={`userpage-container__instructor-info ${!fitsTwoColumns ? 'userpage-desktop-instructor__instructor-info' : 'userpage-mobile__instructor-info'} ${!fitsTwoColumns ? 'card-desktop' : ''}`}>
     <div className='userPage-videos'>
       <div className='video-header'>
         <h3>Videos</h3>
-        <div className="videos_buttons">
-          <button className='videos-upload_button'>Upload +</button>
-          <button className='videos-edit_button'>Manage</button>
-        </div>
+        {user.userId === userData?.userId && 
+          <div className="videos_buttons">
+            <button className='button-blue'>Upload +</button>
+            <button className='button-orange'>Manage</button>
+          </div>
+        }
       </div>
       <MobileCarousel links={userData?.instructorLinks}/>
     </div>
@@ -85,25 +89,26 @@ return (
         ))}
       </div>
     </div>
-    </>
+    </section>
     }
-
-
-    <div className='buttons'>
-      <button 
-        className='button-blue' 
-        onClick={() => setSettingsMenu(true)}
-      >
-        Settings
-      </button>
-      <button 
-        onClick={signout} 
-        className='signout_button'
+      <section className='userpage-container__buttons'>
+    {user.userId === userData?.userId && 
+    <>
+        <button 
+          className='button-blue' 
+          onClick={() => setSettingsMenu(true)}
         >
-          Sign Out
-      </button>
-    </div>
-
+          Settings
+        </button>
+        <button 
+          onClick={signout} 
+          className='button-orange'
+          >
+            Sign Out
+        </button>
+        </>
+    }
+      </section>
     {settingsMenu && 
       <div className='settings'>
         <div className='settings__card'>
@@ -139,7 +144,7 @@ return (
         </div>
       </div> 
     }
-  </div>
+  </main>
 )
 }
 
