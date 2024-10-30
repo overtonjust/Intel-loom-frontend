@@ -19,9 +19,9 @@ function MobileCarousel({ links, imageArr, alt }) {
     )
   } else if (links) {
     return (
-      <Carousel>
-        {links.map(({link: li}) => (
-          <Carousel.Item>
+      <Carousel style={{maxWidth: '430px', margin: '0 auto'}}>
+        {links.map(({link: li}, index) => (
+          <Carousel.Item key={index}>
             <iframe
               width="100%"
               height="260"
