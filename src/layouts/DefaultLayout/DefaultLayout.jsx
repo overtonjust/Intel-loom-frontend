@@ -24,7 +24,8 @@ const DefaultLayout = () => {
     return savedUser ? JSON.parse(savedUser) : false;
   });
   const [message, setMessage] = useState(false);
-
+  const [classDateId, setClassDateId] = useState('');
+  const [loading, setLoading] = useState(false);
   const [shouldScroll, setShouldScroll] = useState(false);
 
   const scrollRef = useRef(null);
@@ -51,6 +52,7 @@ const DefaultLayout = () => {
   const fitsThreeColumns = useMediaQuery({ query: "(max-width: 1280px)" });
 
   return (
+
     <UserContext.Provider
       value={{
         user,
@@ -62,6 +64,10 @@ const DefaultLayout = () => {
         fitsOneColumn,
         fitsTwoColumns,
         fitsThreeColumns,
+        classDateId,
+        setClassDateId,
+        loading,
+        setLoading
       }}
     >
       {isTabletOrMobile ? (

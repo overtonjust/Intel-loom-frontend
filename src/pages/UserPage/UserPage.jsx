@@ -10,21 +10,23 @@ import bannerImage from '../../assets/banner-img.png'
 
 
 const UserPage = () => {
-  const { API, setUser, setMessage, fitsTwoColumns, user } = useContext(UserContext);
+  const { API, user, setUser, setMessage, loading, setLoading, fitsTwoColumns } = useContext(UserContext);
   const navigate = useNavigate();
   const { id } = useParams();
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState({});
   const [settingsMenu, setSettingsMenu] = useState(false)
   const [isInstructor, setIsInstructor] = useState(false)
 console.log(user, userData)
   useEffect(() => {
+    setLoading(true)
+
     axios.get(`${API}/users/profile/${id}`, {withCredentials: true})
-      .then(res => {
+      .then(res => 
+        {
         setUserData(res.data)
         setIsInstructor(res.data.isInstructor)
-        
+        setLoading(false)
       })
-
       .catch(err => console.log(err));
   }, [id]);
 
@@ -36,6 +38,14 @@ console.log(user, userData)
       })
       .catch(err => setMessage('Failed to sign out'));
   };
+
+  if (loading) {
+    return (
+      <main className="loading">
+        <h1>Loading...</h1>
+      </main>
+    )
+  }
 
 return (
   <main className={`userpage-container ${fitsTwoColumns ? 'userpage-mobile' : (!fitsTwoColumns && isInstructor) ? 'userpage-desktop-instructor' :

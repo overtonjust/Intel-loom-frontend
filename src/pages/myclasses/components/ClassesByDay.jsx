@@ -5,15 +5,28 @@ import ClassCard from "../../../shared components/ClassCard";
 import { formatDateKey } from "../../../../utils";
 
 const ClassesByDay = ({API}) => {
-  const { fitsOneColumn, fitsTwoColumns, fitsThreeColumns } = useContext(UserContext);
+  const { fitsOneColumn, fitsTwoColumns, fitsThreeColumns, loading, setLoading } = useContext(UserContext);
   const [myClasses, setMyClasses] = useState([]);
 
   useEffect(() => {
+    setLoading(true)
+
     axios
       .get(`${API}/users/user-classes`, { withCredentials: true })
-      .then((res) => setMyClasses(res.data))
+      .then((res) => {
+        setMyClasses(res.data)
+        setLoading(false)
+      })
       .catch((err) => console.log(err));
   }, []);
+
+  if (loading) {
+    return (
+      <main className="loading">
+        <h1>Loading...</h1>
+      </main>
+    )
+  }
 
   return (
     <>

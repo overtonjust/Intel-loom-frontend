@@ -9,16 +9,21 @@ const Recordings = ({ API }) => {
     fitsOneColumn,
     fitsTwoColumns,
     fitsThreeColumns,
+    loading,
+    setLoading
   } = useContext(UserContext);
   const [userRecordings, setUserRecordings] = useState([]);
   const [instructorRecordings, setInstructorRecordings] = useState([]);
   const [view, setView] = useState("classes");
 
   useEffect(() => {
+    setLoading(true)
+
     axios
       .get(`${API}/users/user-class-recordings`, { withCredentials: true })
       .then((res) => {
         setUserRecordings(res.data);
+        setLoading(false)
       })
       .catch((err) => console.error(err));
     if (isInstructor) {
@@ -32,6 +37,14 @@ const Recordings = ({ API }) => {
         .catch((err) => console.error(err));
     }
   }, []);
+
+  if (loading) {
+    return (
+      <main className="loading">
+        <h1>Loading...</h1>
+      </main>
+    )
+  }
 
   return (
     <main className="recordings-container">

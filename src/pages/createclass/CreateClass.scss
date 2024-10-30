@@ -8,6 +8,7 @@
   padding: 1rem;
   &__header {
     h2 {
+      background: white;
       color: $blue;
     }
   }
@@ -15,6 +16,10 @@
     display: grid;
     grid-template-rows: repeat(8, auto);
     gap: 1rem;
+    background: white;
+    padding: 1rem;
+    border-radius: 1.2rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
   }
 }
 

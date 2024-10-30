@@ -9,10 +9,16 @@ import { TbArrowBackUpDouble } from "react-icons/tb";
 import profilePic from '../../assets/default-profile.png';
 
 const ForumPage = () => {
-  const { API } = useContext(UserContext);
+  const { API, loading, setLoading } = useContext(UserContext);
   const { id } = useParams();
   const navigate = useNavigate();
-  const [forum, setForum] = useState({});
+  const [forum, setForum] = useState({
+    post: '',
+    userId: 0,
+    username: '',
+    profilePicture: '',
+    postId: 0
+  });
   const [responses, setResponses] = useState([]);
   const [moreResponses, setMoreResponses] = useState(false);
   const [page, setPage] = useState(1);
@@ -39,9 +45,14 @@ const ForumPage = () => {
   };
 
   useEffect(() => {
+    setLoading(true)
+
     axios
       .get(`${API}/forums/forum-info/${id}`, { withCredentials: true })
-      .then((res) => setForum(res.data))
+      .then((res) => {
+        setForum(res.data)
+        setLoading(false)
+      })
       .catch((err) => console.log(err));
   }, [id]);
 
@@ -56,6 +67,14 @@ const ForumPage = () => {
       })
       .catch((err) => console.log(err));
   }, [page]);
+
+  if (loading) {
+    return (
+      <main className="loading">
+        <h1>Loading...</h1>
+      </main>
+    )
+  }
 
   const { post, userId, username, profilePicture, postId } = forum;
 

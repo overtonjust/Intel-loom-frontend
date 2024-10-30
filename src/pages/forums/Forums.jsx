@@ -7,7 +7,7 @@ import { FaAnglesDown } from "react-icons/fa6";
 import profilePic from '../../assets/default-profile.png';
 
 const Forums = () => {
-  const { API } = useContext(UserContext);
+  const { API, loading, setLoading } = useContext(UserContext);
   const [forums, setForums] = useState([]);
   const [page, setPage] = useState(1);
   const [morePosts, setMorePosts] = useState(false);
@@ -32,14 +32,28 @@ const Forums = () => {
   };
 
   useEffect(() => {
+    setLoading(true)
+
     axios
       .get(`${API}/forums?page=${page}`, { withCredentials: true })
       .then((res) => {
+        if (page === 1) {
+          setForums([]);
+        }
         setForums((prev) => prev.concat(res.data.posts));
         setMorePosts(res.data.morePosts);
+        setLoading(false)
       })
       .catch((err) => console.log(err));
   }, [page]);
+
+  if (loading) {
+    return (
+      <main className="loading">
+        <h1>Loading...</h1>
+      </main>
+    )
+  }
 
   return (
     <main className="forums-container">
