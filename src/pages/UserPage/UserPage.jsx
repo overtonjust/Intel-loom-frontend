@@ -80,8 +80,8 @@ return (
         <h3>Videos</h3>
         {user.userId === userData?.userId && 
           <div className="videos_buttons">
-            <button className='button-blue'>Upload +</button>
-            <button className='button-orange'>Manage</button>
+            {/* <button className='button-blue'>Upload +</button>
+            <button className='button-orange'>Manage</button> */}
           </div>
         }
       </div>

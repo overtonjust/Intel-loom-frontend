@@ -1,10 +1,12 @@
 // Dependencies
-import React from "react";
+import React, { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 import { isHourFromStart, isClassDayToday } from "../../utils";
 import "./ClassCard.scss";
 
 const ClassCard = ({ classInfo, dateId, dateInfo }) => {
+  const { setClassDateId } = useContext(UserContext);
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { classId, title, highlightPicture, classPictures, price } = classInfo;
@@ -19,6 +21,9 @@ const ClassCard = ({ classInfo, dateId, dateInfo }) => {
 
   const handleJoinRoom = (e, id) => {
     e.stopPropagation();
+    if(dateId) {
+      setClassDateId(dateId)
+    }
     navigate(`/view/${id}`);
   };
 

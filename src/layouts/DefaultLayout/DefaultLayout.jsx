@@ -24,7 +24,7 @@ const DefaultLayout = () => {
     return savedUser ? JSON.parse(savedUser) : false;
   });
   const [message, setMessage] = useState(false);
-  const [classDateId, setClassDateId] = useState('');
+  const [classDateId, setClassDateId] = useState(0);
   const [loading, setLoading] = useState(false);
   const [shouldScroll, setShouldScroll] = useState(false);
 
