@@ -8,6 +8,7 @@ $blue: #002366;
 $blue-faded: #1e4182e6;
 $card: rgba(0, 35, 102,.5);
 
+
 .button-orange {
     border: none;
     outline: none;
@@ -73,6 +74,12 @@ $card: rgba(0, 35, 102,.5);
         transform: translateY(2px);
         background-color: $blue-faded;
         box-shadow: none;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .button-blue, .button-orange {
+        padding: 1% 2%;
     }
 }
 

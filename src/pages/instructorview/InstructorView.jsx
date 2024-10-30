@@ -10,7 +10,7 @@ import axios from "axios";
 import StudentCard from "./components/StudentCard";
 
 const InstructorView = () => {
-  const { API, isTabletOrMobile, loading, setLoading } = useContext(UserContext);
+  const { API, isTabletOrMobile, loading, setLoading, setClassDateId } = useContext(UserContext);
   const { id } = useParams();
   const navigate = useNavigate();
   const [lectureInfo, setLectureInfo] = useState({
@@ -33,6 +33,11 @@ const InstructorView = () => {
       })
       .catch((err) => console.error(err));
   }, [id]);
+
+  const joinCall = () => {
+    setClassDateId(id)
+    navigate(`/view/${classId}`)
+  }
 
   if (loading) {
     return (
@@ -64,7 +69,7 @@ const InstructorView = () => {
         {isClassDayToday(classStart) && isHourFromStart(classStart) && (
           <button
             className="button-orange join-button"
-            onClick={() => navigate(`/view/${classId}`)}
+            onClick={joinCall}
           >
             Join call
           </button>
