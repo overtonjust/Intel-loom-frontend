@@ -4,20 +4,25 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Templates = ({API}) => {
-  const { fitsOneColumn, fitsTwoColumns, fitsThreeColumns } = useContext(UserContext);
+  const { fitsOneColumn, fitsTwoColumns, fitsThreeColumns, loading, setLoading } = useContext(UserContext);
   const [myTemplates, setMyTemplates] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
+    setLoading(true)
+
     axios
       .get(`${API}/instructors/instructor-class-templates`, {
         withCredentials: true,
       })
-      .then((res) => setMyTemplates(res.data))
+      .then((res) => {
+        setMyTemplates(res.data)
+        setLoading(false)
+      })
       .catch((err) => console.log(err));
   }, []);
 
-  if (!myTemplates) {
+  if (loading) {
     return (
       <main className="loading">
         <h1>Loading...</h1>

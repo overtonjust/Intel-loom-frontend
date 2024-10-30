@@ -44,7 +44,7 @@ const MenuOptions = () => {
     const peers = useHMSStore(selectPeers);
     const host = peers.find(peer => peer.roleName === 'host');
     const userCam = peers.find(peer => peer.isLocal);    
-    const isHost = host?.id === userCam.id; // testing testing
+    const isHost = host?.id === userCam.id; 
     const userCount = peers.length;
     const isConnected = useHMSStore(selectIsConnectedToRoom);
     const isLocalScreenShared = useHMSStore(selectIsLocalScreenShared);
@@ -88,7 +88,7 @@ const MenuOptions = () => {
     
             // 5. Get audio stream with error handling
             const audioStream = await navigator.mediaDevices.getUserMedia({ 
-                audio: true,
+                audio: { noiseSuppression: true, echoCancellation: true, autoGainControl: true },
                 video: false 
             });
             

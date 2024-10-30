@@ -11,7 +11,7 @@ import MobileCarousel from "../../shared components/carousels/MobileCarousel";
 import ClassCard from "../../shared components/ClassCard";
 
 const ClassPage = () => {
-  const { API, setShouldScroll, setMessage, fitsTwoColumns, user } =
+  const { API, setShouldScroll, setMessage, fitsTwoColumns, user, loading, setLoading } =
     useContext(UserContext);
   const navigate = useNavigate();
   const { id } = useParams();
@@ -20,16 +20,19 @@ const ClassPage = () => {
   const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
 
   useEffect(() => {
+    setLoading(true)
+
     axios
       .get(`${API}/classes/class-info/${id}`, { withCredentials: true })
       .then((res) => {
         setClassData(res.data);
         setShouldScroll(true);
+        setLoading(false)
       })
       .catch((err) => console.log(err));
   }, [API, id]);
 
-  if (!classData) {
+  if (loading) {
     return (
       <main className="loading">
         <h1>Loading...</h1>
