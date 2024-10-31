@@ -55,9 +55,9 @@ const Webcam = ({ peer }) => {
                         ${fullscreen && peer.roleName === 'guest' ? 'webcam__mini' 
                         : isFullDesktopHost ? 'webcam-desktop__fullscreen-image'
                         : isDesktopHost ? 'webcam-desktop__image'
-                        : isLandscape && isMobile ? 'webcam__image-landscape' 
-                        : !isLandscape && isMobile ? 'webcam__image-portrait' 
-                        : ''} 
+                        : isFullMobileHostLandscape ? 'webcam__image-landscape' 
+                        : isFullMobileHostPortrait ? 'webcam__image-portrait-full' 
+                        : isMobileHostPortrait ? 'webcam__image-portrait' : ''} 
                         ${isFullMobileGuestPortrait  && 'mini-portrait'} `} src={peer.metadata || defaultImg} alt="" /> 
                 ) : null} 
                 <article className={`webcam__name 
