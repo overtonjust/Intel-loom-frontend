@@ -9,7 +9,6 @@ import "./Home.scss";
 import { FaAnglesDown } from "react-icons/fa6";
 import ClassCard from "../../shared components/ClassCard";
 import { TypeAnimation } from "react-type-animation";
-import takingClass from "/taking-class.jpg";
 
 const Home = () => {
   const {

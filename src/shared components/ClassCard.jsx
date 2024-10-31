@@ -6,7 +6,7 @@ import { isHourFromStart, isClassDayToday } from "../../utils";
 import "./ClassCard.scss";
 
 const ClassCard = ({ classInfo, dateId, dateInfo }) => {
-  const { setClassDateId } = useContext(UserContext);
+  const { setClassDateId, fitsOneColumn } = useContext(UserContext);
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { classId, title, highlightPicture, classPictures, price } = classInfo;
@@ -34,7 +34,7 @@ const ClassCard = ({ classInfo, dateId, dateInfo }) => {
           ? () => navigate(`/mylectures/${dateId}`)
           : () => navigate(`/classInfo/${classId}`)
       }
-      className="class"
+      className={`class ${fitsOneColumn ? "class-width-mobile" : "class-width-desktop"}`}
     >
       <h2 className="class__title ">{title}</h2>
       <img
@@ -58,7 +58,7 @@ const ClassCard = ({ classInfo, dateId, dateInfo }) => {
             >
               Join Class
             </button>
-          ) : pathname === "/" ? (
+          ) : pathname === "/" || pathname.includes('classInfo') ? (
             <div className="price-instructor">
               <p className="class__text">
                 {firstName} {lastName?.charAt(0)}
