@@ -11,37 +11,44 @@ import MobileCarousel from "../../shared components/carousels/MobileCarousel";
 import ClassCard from "../../shared components/ClassCard";
 
 const ClassPage = () => {
-  const { API, setShouldScroll, setMessage, fitsTwoColumns, user, loading, setLoading } =
-    useContext(UserContext);
+  const {
+    API,
+    setShouldScroll,
+    setMessage,
+    fitsTwoColumns,
+    user,
+    loading,
+    setLoading,
+  } = useContext(UserContext);
   const navigate = useNavigate();
   const { id } = useParams();
   const [classData, setClassData] = useState({
     classDates: [],
     classPictures: [],
-    description: '',
+    description: "",
     instructor: {
-      bio: '',
-      email: '',
-      firstName: '',
+      bio: "",
+      email: "",
+      firstName: "",
       instructorId: 0,
-      lastName: '',
-      profilePicture: ''
+      lastName: "",
+      profilePicture: "",
     },
     moreClassesFromInstructor: [],
-    title: ''
+    title: "",
   });
 
   const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
 
     axios
       .get(`${API}/classes/class-info/${id}`, { withCredentials: true })
       .then((res) => {
         setClassData(res.data);
         setShouldScroll(true);
-        setLoading(false)
+        setLoading(false);
       })
       .catch((err) => console.log(err));
   }, [API, id]);
@@ -51,7 +58,7 @@ const ClassPage = () => {
       <main className="loading">
         <h1>Loading...</h1>
       </main>
-    )
+    );
   }
 
   const {
@@ -79,7 +86,7 @@ const ClassPage = () => {
   };
 
   const handleSubmit = () => {
-    if(!user) {
+    if (!user) {
       setMessage("Please log in to book a class.");
       return;
     }
