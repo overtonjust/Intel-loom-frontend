@@ -41,8 +41,8 @@
         margin-top: 15%;
         max-height: 400px;
         height: 300px;
-        width: 100vw;
-        border-radius: 0 !important;
+        width: 100%;
+        border-radius: .8em;
         object-fit: fill;
     }
     
@@ -61,6 +61,11 @@
         height: 100%;
         width: 100%;
         border-radius: .8em;
+    }
+
+    &__image-portrait {
+        margin-top: 15%;
+        height: 300px;
     }
     
     &__fullscreen-landscape {
@@ -95,6 +100,14 @@
     }
 }
 
+.webcam-portrait {
+
+    &__guest {
+        height: 100%;
+        border-radius: .8em;
+    }
+}
+
 .landscape-name-host, .landscape-muted-host {
     left: 22%;
 }
@@ -107,7 +120,11 @@
 }
 
 .portrait-muted-host {
-    top: 16%;
+    top: 30%;
+}
+
+.portrait-name-host {
+    top: 160%;
 }
 
 .mini-portrait {

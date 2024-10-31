@@ -34,7 +34,7 @@ const ConferenceRoom = () => {
                 : isDesktop && fullscreen ? 'conference-desktop__fullscreen-guest-row' 
                 : 'conference-room__guest'}  
                 ${fullscreen && isLandscape && isMobile ? 'conference-room__landscape-guests' 
-                : fullscreen && isLandscape && isMobile ? 'conference-room__portrait-guests' : ''}`}>
+                : fullscreen && !isLandscape && isMobile ? 'conference-room__portrait-guests' : ''}`}>
                 { guests.map((peer) => (
                     <Webcam key={peer.id} peer={peer} />
                 ))}

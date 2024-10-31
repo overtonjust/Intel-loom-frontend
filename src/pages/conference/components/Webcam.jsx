@@ -34,14 +34,15 @@ const Webcam = ({ peer }) => {
         <section className={`webcam ${peer.roleName === 'guest' && 'webcam__guest'} `}>
             <article className={`
                 ${fullscreen && peer.roleName === 'guest' ? 'webcam__mini' : 'webcam__video'} 
-                ${!isLandscape && fullscreen && peer.roleName === 'guest' && 'mini-portrait'}`}>
+                ${isFullMobileGuestPortrait && 'mini-portrait'}`}>
                 <video
                 ref={videoRef}
                 autoPlay={true}
                 muted
                 className={ 
                     isFullMobileHostLandscape ? 'webcam__fullscreen-landscape' 
-                    : fullscreen && !isLandscape && isMobile ? 'webcam__fullscreen-portrait' 
+                    : isFullMobileHostPortrait ? 'webcam__fullscreen-portrait' 
+                    : isFullMobileGuestPortrait ? 'webcam-portrait__guest'
                     : isDesktopHost ? 'conference-desktop__host-cam' 
                     : isFullDesktopHost ? 'conference-desktop__fullscreen-host'
                     : isFullDesktopGuest? 'conference-desktop__fullscreen-guest' 
@@ -66,8 +67,9 @@ const Webcam = ({ peer }) => {
                     } 
                     ${isFullMobileHostLandscape ? 'landscape-name-host' 
                     : isMobileHostLandscape ? 'landscape-name-guest'
+                    : isFullMobileGuestPortrait ? 'mini-name'
+                    : isFullMobileHostPortrait ? 'portrait-name-host' 
                     : ''} 
-                    ${isFullMobileGuestPortrait && 'mini-name'} 
                     ${!isPeerVideoEnabled && peer.roleName === 'host' && 'image-name'}`}>
                     {peer.name} {peer.isLocal ? "(You)": ""}
                 </article>
