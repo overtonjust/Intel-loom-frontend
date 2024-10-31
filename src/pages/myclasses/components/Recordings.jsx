@@ -10,20 +10,20 @@ const Recordings = ({ API }) => {
     fitsTwoColumns,
     fitsThreeColumns,
     loading,
-    setLoading
+    setLoading,
   } = useContext(UserContext);
   const [userRecordings, setUserRecordings] = useState([]);
   const [instructorRecordings, setInstructorRecordings] = useState([]);
   const [view, setView] = useState("classes");
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
 
     axios
       .get(`${API}/users/user-class-recordings`, { withCredentials: true })
       .then((res) => {
         setUserRecordings(res.data);
-        setLoading(false)
+        setLoading(false);
       })
       .catch((err) => console.error(err));
     if (isInstructor) {
@@ -43,26 +43,26 @@ const Recordings = ({ API }) => {
       <main className="loading">
         <h1>Loading...</h1>
       </main>
-    )
+    );
   }
 
   return (
     <main className="recordings-container">
-      <section className="recordings-container__view">
-        <div className='choices'>
-          <div className='choices__opt'>
-            <input
-              type="radio"
-              id="classes"
-              name="view"
-              value="classes"
-              checked={view === "classes"}
-              onChange={() => setView("classes")}
-            />
-            <label htmlFor="classes">My Classes</label>
-          </div>
-          {isInstructor && (
-            <div className='choices__opt'>
+      {isInstructor && (
+        <section className="recordings-container__view">
+          <div className="choices">
+            <div className="choices__opt">
+              <input
+                type="radio"
+                id="classes"
+                name="view"
+                value="classes"
+                checked={view === "classes"}
+                onChange={() => setView("classes")}
+              />
+              <label htmlFor="classes">My Classes</label>
+            </div>
+            <div className="choices__opt">
               <input
                 type="radio"
                 id="lectures"
@@ -73,9 +73,9 @@ const Recordings = ({ API }) => {
               />
               <label htmlFor="lectures">My Lectures</label>
             </div>
-          )}
-        </div>
-      </section>
+          </div>
+        </section>
+      )}
       <section
         className={`recordings-container__videos ${fitsOneColumn ? "columns-one" : fitsTwoColumns ? "columns-two" : fitsThreeColumns ? "columns-three" : "columns-four"}`}
       >
