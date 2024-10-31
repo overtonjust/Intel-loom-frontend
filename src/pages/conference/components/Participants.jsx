@@ -5,11 +5,15 @@ import './Participants.scss';
 import { WebcamContext } from '../../../context/UserContext';
 
 const Participants = () => {
-    const { fullscreen, isMobile, isLandscape } = useContext(WebcamContext);
+    const { fullscreen, isMobile, isLandscape, isDesktop } = useContext(WebcamContext);
     const peers = useHMSStore(selectPeers);
 
     return (
-        <article className={`participants ${fullscreen && isMobile && 'participants-fullscreen'} ${fullscreen && isMobile && !isLandscape && 'participants-full-portrait'}`}>
+        <article className={`
+        ${isDesktop && !fullscreen ? 'participants desktop-overlay' 
+        : isDesktop && fullscreen ? 'participants desktop-overlay__full' : 'participants'} 
+        ${fullscreen && isMobile && 'participants-fullscreen'} 
+        ${fullscreen && isMobile && !isLandscape && 'participants-full-portrait'}`}>
             <p className='participants__title'>Participants</p>
             <div className='participants__holder'>
                 {peers.map((peer) => (

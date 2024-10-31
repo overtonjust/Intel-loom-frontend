@@ -18,11 +18,23 @@ const ConferenceRoom = () => {
 
     
     return (
-        <div className={`conference-room ${isDesktop && 'conference-room__desktop'} ${fullscreen ? isLandscape && isMobile ? 'conference-room-landscape' : 'conference-room-portrait' : ''}`}>
-            <div className={`conference-room__host ${isLandscape && isMobile && 'conference-room__wide-gap'}`}>
+        <div className={` 
+        ${isDesktop && !fullscreen ? 'conference-desktop__video-holder' 
+        : isDesktop && fullscreen ? 'conference-desktop__fullscreen-video' 
+        : 'conference-room'} 
+        ${fullscreen && isLandscape && isMobile ? 'conference-room-landscape' 
+        : fullscreen && !isLandscape && isMobile ? 'conference-room-portrait' : ''}`}>
+            <div className={` 
+                ${isDesktop && !fullscreen ? 'conference-desktop__host' 
+                : 'conference-room__host'} `}>
                 {host && <Webcam key={host.id} peer={host}/>}
             </div>
-            <div className={` ${isDesktop ? 'conference-room__desk-guest' : 'conference-room__guest'}  ${fullscreen ? isLandscape && isMobile ? 'conference-room__landscape-guests' : 'conference-room__portrait-guests' : ''}`}>
+            <div className={` 
+                ${isDesktop && !fullscreen ? 'conference-desktop__guest' 
+                : isDesktop && fullscreen ? 'conference-desktop__fullscreen-guest-row' 
+                : 'conference-room__guest'}  
+                ${fullscreen && isLandscape && isMobile ? 'conference-room__landscape-guests' 
+                : fullscreen && isLandscape && isMobile ? 'conference-room__portrait-guests' : ''}`}>
                 { guests.map((peer) => (
                     <Webcam key={peer.id} peer={peer} />
                 ))}

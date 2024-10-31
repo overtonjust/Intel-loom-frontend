@@ -195,7 +195,13 @@ const MenuOptions = () => {
     };
 
     return (
-        <main className={`menu-holder ${fullscreen ? isLandscape ? 'menu-holder__fullscreen-landscape' : 'menu-holder__fullscreen-portrait' : ''}`} >
+        <main className={`menu-holder 
+        ${isDesktop && !fullscreen ? 'conference-desktop__menu' :
+           isDesktop && fullscreen ? 'conference-desktop__full-menu' :
+           '' 
+        } 
+        ${fullscreen && isLandscape && isMobile ? 'menu-holder__fullscreen-landscape' 
+        : fullscreen &&  !isLandscape && isMobile ? 'menu-holder__fullscreen-portrait' : ''}`} >
             <section className='menu-options-head'>
                 <article onClick={handleAudioChange} className='menu-options-head__audio'>
                     {isLocalAudioEnabled ? (
@@ -242,7 +248,7 @@ const MenuOptions = () => {
                 }} >
                     <FontAwesomeIcon className='menu-options__icon' icon={faMessage}/>
                     {isDesktopOrLaptop &&
-                        <span className='menu-options__label'>{chatOpen ? 'close chat' : 'Chat'}</span>
+                        <span className='menu-options__label'>{chatOpen ? 'Close' : 'Chat'}</span>
                     }
                 </article>
                 {isDesktop && host === userCam &&
@@ -271,7 +277,7 @@ const MenuOptions = () => {
                 {isConnected && (
                     <button
                     id='leave-btn'
-                    className='button-orange leave-btn'
+                    className='button-orange'
                     onClick={handleLeave}
                     >
                         Leave

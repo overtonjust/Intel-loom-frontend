@@ -23,6 +23,7 @@ import Participants from './components/Participants';
 import Chat from './components/Chat';
 import Prompt from './components/Prompt';
 import { faCircleDot } from '@fortawesome/free-solid-svg-icons';
+import { Landscape } from '@mui/icons-material';
 
 const Conference = () => {
     const { id } = useParams();
@@ -105,15 +106,21 @@ const Conference = () => {
 
     return (
         <WebcamContext.Provider value={{ fullscreen, setFullscreen, instructorName, showParticipants, setShowParticipants, isLocalAudioEnabled, isLocalVideoEnabled, handleAudioChange, toggleVideo, chatOpen, setChatOpen, isLandscape, isDesktop, isMobile, prompt, setPrompt, title, instructorName, instructorId, id, isRecording, setIsRecording }}>
-            <section className={`${isDesktop ? 'conference__grid' : 'conference' }`}>
-                <article className={isDesktop ? 'conference__column' : ''}>
+            <section className={`
+                ${isDesktop && !fullscreen ? 'conference-desktop' 
+                : isDesktop && fullscreen ? 'conference-desktop-fullscreen' 
+                : isMobile && fullscreen ? 'conference-mobile-fullscreen' 
+                : 'conference' }`}>
+                <article className={
+                    isDesktop && !fullscreen ? 'conference__desktop' 
+                    : isMobile && Landscape ? 'conference-landscape' : ''}>
                     <h2 className='conference__title'>{title} {isRecording && <FontAwesomeIcon className='recording-active' icon={faCircleDot}/>}</h2>
                     {isConnected ? (
-                        <article className={`conference__video-call ${fullscreen ? 'conference__fullscreen' : ''}`}>
+                        <article className={`${isDesktop && !fullscreen ? 'conference-desktop__video-shell' : 'conference__video-call' } ${fullscreen ? 'conference__fullscreen' : ''}`}>
                             <ConferenceRoom />
                             <MenuOptions />
-                            {showParticipants  && <Participants/>}
-                            {chatOpen &&  <Chat/>}
+                            {showParticipants  &&  <Participants/>}
+                            {chatOpen && <Chat/>}
                         </article>
                     ) : prompt ? (
                         <Prompt promptObj={prompt} setPrompt={setPrompt}/> 

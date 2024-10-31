@@ -4,10 +4,10 @@ import { WebcamContext } from '../../../context/UserContext';
 import './ConferenceInfo.scss'
 
 const ConferenceInfo = () => {
-    const { instructorName } = useContext(WebcamContext);
+    const { instructorName, isDesktop } = useContext(WebcamContext);
     
     return (
-       <section className='call-info'>
+       <section className={isDesktop ? 'conference-desktop__call-info' : 'call-info'}>
             <article className='call-info__rules'>
                 <h2 className='call-info__title'>
                     "{instructorName || 'Instructor'}'s" class etiquette {/** replace instructor with appropriate name  and map their rules*/}

@@ -34,7 +34,11 @@ const Chat = () => {
     }, [allMessages])
     
     return (
-        <section className={`chat ${isDesktop && 'chat__desktop'} ${fullscreen && 'chat-fullscreen'} ${fullscreen && isMobile && !isLandscape && 'chat-full-portrait'}`}>
+        <section className={`
+        ${isDesktop && !fullscreen ? 'chat desktop-overlay' : 'chat'}  
+        ${isDesktop && fullscreen ? 'desktop-overlay__full' 
+        : isMobile && fullscreen ? 'chat-fullscreen' : ''} 
+        ${fullscreen && isMobile && !isLandscape && 'chat-full-portrait'}`}>
             <article className='chat__view' ref={messageRef}>
                 {allMessages.map((msg) => (
                     <Message key={msg.id} msg={msg}/>

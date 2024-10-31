@@ -14,7 +14,7 @@
     &__video {
         position: relative;
         height: 100%;
-        max-height: 300px;
+        max-height: 200px;
         width: 100%;
         object-fit: fill;
         border-radius: .8em;
@@ -46,9 +46,6 @@
         object-fit: fill;
     }
     
-    &__desk-guest {
-        
-    }
     
     &__mini {
         position: relative;
@@ -63,6 +60,7 @@
         left: 0;
         height: 100%;
         width: 100%;
+        border-radius: .8em;
     }
     
     &__fullscreen-landscape {
@@ -78,8 +76,30 @@
     }
 }
 
+
+.desktop-host-mute {
+    top: 4%;
+    left: 1%;
+}
+
+.webcam-desktop {
+
+    &__image {
+        height: 500px;
+    }
+
+    &__fullscreen-image {
+        height: 92vh;
+        object-fit: contain;
+        max-height: none;
+    }
+}
+
 .landscape-name-host, .landscape-muted-host {
     left: 22%;
+}
+.landscape-name-host {
+    bottom: -60%;
 }
 
 .landscape-name-guest, .landscape-muted-guest {
@@ -93,6 +113,7 @@
 .mini-portrait {
     height: 15vh;
     width: 25vw;
+    max-width: 100%;
 }
 
 .mini-name {
@@ -101,4 +122,13 @@
 
 .image-name {
     bottom: -80%;
+}
+
+.desktop-host-name {
+    bottom: -140%;
+
+    &__fullscreen {
+        top: 4%;
+        left: 90%;
+    }
 }

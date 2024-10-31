@@ -12,27 +12,70 @@ const Webcam = ({ peer }) => {
         trackId: peer.auxiliaryTracks[0] || peer.videoTrack
     });
     
+    const isFullDesktopHost =  fullscreen && isDesktop && peer.roleName === 'host';
+    const isFullDesktopGuest =  fullscreen && isDesktop && peer.roleName === 'guest';
+    const isDesktopHost = !fullscreen && isDesktop && peer.roleName === 'host';
+    const isDesktopGuest = !fullscreen && isDesktop && peer.roleName === 'guest';
+
+    const isFullMobileHostPortrait = fullscreen && isMobile && peer.roleName === 'host' && !isLandscape;
+    const isFullMobileGuestPortrait = fullscreen && isMobile && peer.roleName === 'guest' && !isLandscape;
+    const isFullMobileHostLandscape = fullscreen && isMobile && peer.roleName === 'host' && isLandscape;
+    const isFullMobileGuestLandscape = fullscreen && isMobile && peer.roleName === 'guest' && isLandscape;
+
+    const isMobileHostPortrait = !fullscreen && isMobile && peer.roleName === 'host' && !isLandscape;
+    const isMobileGuestPortrait = !fullscreen && isMobile && peer.roleName === 'guest' && !isLandscape;
+    const isMobileHostLandscape = !fullscreen && isMobile && peer.roleName === 'host' && isLandscape;
+    const isMobileGuesttLandscape = !fullscreen && isMobile && peer.roleName === 'guest' && isLandscape;
+
     const isPeerAudioEnabled = useHMSStore(selectIsPeerAudioEnabled(peer.id));
     const isPeerVideoEnabled = useHMSStore(selectIsPeerVideoEnabled(peer.id));
     
     return (
         <section className={`webcam ${peer.roleName === 'guest' && 'webcam__guest'} `}>
-            <article className={`${fullscreen && peer.roleName === 'guest' ? 'webcam__mini' : 'webcam__video'} ${!isLandscape && fullscreen && peer.roleName === 'guest' && 'mini-portrait'}`}>
+            <article className={`
+                ${fullscreen && peer.roleName === 'guest' ? 'webcam__mini' : 'webcam__video'} 
+                ${!isLandscape && fullscreen && peer.roleName === 'guest' && 'mini-portrait'}`}>
                 <video
                 ref={videoRef}
                 autoPlay={true}
                 muted
-                className={ fullscreen && peer.roleName === 'host' ? isLandscape && isMobile ? 'webcam__fullscreen-landscape' : !isLandscape && isMobile && 'webcam__fullscreen-portrait' : `webcam__video`}
+                className={ 
+                    isFullMobileHostLandscape ? 'webcam__fullscreen-landscape' 
+                    : fullscreen && !isLandscape && isMobile ? 'webcam__fullscreen-portrait' 
+                    : isDesktopHost ? 'conference-desktop__host-cam' 
+                    : isFullDesktopHost ? 'conference-desktop__fullscreen-host'
+                    : isFullDesktopGuest? 'conference-desktop__fullscreen-guest' 
+                    : `webcam__video`}
                 playsInline 
                 data-testid={peer.auxiliaryTracks[0] ? `screen-${peer.id}` : `video-${peer.id}`}
                 />
                 {!isPeerVideoEnabled ? (
-                    <img className={`webcam__video webcam__image ${fullscreen && peer.roleName === 'guest' ? 'webcam__mini' : fullscreen && peer.roleName === 'host' ? isLandscape ? 'webcam__image-landscape' : 'webcam__image-portrait' : ''} ${!isLandscape && fullscreen && peer.roleName === 'guest' && 'mini-portrait'} `} src={peer.metadata || defaultImg} alt="" /> 
+                    <img className={` webcam__image 
+                        ${fullscreen && peer.roleName === 'guest' ? 'webcam__mini' 
+                        : isFullDesktopHost ? 'webcam-desktop__fullscreen-image'
+                        : isDesktopHost ? 'webcam-desktop__image'
+                        : isLandscape && isMobile ? 'webcam__image-landscape' 
+                        : !isLandscape && isMobile ? 'webcam__image-portrait' 
+                        : ''} 
+                        ${isFullMobileGuestPortrait  && 'mini-portrait'} `} src={peer.metadata || defaultImg} alt="" /> 
                 ) : null} 
-                <article className={`webcam__name ${fullscreen && isLandscape && peer.roleName === 'host' ? 'landscape-name-host' : 'landscape-name-guest'} ${!isLandscape && fullscreen && peer.roleName === 'guest' && 'mini-name'} ${!isPeerVideoEnabled && peer.roleName === 'host' && 'image-name'}`}>
+                <article className={`webcam__name 
+                    ${isDesktopHost ? 'desktop-host-name'
+                    : isFullDesktopHost ? 'desktop-host-name__fullscreen'
+                    : ''
+                    } 
+                    ${isFullMobileHostLandscape ? 'landscape-name-host' 
+                    : isMobileHostLandscape ? 'landscape-name-guest'
+                    : ''} 
+                    ${isFullMobileGuestPortrait && 'mini-name'} 
+                    ${!isPeerVideoEnabled && peer.roleName === 'host' && 'image-name'}`}>
                     {peer.name} {peer.isLocal ? "(You)": ""}
                 </article>
-                <article className={`webcam__muted ${fullscreen && isLandscape ? peer.roleName === 'host' ? 'landscape-muted-host' : 'landscape-muted-guest' : fullscreen && !isLandscape && peer.roleName === 'host' && 'portrait-muted-host' } `}>
+                <article className={`webcam__muted 
+                    ${isFullMobileHostLandscape ? 'landscape-muted-host' 
+                    : isFullMobileGuestLandscape ? 'landscape-muted-guest' 
+                    : isFullMobileHostPortrait ? 'portrait-muted-host'
+                    : isFullDesktopHost ? 'desktop-host-mute' : ''} `}>
                     {!isPeerAudioEnabled  && <AiOutlineAudioMuted/>}
                 </article>
             </article>         
