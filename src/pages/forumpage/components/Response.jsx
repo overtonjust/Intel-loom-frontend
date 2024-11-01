@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import profilePic from '../../../assets/default-profile.png';
-import { wrapLink } from "../../../../utils";
+import { wrapLink } from "../../../../utilsJSX";
 
 const Response = ({ API, res, setResponses }) => {
   const {
@@ -46,7 +46,7 @@ const Response = ({ API, res, setResponses }) => {
           </Link>
         </div>
         <div className="response-card__resp">
-          <p dangerouslySetInnerHTML={{ __html: formattedResponse }}></p>
+          <p>{formattedResponse}</p>
         </div>
         <div className="response-card__reply">
           <div className="reply-input">

@@ -7,6 +7,7 @@ import { FaAnglesDown } from "react-icons/fa6";
 import profilePic from "../../assets/default-profile.png";
 import { TypeAnimation } from "react-type-animation";
 import Loader from "../../shared components/loader";
+import { wrapLink } from "../../../utilsJSX";
 
 const Forums = () => {
   const {
@@ -113,6 +114,7 @@ const Forums = () => {
         <div className="forums-container__posts">
           {forums.map((forum) => {
             const { post, postId, userId, username, profilePicture } = forum;
+            const formattedPost = wrapLink(post);
             return (
               <section className="forum-card" key={`post${postId}`}>
                 <div className="forum-card__user">
@@ -125,7 +127,7 @@ const Forums = () => {
                   </Link>
                 </div>
                 <div className="forum-card__post">
-                  <p>{post}</p>
+                  <p>{formattedPost}</p>
                 </div>
                 <div className="forum-card__more">
                   <Link className="forum-link" to={`/forum/${postId}`}>
