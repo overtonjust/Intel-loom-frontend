@@ -17,7 +17,7 @@ const UserPage = () => {
   const [userData, setUserData] = useState({});
   const [settingsMenu, setSettingsMenu] = useState(false)
   const [isInstructor, setIsInstructor] = useState(false)
-console.log(user, userData)
+
   useEffect(() => {
     setLoading(true)
 
