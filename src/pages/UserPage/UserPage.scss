@@ -146,6 +146,7 @@
     padding: 0px 12px 20px 20px;
     overflow-y: hidden;
     padding-top: 18px;
+    scrollbar-width: none;
 }
 
 .reviews-header {
@@ -156,8 +157,8 @@
     border: 2px solid lightgrey;
     border-radius: 10px;
     padding: 20px;
-    height: 180px;
-    width: 180px;
+    height: 150px;
+    width: 380px;
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
@@ -179,6 +180,7 @@
     gap: 12px;
     padding-bottom: 14px;
     text-overflow: ellipsis;
+    scrollbar-width: none;
 }
 
 .settings {

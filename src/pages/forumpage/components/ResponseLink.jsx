@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import profilePic from '../../../assets/default-profile.png';
-import { wrapLink } from "../../../../utils";
+import { wrapLink } from "../../../../utilsJSX";
 
 const ResponseLink = ({ res }) => {
   const { responseId, response, userId, username, profilePicture } = res;
@@ -15,7 +15,7 @@ const ResponseLink = ({ res }) => {
         </Link>
       </div>
       <div className="response-card__resp">
-        <p dangerouslySetInnerHTML={{ __html: formattedResponse }}></p>
+        <p>{formattedResponse}</p>
       </div>
       <div className="response-card__more">
         <Link className="forum-link" to={`/forum/${id}/reply/${responseId}`}>

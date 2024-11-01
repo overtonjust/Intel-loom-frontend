@@ -7,7 +7,7 @@ import ResponseLink from "./components/ResponseLink";
 import ResponsePage from "./components/ResponsePage";
 import { TbArrowBackUpDouble } from "react-icons/tb";
 import profilePic from "../../assets/default-profile.png";
-import { wrapLink } from "../../../utils";
+import { wrapLink } from "../../../utilsJSX";
 import Loader from "../../shared components/loader";
 
 const ForumPage = () => {
@@ -114,7 +114,7 @@ const ForumPage = () => {
               </Link>
             </div>
             <div className="forum-card__post">
-              <p dangerouslySetInnerHTML={{ __html: formattedPost }}></p>
+              <p>{formattedPost}</p>
             </div>
             <div className="forum-card__reply">
               <div className="reply-input">
