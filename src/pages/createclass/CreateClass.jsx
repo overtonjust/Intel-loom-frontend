@@ -4,10 +4,18 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { LuImagePlus } from "react-icons/lu";
 import { ImCheckboxChecked, ImCheckboxUnchecked } from "react-icons/im";
+import { TypeAnimation } from "react-type-animation";
 import "./CreateClass.scss";
 
 const CreateClass = () => {
-  const { API, setMessage } = useContext(UserContext);
+  const {
+    isTabletOrMobile,
+    fitsOneColumn,
+    fitsTwoColumns,
+    fitsThreeColumns,
+    API,
+    setMessage,
+  } = useContext(UserContext);
   const navigate = useNavigate();
   const inputRef = useRef();
   const [newClass, setNewClass] = useState({
@@ -82,7 +90,7 @@ const CreateClass = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (newClass.classPictures.length === 0) {
-      setMessage('Please upload at least one picture');
+      setMessage("Please upload at least one picture");
       return;
     }
     const formData = new FormData();
@@ -106,16 +114,38 @@ const CreateClass = () => {
         navigate(`/class-template/${res.data.classId}`);
       })
       .catch((err) => {
-        setMessage('Problem with creating class, try again later. If problem persists, contact support.');
+        setMessage(
+          "Problem with creating class, try again later. If problem persists, contact support."
+        );
       });
   };
 
+  const bigScreen =
+    (!isTabletOrMobile || fitsTwoColumns || fitsThreeColumns) && !fitsOneColumn;
+
   return (
-    <main className="create-class-container">
-      <section className="create-class-container__header">
-        <h2>Create a Class</h2>
+    <main className={`create-class-container ${bigScreen ? 'create-class-desktop' : 'create-class-mobile'}`}>
+      <section className={`create-class-container__banner ${bigScreen ? 'create-class-desktop__banner' : ''}`}>
+        <h1>Turn Your Passion into Impact!</h1>
+        <p>
+          Passionate about a topic? Share it! Create an unforgettable class
+          experience by...
+        </p>
+        <TypeAnimation
+          sequence={[
+            "Helping others learn",
+            3000,
+            "Helping others grow",
+            3000,
+            "Helping others succeed",
+            3000,
+          ]}
+          wrapper="h3"
+          className="create-class-container__slogan"
+          repeat={Infinity}
+        />
       </section>
-      <form className="create-class-container__form" onSubmit={handleSubmit}>
+      <form className={`create-class-container__form ${bigScreen ? 'create-class-desktop__form' : ''}`} onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="title">Title</label>
           <input
