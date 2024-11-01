@@ -11,11 +11,11 @@
     border-radius: .8em;
     background-color: $white;
     gap: 20px;
-    
+
     &__view {
         padding: 2%;
         overflow: scroll;
-        scrollbar-width: 1px;
+        scrollbar-width: none;
         display: flex;
         flex-direction: column;
         gap: 4%;
@@ -42,11 +42,12 @@
         color: $white;     
     }
 
-    &__text {
-        padding: 0;
-        font-size: .9em;
-        text-align: center;
-    }
+        &__text {
+            margin: 0;
+            padding: 0;
+            font-size: .9em;
+            text-align: center;
+        }
 
     &__box {
         align-self: flex-end;
@@ -81,11 +82,26 @@
     }
 }
 
+.desktop-overlay {
+    margin: 0 auto;
+    height: 100%;
+
+    &__full {
+        position: absolute;
+        bottom: 8%;
+        right: 1%;
+        width: 500px;
+        height: 400px;
+    }
+}
+
 .chat-fullscreen {
     position: absolute;
     height: 82vh;
     max-width: 84vw;
-    top: -3%;
+    top: 0;
+    left: .5vw;
+    margin: 0;
 }
 
 

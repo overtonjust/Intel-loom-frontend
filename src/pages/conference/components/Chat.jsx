@@ -12,7 +12,7 @@ import './Chat.scss'
 import Message from './Message';
 
 const Chat = () => {
-    const { fullscreen, isMobile, isLandscape } = useContext(WebcamContext);
+    const { fullscreen, isMobile, isLandscape, isDesktop } = useContext(WebcamContext);
     const allMessages = useHMSStore(selectHMSMessages);
     const [chatMessage, setChatMessage] = useState('');
     const hmsActions = useHMSActions();
@@ -34,7 +34,11 @@ const Chat = () => {
     }, [allMessages])
     
     return (
-        <section className={`chat ${fullscreen && 'chat-fullscreen'} ${fullscreen && isMobile && !isLandscape && 'chat-full-portrait'}`}>
+        <section className={`
+        ${isDesktop && !fullscreen ? 'chat desktop-overlay' : 'chat'}  
+        ${isDesktop && fullscreen ? 'desktop-overlay__full' 
+        : isMobile && fullscreen ? 'chat-fullscreen' : ''} 
+        ${fullscreen && isMobile && !isLandscape && 'chat-full-portrait'}`}>
             <article className='chat__view' ref={messageRef}>
                 {allMessages.map((msg) => (
                     <Message key={msg.id} msg={msg}/>

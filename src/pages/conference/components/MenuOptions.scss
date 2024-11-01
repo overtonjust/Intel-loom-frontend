@@ -1,7 +1,7 @@
 @import '../../../shared.scss';
 
 .menu-holder {
-    width: 100vw;
+    width: 100%;
     display: flex;
     scrollbar-width: none;
     align-items: center;
@@ -78,14 +78,4 @@
     
 }
 
-.leave-btn {
-    padding: 1% 2% !important;
-    margin-right: 4px;
-}
-.test {
-    margin-top: 10px;
-    margin-left: 5px;
-    width: 400px;
-    height: 200px;
-    border: 2px solid black;
-}
+

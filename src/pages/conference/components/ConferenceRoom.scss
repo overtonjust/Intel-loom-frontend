@@ -1,11 +1,12 @@
 @import '../../../shared.scss';
 
 .conference-room {
-    width: 95vw;
+    width: 100%;
     padding: 2%;
     background-color: #fff;
     max-height: 400px;
     overflow-y: scroll;
+    scrollbar-width: none;
     border-radius: 1em;
     display: flex;
     flex-direction: column;
@@ -13,12 +14,8 @@
 
     &__host {
         width: 100%;
-        // max-height: 210px;
-        margin-bottom: 20px;
-    }
-
-    &__wide-gap {
-        margin-bottom: 35%;
+        max-height: 210px;
+        margin-bottom: 2%;
     }
 
     &__guest{
@@ -31,14 +28,13 @@
         position: fixed;
         display: flex;
         align-items: center;
+        gap: 50px;
         padding: 2%;
         max-width: 100vw;
-        bottom: 12vh;
+        bottom: 10vh;
         left: 0;
         overflow-x: scroll;
-        scrollbar-width: 1px;
-        scrollbar-color: $white $white;
-        scroll-snap-type: proximity;
+        scrollbar-width: none;
     }
 
     &__landscape-guests {
@@ -47,7 +43,7 @@
         flex-direction: column;
         align-items: center;
         gap: 10px;
-        max-height: 75vh;
+        height: 75vh;
         overflow-y: scroll;
         scrollbar-width: none;
         margin-right: 4px;
@@ -55,11 +51,12 @@
    
 }
 
+
+
 .conference-room-landscape , .conference-room-portrait{
     position: fixed;
     background-color: #242424;
     width: 100vw;
-    flex-direction: row;
     top: 0;
     left: 0;
     border-radius: 0;
@@ -69,9 +66,11 @@
 
 .conference-room-portrait {
     height: 92vh;
+    flex-direction: column;
 }
 
 .conference-room-landscape {
     height: 82vh;
+    flex-direction: row;
 }
 

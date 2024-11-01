@@ -39,6 +39,114 @@
     }
 }
 
+.conference-landscape {
+  width: 100%;
+}
+
+.conference-desktop {
+  margin: 0 auto;
+
+  &__video-shell {
+    height: 600px;
+    width: 1300px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.25fr;
+    grid-template-rows: 2fr 80px;
+    gap: 10px;
+    grid-template-areas: 
+    "video video overlay"
+    "menuboard menuboard overlay"
+    ;
+  }
+
+  &__menu {
+    grid-area: menuboard;
+  }
+
+  &__full-menu {
+    position: fixed;
+    bottom: 0;
+    height: 80px;
+  }
+
+  &__video-holder {
+    grid-area: video;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 20px;
+  }
+
+  &__host {
+    height: 100%;
+  }
+
+  &__call-info {
+    margin-top: 20px;
+    display: flex;
+  }
+
+  &__host-cam {
+    position: relative;
+    height: 100%;
+    max-height: 500px;
+    width: 100%;
+    object-fit: fill;
+    border-radius: .8em;
+  }
+
+  &__guest {
+    max-height: 500px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    gap: 10px;
+  }
+
+  &__fullscreen-video {
+    position: fixed;
+    background-color: #242424;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 0;
+    max-height: none;
+    overflow-y: hidden;
+  }
+
+    &__fullscreen-host {
+      height: calc(100vh - 80px);
+      width: 100vw;
+      object-fit: fill;
+    }
+
+    &__fullscreen-guest-row {
+      width: 100vw;
+      height: 250px;
+      overflow-x: scroll;
+      scrollbar-width: none;
+      position: fixed;
+      left: 2%;
+      bottom: 6vh;
+      display: grid;
+      grid-template-rows: 1fr;
+      grid-template-columns: repeat(auto-fit, 200px);
+      padding: 10px;
+      gap: 10px;
+    }
+
+      &__fullscreen-guest {
+        height: 180px;
+        object-fit: fill;
+        border-radius: .8em;
+      }
+
+}
+
+.desktop-overlay {
+  grid-area: overlay;
+}
 
 .recording-active {
     font-size: .8em;
