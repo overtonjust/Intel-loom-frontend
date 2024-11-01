@@ -237,22 +237,6 @@ const CreateClass = () => {
             Create
           </button>
         </div>
-        <div className="form-message">
-          <p>* All Fields are required</p>
-          <p>
-            ** Please upload at least one picture <br />
-            (Only Pictures Allowed)
-          </p>
-          <p>*** Highlight Picture is the first picture by default</p>
-          <p>
-            **** You can change the Highlight Picture <br />
-            by clicking the checkbox
-          </p>
-          <p>
-            ***** You can remove a picture <br />
-            by clicking the X button
-          </p>
-        </div>
       </form>
     </main>
   );

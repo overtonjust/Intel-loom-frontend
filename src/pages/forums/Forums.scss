@@ -1,13 +1,51 @@
 @import '../../shared.scss';
 
-.forums-container {
+.forums-container-mobile {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 1rem;
-  padding: 1rem;
-  max-width: 430px;
+  min-width: 350px;
+}
+
+.forums-container-desktop {
+  position: relative;
+  max-width: 1200px;
+  min-width: 925px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 5rem;
+  &__main {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 2;
+  }
+  &__community {
+    position: sticky;
+    top: 20%;
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+  }
+}
+
+.forums-container {
+  padding: 1rem;
+  &__community {
+    border-radius: 1.2rem;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: space-between;
+    background: $orange;
+    color: $white;
+  }
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
   &__posts {
     display: flex;
     flex-direction: column;
@@ -68,5 +106,3 @@
     cursor: pointer;
   }
 }
-
-

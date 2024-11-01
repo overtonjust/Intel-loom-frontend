@@ -81,7 +81,7 @@ const ForumPage = () => {
   return (
     <main className="forum-container">
       <section className="forum-container__back">
-        <button onClick={() => navigate(-1)}>
+        <button onClick={() => navigate('/forums')}>
           <TbArrowBackUpDouble />
         </button>
       </section>

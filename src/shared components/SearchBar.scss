@@ -1,9 +1,6 @@
 @import '../shared.scss';
 
 .search-container {
-  position: sticky; // When scrolling the search bar stays on top. 🔝
-  top: 0;
-  z-index: 1000;
   margin: 0 auto;
 }
 

@@ -47,3 +47,45 @@
 .columns-four {
   grid-template-columns: repeat(4, 1fr);
 }
+
+.slogan-mobile {
+  width: 430px;
+  height: 300px;
+}
+
+.slogan-desktop {
+  width: 600px;
+  height: 400px;
+}
+
+.home-hero-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0;
+  &__slogan {
+    position: relative;
+    background-image: url("/laptop-screen.jpg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  &__gradient-left {
+    width: 25%;
+    height: 400px;
+    background: linear-gradient(45deg, rgb(220, 213, 226, 0.4), rgb(220, 189, 197, 0.9));
+  }
+  &__gradient-right {
+    width: 25%;
+    height: 400px;
+    background: linear-gradient(45deg, rgb(197, 199, 219, 0.4), rgb(180, 184, 212, 0.9));
+  }
+  &__animation {
+    position: absolute;
+    top: 20%;
+    left: 15%;
+    width: 300px;
+    color: $orange;
+  }
+}

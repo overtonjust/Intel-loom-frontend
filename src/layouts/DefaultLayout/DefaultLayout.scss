@@ -14,9 +14,6 @@
     place-items: center;
   }
   &__content {
-    background-image: url('/desktop.png');
-    background-size: cover;
-    background-position: center;
     position: relative;
     overflow-y: auto;
     scroll-behavior: smooth;
@@ -39,9 +36,6 @@
     align-items: center;
   }
   &__content {
-    background-image: url('/desktop.png');
-    background-size: cover;
-    background-position: center;
     position: relative;
     overflow-y: auto;
     scroll-behavior: smooth;
