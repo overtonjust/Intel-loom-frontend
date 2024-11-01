@@ -7,6 +7,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import './UserPage.scss'
 import MobileCarousel from '../../shared components/carousels/MobileCarousel';
 import bannerImage from '../../assets/banner-img.png'
+import Loader from '../../shared components/loader';
 
 
 const UserPage = () => {
@@ -41,9 +42,7 @@ console.log(user, userData)
 
   if (loading) {
     return (
-      <main className="loading">
-        <h1>Loading...</h1>
-      </main>
+      <Loader />
     )
   }
 

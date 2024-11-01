@@ -8,6 +8,7 @@ import ResponsePage from "./components/ResponsePage";
 import { TbArrowBackUpDouble } from "react-icons/tb";
 import profilePic from "../../assets/default-profile.png";
 import { wrapLink } from "../../../utils";
+import Loader from "../../shared components/loader";
 
 const ForumPage = () => {
   const {
@@ -79,9 +80,7 @@ const ForumPage = () => {
 
   if (loading) {
     return (
-      <main className="loading">
-        <h1>Loading...</h1>
-      </main>
+      <Loader />
     );
   }
 

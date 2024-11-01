@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../../context/UserContext";
 import axios from "axios";
 import Recording from "./Recording";
+import Loader from "../../../shared components/loader";
 
 const Recordings = ({ API }) => {
   const {
@@ -40,9 +41,7 @@ const Recordings = ({ API }) => {
 
   if (loading) {
     return (
-      <main className="loading">
-        <h1>Loading...</h1>
-      </main>
+      <Loader />
     );
   }
 

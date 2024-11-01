@@ -5,6 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
 import "./ClassPage.scss";
+import Loader from "../../shared components/loader";
 
 // Components
 import MobileCarousel from "../../shared components/carousels/MobileCarousel";
@@ -55,9 +56,7 @@ const ClassPage = () => {
 
   if (loading) {
     return (
-      <main className="loading">
-        <h1>Loading...</h1>
-      </main>
+      <Loader />
     );
   }
 
