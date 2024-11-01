@@ -43,9 +43,7 @@ const Home = () => {
 
   if (loading) {
     return (
-      <main className="loading">
-        <h1>Loading...</h1>
-      </main>
+      <Loader />
     );
   }
 

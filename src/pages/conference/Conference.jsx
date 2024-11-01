@@ -24,6 +24,7 @@ import Chat from './components/Chat';
 import Prompt from './components/Prompt';
 import { faCircleDot } from '@fortawesome/free-solid-svg-icons';
 import { Landscape } from '@mui/icons-material';
+import Loader from '../../shared components/loader';
 
 const Conference = () => {
     const { id } = useParams();
@@ -125,7 +126,7 @@ const Conference = () => {
                     ) : prompt ? (
                         <Prompt promptObj={prompt} setPrompt={setPrompt}/> 
                     ) : (
-                        <div>Loading...</div>
+                        <Loader />
                     )}
                     <ConferenceInfo/>
                 </article>

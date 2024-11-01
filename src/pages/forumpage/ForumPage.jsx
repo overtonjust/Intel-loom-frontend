@@ -6,18 +6,28 @@ import "./ForumPage.scss";
 import ResponseLink from "./components/ResponseLink";
 import ResponsePage from "./components/ResponsePage";
 import { TbArrowBackUpDouble } from "react-icons/tb";
-import profilePic from '../../assets/default-profile.png';
+import profilePic from "../../assets/default-profile.png";
+import { wrapLink } from "../../../utils";
+import Loader from "../../shared components/loader";
 
 const ForumPage = () => {
-  const { API, loading, setLoading } = useContext(UserContext);
+  const {
+    API,
+    loading,
+    setLoading,
+    isTabletOrMobile,
+    fitsOneColumn,
+    fitsTwoColumns,
+    fitsThreeColumns,
+  } = useContext(UserContext);
   const { id } = useParams();
   const navigate = useNavigate();
   const [forum, setForum] = useState({
-    post: '',
+    post: "",
     userId: 0,
-    username: '',
-    profilePicture: '',
-    postId: 0
+    username: "",
+    profilePicture: "",
+    postId: 0,
   });
   const [responses, setResponses] = useState([]);
   const [moreResponses, setMoreResponses] = useState(false);
@@ -45,13 +55,13 @@ const ForumPage = () => {
   };
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
 
     axios
       .get(`${API}/forums/forum-info/${id}`, { withCredentials: true })
       .then((res) => {
-        setForum(res.data)
-        setLoading(false)
+        setForum(res.data);
+        setLoading(false);
       })
       .catch((err) => console.log(err));
   }, [id]);
@@ -70,42 +80,54 @@ const ForumPage = () => {
 
   if (loading) {
     return (
-      <main className="loading">
-        <h1>Loading...</h1>
-      </main>
-    )
+      <Loader />
+    );
   }
 
+  const bigScreen =
+    (!isTabletOrMobile || fitsThreeColumns) &&
+    !fitsOneColumn &&
+    !fitsTwoColumns;
+
   const { post, userId, username, profilePicture, postId } = forum;
+  const formattedPost = wrapLink(post);
 
   return (
-    <main className="forum-container">
-      <section className="forum-container__back">
-        <button onClick={() => navigate('/forums')}>
-          <TbArrowBackUpDouble />
-        </button>
-      </section>
-      <section className="forum-card">
-        <div className="forum-card__user">
-          <img src={profilePicture ? profilePicture : profilePic} alt={username} />
-          <Link className="forum-link" to={`/profile/${userId}`}>
-            {username}
-          </Link>
-        </div>
-        <div className="forum-card__post">
-          <p>{post}</p>
-        </div>
-        <div className="forum-card__reply">
-          <div className="reply-input">
-            <input
-              type="text"
-              placeholder="Reply..."
-              onChange={handleChange}
-              value={response}
-            />
-            <button className="button-orange" onClick={handleSubmit}>
-              Reply
+    <main
+      className={`forum-container ${bigScreen ? "forum-container-desktop" : "forum-container-mobile"}`}
+    >
+      <section className="main-content">
+        <div className={`main-content__forum ${bigScreen ? 'forum-position' : ''}`}>
+          <div className="forum-container__back">
+            <button onClick={() => navigate("/forums")}>
+              <TbArrowBackUpDouble />
             </button>
+          </div>
+          <div className="forum-card">
+            <div className="forum-card__user">
+              <img
+                src={profilePicture ? profilePicture : profilePic}
+                alt={username}
+              />
+              <Link className="forum-link" to={`/profile/${userId}`}>
+                {username}
+              </Link>
+            </div>
+            <div className="forum-card__post">
+              <p dangerouslySetInnerHTML={{ __html: formattedPost }}></p>
+            </div>
+            <div className="forum-card__reply">
+              <div className="reply-input">
+                <textarea
+                  placeholder="Reply..."
+                  onChange={handleChange}
+                  value={response}
+                />
+                <button className="button-orange" onClick={handleSubmit}>
+                  Reply
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

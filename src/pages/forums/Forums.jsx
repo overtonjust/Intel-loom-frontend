@@ -6,6 +6,7 @@ import "./Forums.scss";
 import { FaAnglesDown } from "react-icons/fa6";
 import profilePic from "../../assets/default-profile.png";
 import { TypeAnimation } from "react-type-animation";
+import Loader from "../../shared components/loader";
 
 const Forums = () => {
   const {
@@ -58,9 +59,7 @@ const Forums = () => {
 
   if (loading) {
     return (
-      <main className="loading">
-        <h1>Loading...</h1>
-      </main>
+      <Loader />
     );
   }
 

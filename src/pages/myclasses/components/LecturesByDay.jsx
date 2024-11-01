@@ -3,6 +3,7 @@ import { UserContext } from '../../../context/UserContext.jsx';
 import axios from "axios";
 import ClassCard from "../../../shared components/ClassCard";
 import { formatDateKey } from "../../../../utils";
+import Loader from "../../../shared components/loader.jsx";
 
 const LecturesByDay = ({ API }) => {
   const { fitsOneColumn, fitsTwoColumns, fitsThreeColumns, loading, setLoading } = useContext(UserContext);
@@ -22,9 +23,7 @@ const LecturesByDay = ({ API }) => {
 
   if (loading) {
     return (
-      <main className="loading">
-        <h1>Loading...</h1>
-      </main>
+      <Loader />
     )
   }
 

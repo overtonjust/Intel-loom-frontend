@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import profilePic from '../../../assets/default-profile.png';
+import { wrapLink } from "../../../../utils";
 
 const Response = ({ API, res, setResponses }) => {
   const {
@@ -13,6 +14,7 @@ const Response = ({ API, res, setResponses }) => {
     postId,
   } = res;
   const [response, setResponse] = useState("");
+  const formattedResponse = wrapLink(resp);
 
   const handleChange = (e) => {
     setResponse(e.target.value);
@@ -44,12 +46,11 @@ const Response = ({ API, res, setResponses }) => {
           </Link>
         </div>
         <div className="response-card__resp">
-          <p>{resp}</p>
+          <p dangerouslySetInnerHTML={{ __html: formattedResponse }}></p>
         </div>
         <div className="response-card__reply">
           <div className="reply-input">
-            <input
-              type="text"
+            <textarea
               placeholder="Reply..."
               onChange={handleChange}
               value={response}

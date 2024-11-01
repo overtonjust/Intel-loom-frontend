@@ -7,6 +7,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import './UserPage.scss'
 import MobileCarousel from '../../shared components/carousels/MobileCarousel';
 import bannerImage from '../../assets/banner-img.png'
+import Loader from '../../shared components/loader';
 
 
 const UserPage = () => {
@@ -16,7 +17,7 @@ const UserPage = () => {
   const [userData, setUserData] = useState({});
   const [settingsMenu, setSettingsMenu] = useState(false)
   const [isInstructor, setIsInstructor] = useState(false)
-console.log(user, userData)
+
   useEffect(() => {
     setLoading(true)
 
@@ -41,9 +42,7 @@ console.log(user, userData)
 
   if (loading) {
     return (
-      <main className="loading">
-        <h1>Loading...</h1>
-      </main>
+      <Loader />
     )
   }
 

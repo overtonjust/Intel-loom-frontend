@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Loader from "../../../shared components/loader";
 
 const Templates = ({API}) => {
   const { fitsOneColumn, fitsTwoColumns, fitsThreeColumns, loading, setLoading } = useContext(UserContext);
@@ -24,9 +25,7 @@ const Templates = ({API}) => {
 
   if (loading) {
     return (
-      <main className="loading">
-        <h1>Loading...</h1>
-      </main>
+      <Loader />
     )
   }
 

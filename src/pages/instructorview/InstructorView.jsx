@@ -8,6 +8,7 @@ import axios from "axios";
 
 // Components
 import StudentCard from "./components/StudentCard";
+import Loader from "../../shared components/loader";
 
 const InstructorView = () => {
   const { API, isTabletOrMobile, loading, setLoading, setClassDateId } = useContext(UserContext);
@@ -41,9 +42,7 @@ const InstructorView = () => {
 
   if (loading) {
     return (
-      <main className="loading">
-        <h1>Loading...</h1>
-      </main>
+      <Loader />
     );
   }
 

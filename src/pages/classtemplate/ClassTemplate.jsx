@@ -5,6 +5,7 @@ import axios from "axios";
 import moment from "moment";
 import MobileCarousel from "../../shared components/carousels/MobileCarousel";
 import "./ClassTemplate.scss";
+import Loader from "../../shared components/loader";
 
 const ClassTemplate = () => {
   const { API, setMessage } = useContext(UserContext);
@@ -54,9 +55,7 @@ const ClassTemplate = () => {
 
   if (!classData) {
     return (
-      <main className="loading">
-        <h1>Loading...</h1>
-      </main>
+      <Loader />
     )
   }
 
