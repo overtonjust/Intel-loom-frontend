@@ -1,9 +1,10 @@
 // Dependencies
-import { useEffect, useState, useContext } from "react";
-import { UserContext } from "../../context/UserContext";
-import axios from "axios";
-import SearchBar from "../../shared components/SearchBar";
-import "./Home.scss";
+import { useEffect, useState, useContext } from 'react'
+import { UserContext } from '../../context/UserContext'
+import axios from 'axios'
+import SearchBar from '../../shared components/SearchBar'
+import './Home.scss'
+import Loader from '../../shared components/loader'
 
 // Components
 import { FaAnglesDown } from "react-icons/fa6";
