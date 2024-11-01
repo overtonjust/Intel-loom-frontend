@@ -1,13 +1,39 @@
 @import "../../shared.scss";
 
-.forum-container {
+.forum-container-mobile {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  padding: 1rem;
-  max-width: 430px;
+}
+
+.forum-container-desktop {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  gap: 3rem;
+  min-width: 920px;
+  max-width: 1400px;
   margin: 0 auto;
+}
+
+.main-content {
+  &__forum {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    max-width: 430px;
+  }
+}
+
+.forum-position {
+  position: sticky;
+  top: 2%;
+}
+
+.forum-container {
+  padding: 1rem;
   &__back {
     width: 100%;
     button {
@@ -26,13 +52,15 @@
 
 .reply-input {
   display: flex;
-  height: 30px;
+  align-items: center;
   gap: 1rem;
-  input {
+  textarea {
     flex: 1;
+    height: 90px;
     padding: 0.5rem;
     border-radius: 0.5rem;
     border: 0.1rem solid $white;
+    resize: none;
   }
   button {
     display: flex;
@@ -47,6 +75,7 @@
 }
 
 .forum-responses {
+  max-width: 430px;
   &__title {
     color: $blue;
   }
@@ -110,7 +139,7 @@
     }
   }
   &__responses {
-    padding: 0 1rem;  
+    padding: 0 1rem;
   }
   &__more {
     display: flex;

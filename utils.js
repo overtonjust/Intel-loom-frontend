@@ -68,4 +68,9 @@ const formatDateKey = dateStr => {
   return `${day} ${dateParts[1]} ${dateParts[2]}, ${dateParts[3]}`;
 }
 
-export { formatDate, formatTime, checkTime, formatDateKey, isClassDayToday, isHourFromStart };
+const wrapLink = response => {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  return response?.replace(urlRegex, (url) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`);
+} 
+
+export { formatDate, formatTime, checkTime, formatDateKey, isClassDayToday, isHourFromStart, wrapLink };
