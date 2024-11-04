@@ -14,7 +14,7 @@ const DesktopNav = ({ user }) => {
       {user ? (
         <>
           <Link className="nav-link" to="/myclasses">
-            Classes
+            My Classes
           </Link>
           <Link className="nav-link" to="/forums">
             Forums
