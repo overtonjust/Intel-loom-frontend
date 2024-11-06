@@ -1,6 +1,6 @@
 const wrapLink = response => {
   const urlRegex = /(https?:\/\/[^\s]+)/g;
-  const parts = response.split(urlRegex).map((part, idx) => {
+  const parts = response?.split(urlRegex)?.map((part, idx) => {
     if (urlRegex.test(part)) {
       const isInternal = part.includes('localhost') || part.includes('https://intel-loom.netlify.app');
       return (
